@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import propTypes from "prop-types";
 import dayjs from "dayjs";
 
-import Button from "../base/button";
-import Image from "../base/image";
+import Button from "../../base/button";
+import Image from "../../base/image";
 import Styles from "./index.module.scss";
+import TextArea from "../../base/text-area";
 
-function TaskCard({ title, createdAt, isCompleted, completedAt }) {
+function TaskCard({
+  title,
+  createdAt,
+  isCompleted,
+  completedAt,
+  isTaskOnEditMode,
+}) {
+  const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
+
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
     endDate.diff(startDate, "day");
-
   const formatDate = (date) => date.format("YYYY-MM-DD");
 
   return (
     <div className={Styles.card}>
-      <h3>{title}</h3>
+      {isTextAreaVisible ? <TextArea noOfRows={5} /> : <h3>{title}</h3>}
+
       <p className={Styles.date}>created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
@@ -23,7 +32,10 @@ function TaskCard({ title, createdAt, isCompleted, completedAt }) {
             <Image src="check.png" alt="check" />
           </Button>
 
-          <Button className={`${Styles.button} ${Styles.editBtn}`}>
+          <Button
+            className={`${Styles.button} ${Styles.editBtn}`}
+            onButtonClick={() => setIsTextAreaVisible(true)}
+          >
             <Image src="edit.png" alt="check" />
           </Button>
 
@@ -56,6 +68,11 @@ TaskCard.propTypes = {
   title: propTypes.string.isRequired,
   createdAt: validateDate,
   isCompleted: propTypes.bool.isRequired,
+  isTaskOnEditMode: propTypes.bool,
+};
+
+TaskCard.defaultProps = {
+  isTaskOnEditMode: false,
 };
 
 export default TaskCard;
