@@ -3,9 +3,13 @@ import propTypes from "prop-types";
 
 import Styles from "./index.module.scss";
 
-function Button({ children, onButtonClick, className }) {
+function Button({ children, onButtonClick, className, buttonType }) {
   return (
-    <button className={`${Styles.button} ${className}`} onClick={onButtonClick}>
+    <button
+      className={`${Styles.button} ${className}`}
+      onClick={onButtonClick}
+      type={buttonType}
+    >
       {children}
     </button>
   );
@@ -15,11 +19,13 @@ Image.propTypes = {
   children: propTypes.oneOfType([propTypes.string, propTypes.node]).isRequired,
   className: propTypes.string,
   onButtonClick: propTypes.func,
+  buttonType: propTypes.string,
 };
 
 Image.defaultProps = {
   className: "",
   onButtonClick: () => {},
+  buttonType: "submit",
 };
 
 export default Button;
