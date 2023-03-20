@@ -1,0 +1,22 @@
+.card {
+  border: 1px solid #dde2ff;
+  padding: 0.938rem;
+
+  .date {
+    margin-top: 0.563rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .doneBtn {
+    width: 1.5rem;
+  }
+
+  .editBtn {
+    width: 1.5rem;
+    margin-left: 1.625rem;
+    margin-right: 1.813rem;
+  }
+  .deleteBtn {
+    width: 1.25rem;
+  }
+}
