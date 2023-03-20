@@ -14,8 +14,13 @@
   margin-right: auto;
 }
 
+//border
+.border-none {
+  border: none;
+}
+
 .container {
-  width: 90.5%;
+  width: 80%;
 }
 
 // global flex styles
@@ -29,4 +34,18 @@
 
 .items-center {
   align-items: center;
+}
+
+//grid
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gap-34px {
+  gap: 2.125rem;
 }
