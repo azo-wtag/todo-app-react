@@ -21,6 +21,10 @@ function HomeContainer() {
       <div className="grid grid-cols-3 gap-34px">
         <TaskCard />
       </div>
+
+      <div className="flex justify-center">
+        <Button className={Styles.loadMoreBtn}>Load More</Button>
+      </div>
     </div>
   );
 }
