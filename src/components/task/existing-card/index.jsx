@@ -18,7 +18,7 @@ function TaskCard({
 
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
     endDate.diff(startDate, "day");
-  const formatDate = (date) => date.format("YYYY-MM-DD");
+  const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
 
   return (
     <div className={Styles.card}>
