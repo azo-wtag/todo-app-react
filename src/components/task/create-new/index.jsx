@@ -12,7 +12,7 @@ function CreateTask() {
 
       <div className={`flex items-center ${Styles.buttonContainer}`}>
         <Button className={Styles.addTaskBtn}>Add Task</Button>
-        <Button>
+        <Button buttonType="button">
           <Image src="delete.png" alt="check" />
         </Button>
       </div>
