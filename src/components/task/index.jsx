@@ -1,14 +1,21 @@
 import React from "react";
+import propTypes from "prop-types";
+import dayjs from "dayjs";
+
 import Button from "../base/button";
 import Image from "../base/image";
-
 import Styles from "./index.module.scss";
 
-function TaskCard() {
+function TaskCard({ title, createdAt, isCompleted, completedAt }) {
+  const calculateDateDifference = (startDate, endDate = dayjs()) =>
+    endDate.diff(startDate, "day");
+
+  const formatDate = (date) => date.format("YYYY-MM-DD");
+
   return (
     <div className={Styles.card}>
-      <h3>Complete initial setup</h3>
-      <p className={Styles.date}>created At: 21.02.22</p>
+      <h3>{title}</h3>
+      <p className={Styles.date}>created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
         <div className="flex items-center">
@@ -25,10 +32,30 @@ function TaskCard() {
           </Button>
         </div>
 
-        <Button>Completed in 3 days</Button>
+        {isCompleted && (
+          <Button>
+            Completed in {calculateDateDifference(completedAt, dayjs())} days
+          </Button>
+        )}
       </div>
     </div>
   );
 }
+
+function validateDate(props, propName, componentName) {
+  const dateValue = props[propName];
+  if (!dayjs(dateValue).isValid()) {
+    return new Error(
+      `Invalid prop ${propName} supplied to ${componentName}. ` +
+        `Expected a valid date'.`
+    );
+  }
+}
+
+TaskCard.propTypes = {
+  title: propTypes.string.isRequired,
+  createdAt: validateDate,
+  isCompleted: propTypes.bool.isRequired,
+};
 
 export default TaskCard;
