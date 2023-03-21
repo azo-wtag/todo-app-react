@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import propTypes from "prop-types";
 import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../base/button";
 import Image from "../../base/image";
 import Styles from "./index.module.scss";
 import TextArea from "../../base/text-area";
+import { deleteTaskFromTodo } from "../../../store/actions/todo";
 
 function TaskCard({
+  indexNo,
   title,
   createdAt,
   isCompleted,
@@ -15,10 +18,18 @@ function TaskCard({
   isTaskOnEditMode,
 }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.todo.tasks);
 
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
     endDate.diff(startDate, "day");
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
+
+  const handleDeleteClick = (index) => {
+    console.log(index);
+    dispatch(deleteTaskFromTodo(index));
+    console.log(tasks);
+  };
 
   return (
     <div className={Styles.card}>
@@ -39,7 +50,10 @@ function TaskCard({
             <Image src="edit.png" alt="check" />
           </Button>
 
-          <Button className={`${Styles.button} ${Styles.deleteBtn}`}>
+          <Button
+            className={`${Styles.button} ${Styles.deleteBtn}`}
+            onButtonClick={() => handleDeleteClick(indexNo)}
+          >
             <Image src="delete.png" alt="check" />
           </Button>
         </div>
@@ -65,6 +79,7 @@ function validateDate(props, propName, componentName) {
 }
 
 TaskCard.propTypes = {
+  indexNo: propTypes.number.isRequired,
   title: propTypes.string.isRequired,
   createdAt: validateDate,
   isCompleted: propTypes.bool.isRequired,
