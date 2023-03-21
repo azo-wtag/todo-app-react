@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "../../base/image";
 import Styles from "./index.module.scss";
+import Image from "components/base/image";
 
 function NavBar() {
   return (

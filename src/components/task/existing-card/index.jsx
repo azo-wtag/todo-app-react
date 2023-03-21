@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import propTypes from "prop-types";
 import dayjs from "dayjs";
 
-import Button from "../../base/button";
-import Image from "../../base/image";
-import Styles from "./index.module.scss";
-import TextArea from "../../base/text-area";
+import styles from "./index.module.scss";
+import TextArea from "components/base/text-area";
+import Button from "components/base/button";
+import Image from "components/base/image";
 
 function TaskCard({
   title,
@@ -21,25 +21,25 @@ function TaskCard({
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
 
   return (
-    <div className={Styles.card}>
+    <div className={styles.card}>
       {isTextAreaVisible ? <TextArea noOfRows={5} /> : <h3>{title}</h3>}
 
-      <p className={Styles.date}>created At: {formatDate(createdAt)}</p>
+      <p className={styles.date}>created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
         <div className="flex items-center">
-          <Button className={`${Styles.button} ${Styles.doneBtn}`}>
+          <Button className={`${styles.button} ${styles.doneBtn}`}>
             <Image src="check.png" alt="check" />
           </Button>
 
           <Button
-            className={`${Styles.button} ${Styles.editBtn}`}
+            className={`${styles.button} ${styles.editBtn}`}
             onButtonClick={() => setIsTextAreaVisible(true)}
           >
             <Image src="edit.png" alt="check" />
           </Button>
 
-          <Button className={`${Styles.button} ${Styles.deleteBtn}`}>
+          <Button className={`${styles.button} ${styles.deleteBtn}`}>
             <Image src="delete.png" alt="check" />
           </Button>
         </div>

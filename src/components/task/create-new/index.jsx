@@ -3,14 +3,14 @@ import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
-
-import Button from "../../base/button";
-import Image from "../../base/image";
-import TextArea from "../../base/text-area";
-import Styles from "./index.module.scss";
-import { addNewTaskSchema } from "../../../utils/schema";
 import { useDispatch } from "react-redux";
-import { addTaskToTodo } from "../../../store/actions/todo";
+
+import styles from "./index.module.scss";
+import Button from "components/base/button";
+import TextArea from "components/base/text-area";
+import Image from "components/base/image";
+import { addNewTaskSchema } from "utils/schema";
+import { addTaskToTodo } from "store/actions/todo";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
@@ -47,8 +47,8 @@ function CreateTask({ onSuccessfullTaskEntry }) {
         error={errors.title}
       />
 
-      <div className={`flex items-center ${Styles.buttonContainer}`}>
-        <Button className={Styles.addTaskBtn}>Add Task</Button>
+      <div className={`flex items-center ${styles.buttonContainer}`}>
+        <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType="button">
           <Image src="delete.png" alt="check" />
         </Button>
