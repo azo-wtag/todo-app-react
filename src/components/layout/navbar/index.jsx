@@ -1,11 +1,11 @@
 import React from "react";
-import Styles from "components/layout/navbar/index.module.scss";
+import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
 
 function NavBar() {
   return (
     <nav
-      className={`container flex justify-between width-100 mx-auto ${Styles.navbar}`}
+      className={`container flex justify-between width-100 mx-auto ${styles.navbar}`}
     >
       <div className="flex">
         <Image src="logo.png" alt="todo app logo" />
