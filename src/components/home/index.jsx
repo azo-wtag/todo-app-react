@@ -5,6 +5,7 @@ import styles from "components/home/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
 import TaskCard from "components/task/existing-card";
+import FilterBtnContainer from "components/filter";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -22,11 +23,7 @@ function HomeContainer() {
           Create
         </Button>
 
-        <div>
-          <Button>All</Button>
-          <Button>Incomplete</Button>
-          <Button>Complete</Button>
-        </div>
+        <FilterBtnContainer />
       </div>
 
       <div className="grid grid-cols-3 gap-34px">
