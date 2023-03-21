@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { ADD_TASK } from "../constants/actionTypes";
+import { ADD_TASK, DELETE_TASK } from "../constants/actionTypes";
 
 const initialTodoState = {
   tasks: [
@@ -22,6 +22,10 @@ export const todoReducer = (state = initialTodoState, action) => {
         ...state,
         tasks: existingTasks,
       };
+    }
+
+    case DELETE_TASK: {
+      return { ...state, tasks: [] };
     }
 
     default:
