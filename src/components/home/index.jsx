@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import Button from "../base/button";
+import NoTaskFound from "../not-found/task";
 import CreateTask from "../task/create-new";
 import TaskCard from "../task/existing-card";
 import Styles from "./index.module.scss";
@@ -30,19 +31,25 @@ function HomeContainer() {
       </div>
 
       <div className="grid grid-cols-3 gap-34px">
+        {tasks.length}
         {isNewTaskRequested && (
           <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
         )}
 
-        {tasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            title={task.title}
-            createdAt={task.createdAt}
-            isCompleted={task.isCompleted}
-            completedAt={task.completedAt}
-          />
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task, index) => (
+            <TaskCard
+              key={task.id}
+              indexNo={index}
+              title={task.title}
+              createdAt={task.createdAt}
+              isCompleted={task.isCompleted}
+              completedAt={task.completedAt}
+            />
+          ))
+        ) : (
+          <NoTaskFound />
+        )}
       </div>
 
       <div className="flex justify-center">
