@@ -21,7 +21,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       title: data.title,
       createdAt: dayjs().format("YYYY-MM-DD"),
       isCompleted: false,
-      completedAt: "",
+      completedAt: null,
     };
 
     dispatch(addTaskToTodo(task));
