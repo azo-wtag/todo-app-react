@@ -1,0 +1,1 @@
+export const TASK_TEXTAREA_NUM_OF_COLUMN = 4;

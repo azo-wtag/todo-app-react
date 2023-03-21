@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
+import { TASK_TEXTAREA_NUM_OF_COLUMN } from "utils/const";
 
 function TaskCard({
   title,
@@ -22,7 +23,11 @@ function TaskCard({
 
   return (
     <div className={styles.card}>
-      {isTextAreaVisible ? <TextArea numOfRows={5} /> : <h3>{title}</h3>}
+      {isTextAreaVisible ? (
+        <TextArea numOfRows={TASK_TEXTAREA_NUM_OF_COLUMN} />
+      ) : (
+        <h3>{title}</h3>
+      )}
 
       <p className={styles.date}>created At: {formatDate(createdAt)}</p>
 
