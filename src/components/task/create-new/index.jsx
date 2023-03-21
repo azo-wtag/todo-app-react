@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
-import styles from "./index.module.scss";
+import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";

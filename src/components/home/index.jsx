@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import styles from "./index.module.scss";
-import Button from "../base/button";
+import styles from "components/home/index.module.scss";
+import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
 import TaskCard from "components/task/existing-card";
 

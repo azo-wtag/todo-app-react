@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-import styles from "./index.module.scss";
+import styles from "components/base/button/index.module.scss";
 
 function Button({ children, onButtonClick, className, buttonType }) {
   return (

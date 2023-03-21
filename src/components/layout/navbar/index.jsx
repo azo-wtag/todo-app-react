@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "./index.module.scss";
+import Styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
 
 function NavBar() {
