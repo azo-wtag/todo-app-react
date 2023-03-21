@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { ADD_TASK } from "../constants/actionTypes";
+import { ADD_TASK } from "store/constants/actionTypes";
 
 const initialTodoState = {
   tasks: [
