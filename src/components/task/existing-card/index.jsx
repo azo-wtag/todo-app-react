@@ -26,18 +26,18 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
       <div className="flex justify-between">
         <div className="flex items-center">
           <Button className={`${styles.button} ${styles.doneBtn}`}>
-            <Image src="check.png" alt="check" />
+            <Image src="check.png" alt="complete task button icon" />
           </Button>
 
           <Button
             className={`${styles.button} ${styles.editBtn}`}
             onButtonClick={() => setIsTextAreaVisible(true)}
           >
-            <Image src="edit.png" alt="check" />
+            <Image src="edit.png" alt="edit task button icon" />
           </Button>
 
           <Button className={`${styles.button} ${styles.deleteBtn}`}>
-            <Image src="delete.png" alt="check" />
+            <Image src="delete.png" alt="delete task button icon" />
           </Button>
         </div>
 

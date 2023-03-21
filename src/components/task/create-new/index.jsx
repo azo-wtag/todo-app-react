@@ -51,7 +51,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType="button">
-          <Image src="delete.png" alt="check" />
+          <Image src="delete.png" alt="delete task button icon" />
         </Button>
       </div>
     </form>
