@@ -1,5 +1,4 @@
 import React from "react";
-import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
@@ -12,20 +11,13 @@ import Image from "components/base/image";
 import { addNewTaskSchema } from "utils/schema";
 import { addTaskToTodo } from "store/actions/todo";
 import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
+import { generateTaskObject } from "utils/helper";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
 
   const addNewTask = (data) => {
-    const task = {
-      id: `task#${dayjs().format("YYYY-MM-DD HH:mm:SSS")}`,
-      title: data.title,
-      createdAt: dayjs().format("YYYY-MM-DD"),
-      isCompleted: false,
-      completedAt: "",
-    };
-
-    dispatch(addTaskToTodo(task));
+    dispatch(addTaskToTodo(generateTaskObject(data.title)));
     setValue("title", "");
     onSuccessfullTaskEntry();
   };
