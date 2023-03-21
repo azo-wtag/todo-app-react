@@ -19,7 +19,7 @@ export const todoReducer = (state = initialTodoState, action) => {
       const existingTasks = structuredClone(state.tasks);
       existingTasks.unshift(action.payload);
       return {
-        ...initialTodoState,
+        ...state,
         tasks: existingTasks,
       };
     }
