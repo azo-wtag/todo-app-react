@@ -22,7 +22,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       title: data.title,
       createdAt: dayjs().format("YYYY-MM-DD"),
       isCompleted: false,
-      completedAt: null,
+      completedAt: "",
     };
 
     dispatch(addTaskToTodo(task));
