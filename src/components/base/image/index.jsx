@@ -2,13 +2,11 @@ import React from "react";
 import propTypes from "prop-types";
 
 function Image({ src, alt, className }) {
+  const image = require(`assets/images/${src}`);
+
   return (
     <div>
-      <img
-        src={require(`../../../assets/images/${src}`)}
-        alt={alt}
-        className={className}
-      />
+      <img src={image} alt={alt} className={className} />
     </div>
   );
 }
