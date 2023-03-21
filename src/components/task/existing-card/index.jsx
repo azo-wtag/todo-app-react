@@ -6,7 +6,7 @@ import styles from "components/task/existing-card/index.module.scss";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
-import { TASK_TEXTAREA_NUM_OF_COLUMN } from "utils/const";
+import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 
 function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -16,7 +16,7 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   return (
     <div className={styles.card}>
       {isTextAreaVisible ? (
-        <TextArea numOfRows={TASK_TEXTAREA_NUM_OF_COLUMN} />
+        <TextArea numOfRows={TASK_TEXTAREA_NUM_OF_ROW} />
       ) : (
         <h3>{title}</h3>
       )}

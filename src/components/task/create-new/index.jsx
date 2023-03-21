@@ -11,7 +11,7 @@ import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import { addNewTaskSchema } from "utils/schema";
 import { addTaskToTodo } from "store/actions/todo";
-import { TASK_TEXTAREA_NUM_OF_COLUMN } from "utils/const";
+import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_COLUMN}
+        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register("title") }}
         error={errors.title}
       />
