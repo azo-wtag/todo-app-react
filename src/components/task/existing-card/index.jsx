@@ -22,7 +22,7 @@ function TaskCard({
 
   return (
     <div className={styles.card}>
-      {isTextAreaVisible ? <TextArea noOfRows={5} /> : <h3>{title}</h3>}
+      {isTextAreaVisible ? <TextArea numOfRows={5} /> : <h3>{title}</h3>}
 
       <p className={styles.date}>created At: {formatDate(createdAt)}</p>
 

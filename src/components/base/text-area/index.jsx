@@ -1,14 +1,14 @@
 import React from "react";
 import propTypes from "prop-types";
 
-function TextArea({ noOfRows, register, error }) {
+function TextArea({ numOfRows, register, error }) {
   return (
     <div>
       <textarea
         name="data"
         {...register}
         className="width-100"
-        rows={noOfRows}
+        rows={numOfRows}
       ></textarea>
       {error && <p>{error.message}</p>}
     </div>

@@ -42,7 +42,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
-        noOfRows={4}
+        numOfRows={4}
         register={{ ...register("title") }}
         error={errors.title}
       />
