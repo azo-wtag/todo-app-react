@@ -8,17 +8,9 @@ import Button from "components/base/button";
 import Image from "components/base/image";
 import { TASK_TEXTAREA_NUM_OF_COLUMN } from "utils/const";
 
-function TaskCard({
-  title,
-  createdAt,
-  isCompleted,
-  completedAt,
-  isTaskOnEditMode,
-}) {
+function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
-  const calculateDateDifference = (startDate, endDate = dayjs()) =>
-    endDate.diff(startDate, "day");
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
 
   return (
@@ -49,11 +41,7 @@ function TaskCard({
           </Button>
         </div>
 
-        {isCompleted && (
-          <Button>
-            Completed in {calculateDateDifference(completedAt, dayjs())} days
-          </Button>
-        )}
+        {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>
   );
