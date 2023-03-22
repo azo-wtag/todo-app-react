@@ -31,7 +31,6 @@ function HomeContainer() {
       </div>
 
       <div className="grid grid-cols-3 gap-34px">
-        {tasks.length}
         {isNewTaskRequested && (
           <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
         )}

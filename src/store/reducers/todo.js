@@ -25,7 +25,9 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case DELETE_TASK: {
-      return { ...state, tasks: [] };
+      const existingTasks = structuredClone(state.tasks);
+      existingTasks.splice(action.payload, 1);
+      return { ...state, tasks: existingTasks };
     }
 
     default:

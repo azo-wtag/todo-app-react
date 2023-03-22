@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import propTypes from "prop-types";
 import dayjs from "dayjs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Button from "../../base/button";
 import Image from "../../base/image";
@@ -19,17 +19,11 @@ function TaskCard({
 }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.todo.tasks);
 
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
     endDate.diff(startDate, "day");
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
-
-  const handleDeleteClick = (index) => {
-    console.log(index);
-    dispatch(deleteTaskFromTodo(index));
-    console.log(tasks);
-  };
+  const handleDeleteClick = (index) => dispatch(deleteTaskFromTodo(index));
 
   return (
     <div className={Styles.card}>
