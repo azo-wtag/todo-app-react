@@ -17,8 +17,8 @@ import { DELETE_ICON_ALT_TAG } from "utils/const/images";
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
 
-  const addNewTask = (data) => {
-    dispatch(addTaskToTodo(generateTaskObject(data.title)));
+  const addNewTask = (task) => {
+    dispatch(addTaskToTodo(generateTaskObject(task.title)));
     setValue("title", "");
     onSuccessfullTaskEntry();
   };
