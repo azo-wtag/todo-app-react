@@ -7,7 +7,10 @@ import Button from "../../base/button";
 import Image from "../../base/image";
 import Styles from "./index.module.scss";
 import TextArea from "../../base/text-area";
-import { deleteTaskFromTodo } from "../../../store/actions/todo";
+import {
+  deleteTaskFromTodo,
+  markTaskAsDone,
+} from "../../../store/actions/todo";
 
 function TaskCard({
   indexNo,
@@ -24,6 +27,7 @@ function TaskCard({
     endDate.diff(startDate, "day");
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
   const handleDeleteClick = (index) => dispatch(deleteTaskFromTodo(index));
+  const handleDoneClick = (taskIndex) => dispatch(markTaskAsDone(taskIndex));
 
   return (
     <div className={Styles.card}>
@@ -33,7 +37,10 @@ function TaskCard({
 
       <div className="flex justify-between">
         <div className="flex items-center">
-          <Button className={`${Styles.button} ${Styles.doneBtn}`}>
+          <Button
+            className={`${Styles.button} ${Styles.doneBtn}`}
+            onButtonClick={() => handleDoneClick(indexNo)}
+          >
             <Image src="check.png" alt="check" />
           </Button>
 
