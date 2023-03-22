@@ -7,6 +7,11 @@ import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
+import {
+  CHECK_ICON_ALT_TAG,
+  DELETE_ICON_ALT_TAG,
+  EDIT_ICON_ALT_TAG,
+} from "utils/const/images";
 
 function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -26,18 +31,18 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
       <div className="flex justify-between">
         <div className="flex items-center">
           <Button className={`${styles.button} ${styles.doneBtn}`}>
-            <Image src="check.png" alt="complete task button icon" />
+            <Image src="check.png" alt={CHECK_ICON_ALT_TAG} />
           </Button>
 
           <Button
             className={`${styles.button} ${styles.editBtn}`}
             onButtonClick={() => setIsTextAreaVisible(true)}
           >
-            <Image src="edit.png" alt="edit task button icon" />
+            <Image src="edit.png" alt={EDIT_ICON_ALT_TAG} />
           </Button>
 
           <Button className={`${styles.button} ${styles.deleteBtn}`}>
-            <Image src="delete.png" alt="delete task button icon" />
+            <Image src="delete.png" alt={DELETE_ICON_ALT_TAG} />
           </Button>
         </div>
 

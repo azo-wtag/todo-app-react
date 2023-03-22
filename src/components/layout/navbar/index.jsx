@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
+import { LOGO_ALT_TAG, SEARCH_ICON_ALT_TAG } from "utils/const/images";
 
 function NavBar() {
   return (
@@ -8,12 +9,12 @@ function NavBar() {
       className={`container flex justify-between width-100 mx-auto ${styles.navbar}`}
     >
       <div className="flex">
-        <Image src="logo.png" alt="todo app logo" />
+        <Image src="logo.png" alt={LOGO_ALT_TAG} />
         <h1>Todos</h1>
       </div>
 
       <div>
-        <Image src="search.png" alt="task search icon" />
+        <Image src="search.png" alt={SEARCH_ICON_ALT_TAG} />
       </div>
     </nav>
   );

@@ -12,6 +12,7 @@ import { addNewTaskSchema } from "utils/schema";
 import { addTaskToTodo } from "store/actions/todo";
 import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 import { generateTaskObject } from "utils/helper";
+import { DELETE_ICON_ALT_TAG } from "utils/const/images";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType="button">
-          <Image src="delete.png" alt="delete task button icon" />
+          <Image src="delete.png" alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
     </form>
