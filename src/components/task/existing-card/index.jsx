@@ -12,6 +12,7 @@ import {
   DELETE_ICON_ALT_TAG,
   EDIT_ICON_ALT_TAG,
 } from "utils/const/images";
+import { validateDayjsDate } from "utils/helper/validation";
 
 function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -33,14 +34,12 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
           <Button className={`${styles.button} ${styles.doneBtn}`}>
             <Image src="check.png" alt={CHECK_ICON_ALT_TAG} />
           </Button>
-
           <Button
             className={`${styles.button} ${styles.editBtn}`}
             onButtonClick={() => setIsTextAreaVisible(true)}
           >
             <Image src="edit.png" alt={EDIT_ICON_ALT_TAG} />
           </Button>
-
           <Button className={`${styles.button} ${styles.deleteBtn}`}>
             <Image src="delete.png" alt={DELETE_ICON_ALT_TAG} />
           </Button>
@@ -52,19 +51,9 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   );
 }
 
-function validateDate(props, propName, componentName) {
-  const dateValue = props[propName];
-  if (!dayjs(dateValue).isValid()) {
-    return new Error(
-      `Invalid prop ${propName} supplied to ${componentName}. ` +
-        `Expected a valid date'.`
-    );
-  }
-}
-
 TaskCard.propTypes = {
   title: propTypes.string.isRequired,
-  createdAt: validateDate,
+  createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
   isTaskOnEditMode: propTypes.bool,
 };
