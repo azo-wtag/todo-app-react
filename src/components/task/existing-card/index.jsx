@@ -26,7 +26,6 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
 
       <div className="flex justify-between">
         <ButtonContainer onEditButtonClick={() => setIsTextAreaVisible(true)} />
-
         {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>
