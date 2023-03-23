@@ -9,7 +9,11 @@ import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import { addTaskToTodo } from "store/actions/todo";
-import { TASK_TEXTAREA_NUM_OF_ROW, DELETE_ICON_ALT_TAG } from "utils/const";
+import {
+  TASK_TEXTAREA_NUM_OF_ROW,
+  DELETE_ICON_ALT_TAG,
+  DELETE_ICON_PATH,
+} from "utils/const";
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 
@@ -43,7 +47,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType="button">
-          <Image src="delete.png" alt={DELETE_ICON_ALT_TAG} />
+          <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
     </form>
