@@ -5,12 +5,11 @@ import dayjs from "dayjs";
 import classnames from "classnames";
 
 import styles from "components/task/existing-card/index.module.scss";
-import TextArea from "components/base/text-area";
 import Button from "components/base/button";
-import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
-import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-card/button-container";
+import { validateDayjsDate } from "utils/helper/validation";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
+import EditTaskForm from "components/task/existing-card/edit-task";
 
 function TaskCard({
   indexNo,
@@ -18,6 +17,7 @@ function TaskCard({
   createdAt,
   isCompleted,
   isTaskOnEditMode,
+  completedAt,
 }) {
   const dispatch = useDispatch();
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -27,29 +27,37 @@ function TaskCard({
 
   const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
 
-  return (
-    <div className={styles.card}>
-      {isTextAreaVisible ? (
-        <TextArea numOfRows={TASK_TEXTAREA_NUM_OF_ROW} />
-      ) : (
-        <h3 className={taskHeaderClasses}>{title}</h3>
-      )}
-
-      <p className={styles.date}>created At: {formatDate(createdAt)}</p>
-
-      <div className="flex justify-between">
-        <ButtonContainer
-          onDoneButtonClick={() => dispatch(markTaskAsDone(indexNo))}
-          onEditButtonClick={() => setIsTextAreaVisible(true)}
-          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
-          isTaskCompleted={isCompleted}
+  if (isTextAreaVisible) {
+    return (
+      <div className={styles.card}>
+        <EditTaskForm
+          taskIndex={indexNo}
+          existingTitle={title}
+          onDeleteBtnClick={() => setIsTextAreaVisible(false)}
+          onTaskEdit={() => setIsTextAreaVisible(false)}
         />
-        {isCompleted && (
-          <Button>Completed in {calculateDateDifference()} days</Button>
-        )}
       </div>
-    </div>
-  );
+    );
+  } else
+    return (
+      <div className={styles.card}>
+        <h3 className={taskHeaderClasses}>{title}</h3>
+        <p className={styles.date}>created At: {formatDate(createdAt)}</p>
+        <div className="flex justify-between">
+          <ButtonContainer
+            onDoneButtonClick={() => dispatch(markTaskAsDone(indexNo))}
+            onEditButtonClick={() => setIsTextAreaVisible(true)}
+            onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
+            isTaskCompleted={isCompleted}
+          />
+          {isCompleted && (
+            <Button>
+              Completed in {calculateDateDifference(completedAt)} days
+            </Button>
+          )}
+        </div>
+      </div>
+    );
 }
 
 TaskCard.propTypes = {
