@@ -13,10 +13,17 @@ import {
   EDIT_ICON_PATH,
 } from "utils/const";
 
-function ButtonContainer({ onEditButtonClick, onDeleteButtonClick }) {
+function ButtonContainer({
+  onDoneButtonClick,
+  onEditButtonClick,
+  onDeleteButtonClick,
+}) {
   return (
     <div className="flex items-center">
-      <Button className={`${styles.button} ${styles.doneBtn}`}>
+      <Button
+        className={`${styles.button} ${styles.doneBtn}`}
+        onButtonClick={onDoneButtonClick}
+      >
         <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
       </Button>
       <Button
@@ -36,9 +43,7 @@ function ButtonContainer({ onEditButtonClick, onDeleteButtonClick }) {
 }
 
 ButtonContainer.propTypes = {
-  ButtonContainer: propTypes.func,
+  onDoneButtonClick: propTypes.func.isRequired,
 };
-
-ButtonContainer.defaultProps = { ButtonContainer: () => {} };
 
 export default ButtonContainer;

@@ -9,7 +9,7 @@ import Button from "components/base/button";
 import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-card/button-container";
-import { deleteTaskFromTodo } from "store/actions/todo";
+import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 
 function TaskCard({
   indexNo,
@@ -34,6 +34,7 @@ function TaskCard({
 
       <div className="flex justify-between">
         <ButtonContainer
+          onDoneButtonClick={() => dispatch(markTaskAsDone(indexNo))}
           onEditButtonClick={() => setIsTextAreaVisible(true)}
           onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
         />
