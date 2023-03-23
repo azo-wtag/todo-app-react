@@ -8,11 +8,10 @@ import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
-import { addNewTaskSchema } from "utils/schema";
 import { addTaskToTodo } from "store/actions/todo";
-import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
+import { TASK_TEXTAREA_NUM_OF_ROW, DELETE_ICON_ALT_TAG } from "utils/const";
+import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
-import { DELETE_ICON_ALT_TAG } from "utils/const/images";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();

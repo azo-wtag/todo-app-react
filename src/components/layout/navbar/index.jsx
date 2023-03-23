@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
-import { LOGO_ALT_TAG, SEARCH_ICON_ALT_TAG } from "utils/const/images";
+import { LOGO_ALT_TAG, SEARCH_ICON_ALT_TAG } from "utils/const";
 
 function NavBar() {
   return (

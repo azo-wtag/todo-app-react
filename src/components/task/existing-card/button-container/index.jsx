@@ -8,7 +8,7 @@ import {
   CHECK_ICON_ALT_TAG,
   DELETE_ICON_ALT_TAG,
   EDIT_ICON_ALT_TAG,
-} from "utils/const/images";
+} from "utils/const";
 
 function ButtonContainer({ onEditButtonClick }) {
   return (

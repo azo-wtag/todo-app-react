@@ -1,2 +1,21 @@
-export const TASK_TEXTAREA_NUM_OF_ROW = 4;
-export const TEXTAREA_DEFAULT_ROW = 4;
+import {
+  LOGO_ALT_TAG,
+  SEARCH_ICON_ALT_TAG,
+  DELETE_ICON_ALT_TAG,
+  EDIT_ICON_ALT_TAG,
+  CHECK_ICON_ALT_TAG,
+} from "utils/const/images";
+import {
+  TEXTAREA_DEFAULT_ROW,
+  TASK_TEXTAREA_NUM_OF_ROW,
+} from "utils/const/inputFields";
+
+export {
+  LOGO_ALT_TAG,
+  SEARCH_ICON_ALT_TAG,
+  DELETE_ICON_ALT_TAG,
+  EDIT_ICON_ALT_TAG,
+  CHECK_ICON_ALT_TAG,
+  TEXTAREA_DEFAULT_ROW,
+  TASK_TEXTAREA_NUM_OF_ROW,
+};
