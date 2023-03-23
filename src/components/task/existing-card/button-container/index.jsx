@@ -44,6 +44,7 @@ function ButtonContainer({
 
 ButtonContainer.propTypes = {
   onDoneButtonClick: propTypes.func.isRequired,
+  onDeleteButtonClick: propTypes.func.isRequired,
 };
 
 export default ButtonContainer;
