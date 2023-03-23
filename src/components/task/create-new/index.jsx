@@ -17,7 +17,7 @@ import {
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 
-function CreateTask({ onSuccessfullTaskEntry }) {
+function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
@@ -46,7 +46,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType="button">
+        <Button buttonType="button" onButtonClick={onDeleteBtnClick}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
@@ -56,6 +56,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
+  onDeleteBtnClick: propTypes.func.isRequired,
 };
 
 export default CreateTask;
