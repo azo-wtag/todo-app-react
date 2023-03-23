@@ -1,5 +1,4 @@
 import React from "react";
-import propTypes from "prop-types";
 
 import styles from "./index.module.scss";
 import Button from "components/base/button";
@@ -31,11 +30,5 @@ function ButtonContainer({ onEditButtonClick }) {
     </div>
   );
 }
-
-ButtonContainer.propTypes = {
-  ButtonContainer: propTypes.func,
-};
-
-ButtonContainer.defaultProps = { ButtonContainer: () => {} };
 
 export default ButtonContainer;
