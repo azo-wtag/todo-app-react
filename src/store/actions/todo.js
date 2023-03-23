@@ -2,7 +2,7 @@ import {
   ADD_TASK,
   DELETE_TASK,
   MARK_TASK_DONE,
-} from "../constants/actionTypes";
+} from "store/constants/actionTypes";
 
 export const addTaskToTodo = (task) => {
   return {

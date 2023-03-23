@@ -1,30 +1,27 @@
 import React from "react";
-import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
-
-import Button from "../../base/button";
-import Image from "../../base/image";
-import TextArea from "../../base/text-area";
-import Styles from "./index.module.scss";
-import { addNewTaskSchema } from "../../../utils/schema";
 import { useDispatch } from "react-redux";
-import { addTaskToTodo } from "../../../store/actions/todo";
 
-function CreateTask({ onSuccessfullTaskEntry }) {
+import styles from "components/task/create-new/index.module.scss";
+import Button from "components/base/button";
+import TextArea from "components/base/text-area";
+import Image from "components/base/image";
+import {
+  TASK_TEXTAREA_NUM_OF_ROW,
+  DELETE_ICON_ALT_TAG,
+  DELETE_ICON_PATH,
+} from "utils/const";
+import { addNewTaskSchema } from "utils/schema";
+import { generateTaskObject } from "utils/helper";
+import { addTaskToTodo } from "store/actions/todo";
+
+function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
 
-  const addNewTask = (data) => {
-    const task = {
-      id: `task#${dayjs().format("YYYY-MM-DD HH:mm:SSS")}`,
-      title: data.title,
-      createdAt: dayjs().format("YYYY-MM-DD"),
-      isCompleted: false,
-      completedAt: "",
-    };
-
-    dispatch(addTaskToTodo(task));
+  const addNewTask = (task) => {
+    dispatch(addTaskToTodo(generateTaskObject(task.title)));
     setValue("title", "");
     onSuccessfullTaskEntry();
   };
@@ -42,15 +39,15 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
-        noOfRows={4}
+        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register("title") }}
         error={errors.title}
       />
 
-      <div className={`flex items-center ${Styles.buttonContainer}`}>
-        <Button className={Styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType="button">
-          <Image src="delete.png" alt="check" />
+      <div className={`flex items-center ${styles.buttonContainer}`}>
+        <Button className={styles.addTaskBtn}>Add Task</Button>
+        <Button buttonType="button" onButtonClick={onDeleteBtnClick}>
+          <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
     </form>
@@ -59,6 +56,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
+  onDeleteBtnClick: propTypes.func.isRequired,
 };
 
 export default CreateTask;

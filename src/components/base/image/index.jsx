@@ -4,11 +4,7 @@ import propTypes from "prop-types";
 function Image({ src, alt, className }) {
   return (
     <div>
-      <img
-        src={require(`../../../assets/images/${src}`)}
-        alt={alt}
-        className={className}
-      />
+      <img src={src} alt={alt} className={className} />
     </div>
   );
 }
@@ -20,7 +16,7 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
-  className: "",
+  className: null,
 };
 
 export default Image;

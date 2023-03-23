@@ -1,41 +1,37 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import Button from "../base/button";
-import NoTaskFound from "../not-found/task";
-import CreateTask from "../task/create-new";
-import TaskCard from "../task/existing-card";
-import Styles from "./index.module.scss";
+import styles from "components/home/index.module.scss";
+import Button from "components/base/button";
+import CreateTask from "components/task/create-new";
+import TaskCard from "components/task/existing-card";
+import FilterBtnContainer from "components/filter";
+import NoTaskFound from "components/not-found/task";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
-  const handleSuccessfulTaskEntry = () => {
-    setIsNewTaskRequested(false);
-  };
-
   return (
-    <div className={`container mx-auto ${Styles.homeWrapper}`}>
+    <div className={`container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
-      <div className={`flex justify-between ${Styles.buttonContainer}`}>
+      <div className={`flex justify-between ${styles.buttonContainer}`}>
         <Button onButtonClick={() => setIsNewTaskRequested(true)}>
           Create
         </Button>
 
-        <div>
-          <Button>All</Button>
-          <Button>Incomplete</Button>
-          <Button>Complete</Button>
-        </div>
+        <FilterBtnContainer />
       </div>
 
       <div className="grid grid-cols-3 gap-34px">
         {isNewTaskRequested && (
-          <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
+          <CreateTask
+            onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
+            onDeleteBtnClick={() => setIsNewTaskRequested(false)}
+          />
         )}
 
-        {tasks.length > 0 ? (
+        {tasks.length > 0 &&
           tasks.map((task, index) => (
             <TaskCard
               key={task.id}
@@ -45,15 +41,16 @@ function HomeContainer() {
               isCompleted={task.isCompleted}
               completedAt={task.completedAt}
             />
-          ))
-        ) : (
-          <NoTaskFound />
-        )}
+          ))}
       </div>
 
-      <div className="flex justify-center">
-        <Button className={Styles.loadMoreBtn}>Load More</Button>
-      </div>
+      {tasks.length <= 0 ? (
+        <NoTaskFound />
+      ) : (
+        <div className="flex justify-center">
+          <Button className={styles.loadMoreBtn}>Load More</Button>
+        </div>
+      )}
     </div>
   );
 }
