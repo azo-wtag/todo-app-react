@@ -15,7 +15,9 @@ import {
 import {
   TEXTAREA_DEFAULT_ROW,
   TASK_TEXTAREA_NUM_OF_ROW,
-} from "utils/const/inputFields";
+  TYPE_BUTTON,
+  TYPE_SUBMIT,
+} from "utils/const/formElements";
 
 export {
   LOGO_ALT_TAG,
@@ -32,4 +34,6 @@ export {
   NO_TASK_FOUND_ICON_PATH,
   TEXTAREA_DEFAULT_ROW,
   TASK_TEXTAREA_NUM_OF_ROW,
+  TYPE_BUTTON,
+  TYPE_SUBMIT,
 };
