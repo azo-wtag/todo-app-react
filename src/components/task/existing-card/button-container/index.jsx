@@ -36,9 +36,7 @@ function ButtonContainer({ onEditButtonClick, onDeleteButtonClick }) {
 }
 
 ButtonContainer.propTypes = {
-  ButtonContainer: propTypes.func,
+  onDeleteButtonClick: propTypes.func.isRequired,
 };
-
-ButtonContainer.defaultProps = { ButtonContainer: () => {} };
 
 export default ButtonContainer;
