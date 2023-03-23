@@ -35,7 +35,7 @@ function HomeContainer() {
           <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
         )}
 
-        {tasks.length > 0 ? (
+        {tasks.length > 0 &&
           tasks.map((task, index) => (
             <TaskCard
               key={task.id}
@@ -45,15 +45,16 @@ function HomeContainer() {
               isCompleted={task.isCompleted}
               completedAt={task.completedAt}
             />
-          ))
-        ) : (
-          <NoTaskFound />
-        )}
+          ))}
       </div>
 
-      <div className="flex justify-center">
-        <Button className={Styles.loadMoreBtn}>Load More</Button>
-      </div>
+      {tasks.length <= 0 ? (
+        <NoTaskFound />
+      ) : (
+        <div className="flex justify-center">
+          <Button className={Styles.loadMoreBtn}>Load More</Button>
+        </div>
+      )}
     </div>
   );
 }
