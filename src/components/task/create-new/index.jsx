@@ -12,8 +12,9 @@ import {
   TASK_TEXTAREA_NUM_OF_ROW,
   DELETE_ICON_ALT_TAG,
   DELETE_ICON_PATH,
+  TYPE_BUTTON,
 } from "utils/const";
-import { addNewTaskSchema } from "utils/schema";
+import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTaskToTodo } from "store/actions/todo";
 
@@ -33,7 +34,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(addNewTaskSchema),
+    resolver: yupResolver(taskSchema),
   });
 
   return (
@@ -46,7 +47,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType="button" onButtonClick={onDeleteBtnClick}>
+        <Button buttonType={TYPE_BUTTON} onButtonClick={onDeleteBtnClick}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
