@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import {
   ADD_TASK,
   DELETE_TASK,
+  EDIT_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
 import { generateTaskObject } from "utils/helper";
@@ -31,6 +32,12 @@ export const todoReducer = (state = initialTodoState, action) => {
       const existingTasks = structuredClone(state.tasks);
       existingTasks[action.payload].isCompleted = true;
       existingTasks[action.payload].completedAt = dayjs().format("YYYY-MM-DD");
+      return { ...state, tasks: existingTasks };
+    }
+
+    case EDIT_TASK: {
+      const existingTasks = structuredClone(state.tasks);
+      existingTasks[action.payload.index].title = action.payload.title;
       return { ...state, tasks: existingTasks };
     }
 
