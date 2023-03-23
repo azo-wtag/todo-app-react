@@ -50,6 +50,7 @@ TaskCard.propTypes = {
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
   isTaskOnEditMode: propTypes.bool,
+  completedAt: propTypes.oneOfType([validateDayjsDate]),
 };
 
 TaskCard.defaultProps = {
