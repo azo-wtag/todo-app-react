@@ -18,6 +18,7 @@ function TaskCard({
   createdAt,
   isCompleted,
   isTaskOnEditMode,
+  completedAt,
 }) {
   const dispatch = useDispatch();
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -45,7 +46,9 @@ function TaskCard({
           isTaskCompleted={isCompleted}
         />
         {isCompleted && (
-          <Button>Completed in {calculateDateDifference()} days</Button>
+          <Button>
+            Completed in {calculateDateDifference(completedAt)} days
+          </Button>
         )}
       </div>
     </div>
