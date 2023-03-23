@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK } from "../constants/actionTypes";
+import { ADD_TASK, DELETE_TASK } from "store/constants/actionTypes";
 
 export const addTaskToTodo = (task) => {
   return {

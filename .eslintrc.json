@@ -28,9 +28,7 @@
       "version": "detect"
     },
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"]
-      }
+      "node": { "paths": ["src"], "extensions": [".js", ".jsx"] }
     }
   }
 }

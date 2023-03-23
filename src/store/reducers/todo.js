@@ -1,16 +1,8 @@
-import dayjs from "dayjs";
-import { ADD_TASK, DELETE_TASK } from "../constants/actionTypes";
+import { ADD_TASK, DELETE_TASK } from "store/constants/actionTypes";
+import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [
-    {
-      id: `task#${dayjs().format("YYYY-MM-DD HH:mm:ss")}`,
-      title: "Complete Initial setup of the Todo App",
-      createdAt: dayjs().subtract(4, "day").format("YYYY-MM-DD"),
-      isCompleted: false,
-      completedAt: "",
-    },
-  ],
+  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
 };
 
 export const todoReducer = (state = initialTodoState, action) => {

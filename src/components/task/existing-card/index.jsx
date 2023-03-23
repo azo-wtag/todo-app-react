@@ -3,79 +3,41 @@ import propTypes from "prop-types";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 
-import Button from "../../base/button";
-import Image from "../../base/image";
-import Styles from "./index.module.scss";
-import TextArea from "../../base/text-area";
-import { deleteTaskFromTodo } from "../../../store/actions/todo";
+import styles from "components/task/existing-card/index.module.scss";
+import TextArea from "components/base/text-area";
+import Button from "components/base/button";
+import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
+import { validateDayjsDate } from "utils/helper/validation";
+import ButtonContainer from "./button-container";
 
-function TaskCard({
-  indexNo,
-  title,
-  createdAt,
-  isCompleted,
-  completedAt,
-  isTaskOnEditMode,
-}) {
+function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const dispatch = useDispatch();
 
-  const calculateDateDifference = (startDate, endDate = dayjs()) =>
-    endDate.diff(startDate, "day");
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
-  const handleDeleteClick = (index) => dispatch(deleteTaskFromTodo(index));
 
   return (
-    <div className={Styles.card}>
-      {isTextAreaVisible ? <TextArea noOfRows={5} /> : <h3>{title}</h3>}
+    <div className={styles.card}>
+      {isTextAreaVisible ? (
+        <TextArea numOfRows={TASK_TEXTAREA_NUM_OF_ROW} />
+      ) : (
+        <h3>{title}</h3>
+      )}
 
-      <p className={Styles.date}>created At: {formatDate(createdAt)}</p>
+      <p className={styles.date}>created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
-        <div className="flex items-center">
-          <Button className={`${Styles.button} ${Styles.doneBtn}`}>
-            <Image src="check.png" alt="check" />
-          </Button>
-
-          <Button
-            className={`${Styles.button} ${Styles.editBtn}`}
-            onButtonClick={() => setIsTextAreaVisible(true)}
-          >
-            <Image src="edit.png" alt="check" />
-          </Button>
-
-          <Button
-            className={`${Styles.button} ${Styles.deleteBtn}`}
-            onButtonClick={() => handleDeleteClick(indexNo)}
-          >
-            <Image src="delete.png" alt="check" />
-          </Button>
-        </div>
-
-        {isCompleted && (
-          <Button>
-            Completed in {calculateDateDifference(completedAt, dayjs())} days
-          </Button>
-        )}
+        <ButtonContainer onEditButtonClick={() => setIsTextAreaVisible(true)} />
+        {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>
   );
 }
 
-function validateDate(props, propName, componentName) {
-  const dateValue = props[propName];
-  if (!dayjs(dateValue).isValid()) {
-    return new Error(
-      `Invalid prop ${propName} supplied to ${componentName}. ` +
-        `Expected a valid date'.`
-    );
-  }
-}
-
 TaskCard.propTypes = {
   indexNo: propTypes.number.isRequired,
   title: propTypes.string.isRequired,
-  createdAt: validateDate,
+  createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
   isTaskOnEditMode: propTypes.bool,
 };

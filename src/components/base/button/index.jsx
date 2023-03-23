@@ -1,12 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
 
-import Styles from "./index.module.scss";
+import styles from "components/base/button/index.module.scss";
 
 function Button({ children, onButtonClick, className, buttonType }) {
   return (
     <button
-      className={`${Styles.button} ${className}`}
+      className={`${styles.button} ${className}`}
       onClick={onButtonClick}
       type={buttonType}
     >
