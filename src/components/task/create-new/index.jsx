@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
@@ -30,11 +30,16 @@ function CreateTask({ onSuccessfullTaskEntry }) {
     register,
     handleSubmit,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(addNewTaskSchema),
   });
+
+  useEffect(() => {
+    setFocus("title");
+  }, [setFocus]);
 
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
