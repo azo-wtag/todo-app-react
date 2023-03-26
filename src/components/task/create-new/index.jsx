@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 
 import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
@@ -21,7 +22,16 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
-    dispatch(addTaskToTodo(generateTaskObject(task.title)));
+    //console.log(DOMPurify.sanitize(task.title));
+    const sanitizedTitle = DOMPurify.sanitize(task.title);
+    if (sanitizedTitle === "") {
+      setError("title", {
+        type: "custom",
+        message: "Please enter valid title",
+      });
+      return;
+    }
+    dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
     setValue("title", "");
     onSuccessfullTaskEntry();
   };
@@ -31,6 +41,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
     handleSubmit,
     setValue,
     setFocus,
+    setError,
     formState: { errors },
   } = useForm({
     mode: "onChange",
