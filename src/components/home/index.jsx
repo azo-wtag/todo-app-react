@@ -7,6 +7,7 @@ import CreateTask from "components/task/create-new";
 import TaskCard from "components/task/existing-card";
 import FilterBtnContainer from "components/filter";
 import NoTaskFound from "components/not-found/task";
+import LoadMoreBtnContainer from "components/task/load-more";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -44,13 +45,7 @@ function HomeContainer() {
           ))}
       </div>
 
-      {tasks.length <= 0 ? (
-        <NoTaskFound />
-      ) : (
-        <div className="flex justify-center">
-          <Button className={styles.loadMoreBtn}>Load More</Button>
-        </div>
-      )}
+      {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
     </div>
   );
 }
