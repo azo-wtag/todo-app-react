@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
 
 import Button from "components/base/button";
 import styles from "./index.module.scss";
@@ -16,18 +17,28 @@ function LoadMoreBtnContainer() {
   const handleLoadMoreBtnClick = () => {
     const nextPageCardCount =
       (totalTaskCount - visibleTaskCount) % CARD_PER_PAGE;
-    if (nextPageCardCount >= 9) dispatch(loadMoreTask(9));
+    if (nextPageCardCount >= CARD_PER_PAGE)
+      dispatch(loadMoreTask(CARD_PER_PAGE));
     else dispatch(loadMoreTask(nextPageCardCount));
   };
+
+  const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
+    "d-none": totalTaskCount === visibleTaskCount,
+  });
+  const showLessButtonClasses = classNames({
+    "d-none": totalTaskCount > visibleTaskCount,
+  });
 
   return (
     <div className="flex justify-center">
       <Button
-        className={styles.loadMoreBtn}
+        className={loadMoreButtonClasses}
         onButtonClick={handleLoadMoreBtnClick}
       >
         Load More
       </Button>
+
+      <Button className={showLessButtonClasses}>Show Less</Button>
     </div>
   );
 }
