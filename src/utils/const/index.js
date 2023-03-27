@@ -18,6 +18,7 @@ import {
   TYPE_BUTTON,
   TYPE_SUBMIT,
 } from "utils/const/formElements";
+import { CARD_PER_PAGE } from "./tasks";
 
 export {
   LOGO_ALT_TAG,
@@ -36,4 +37,5 @@ export {
   TASK_TEXTAREA_NUM_OF_ROW,
   TYPE_BUTTON,
   TYPE_SUBMIT,
+  CARD_PER_PAGE,
 };
