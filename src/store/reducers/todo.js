@@ -8,7 +8,25 @@ import {
 import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
+  tasks: [
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App"),
+  ],
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
