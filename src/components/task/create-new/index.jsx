@@ -27,6 +27,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
         type: "custom",
         message: "Please enter valid title",
       });
+      setValue("title", sanitizedTitle);
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
