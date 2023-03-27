@@ -11,6 +11,7 @@ import LoadMoreBtnContainer from "components/task/load-more";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
+  const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   return (
@@ -33,16 +34,18 @@ function HomeContainer() {
         )}
 
         {tasks.length > 0 &&
-          tasks.map((task, index) => (
-            <TaskCard
-              key={task.id}
-              indexNo={index}
-              title={task.title}
-              createdAt={task.createdAt}
-              isCompleted={task.isCompleted}
-              completedAt={task.completedAt}
-            />
-          ))}
+          tasks
+            .slice(0, noOfCardVisible - 1)
+            .map((task, index) => (
+              <TaskCard
+                key={task.id}
+                indexNo={index}
+                title={task.title}
+                createdAt={task.createdAt}
+                isCompleted={task.isCompleted}
+                completedAt={task.completedAt}
+              />
+            ))}
       </div>
 
       {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
