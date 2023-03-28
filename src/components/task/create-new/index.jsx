@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
-
 import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
@@ -12,10 +11,11 @@ import {
   TASK_TEXTAREA_NUM_OF_ROW,
   DELETE_ICON_ALT_TAG,
   DELETE_ICON_PATH,
-  TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
+  TYPE_BUTTON,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
@@ -47,7 +47,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(taskSchema),
   });
 
