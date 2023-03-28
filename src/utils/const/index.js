@@ -14,7 +14,7 @@ import {
   TEXTAREA_DEFAULT_ROW,
   TASK_TEXTAREA_NUM_OF_ROW,
   TITLE_FIELD_NAME_ATTRIBUTE,
-} from "utils/const/inputFields";
+} from "utils/const/formElements";
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
