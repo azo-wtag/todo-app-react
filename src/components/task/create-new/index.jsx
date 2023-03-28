@@ -16,6 +16,8 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
+  TYPE_BUTTON,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
@@ -46,7 +48,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(addNewTaskSchema),
   });
 
@@ -64,7 +66,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType="button" onButtonClick={onDeleteBtnClick}>
+        <Button buttonType={TYPE_BUTTON} onButtonClick={onDeleteBtnClick}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
