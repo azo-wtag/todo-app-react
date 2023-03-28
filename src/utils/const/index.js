@@ -17,8 +17,13 @@ import {
   TASK_TEXTAREA_NUM_OF_ROW,
   TYPE_BUTTON,
   TYPE_SUBMIT,
+  TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const/formElements";
 import { CARD_PER_PAGE } from "./tasks";
+import {
+  CUSTOM_ERROR_MESSAGE_TYPE,
+  TASK_TITLE_ERROR_MESSAGE,
+} from "./errorMessages";
 
 export {
   LOGO_ALT_TAG,
@@ -38,4 +43,7 @@ export {
   TYPE_BUTTON,
   TYPE_SUBMIT,
   CARD_PER_PAGE,
+  TITLE_FIELD_NAME_ATTRIBUTE,
+  CUSTOM_ERROR_MESSAGE_TYPE,
+  TASK_TITLE_ERROR_MESSAGE,
 };

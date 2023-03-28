@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
 
-import styles from "components/task/existing-card/index.module.scss";
+import styles from "components/task/existing-task/task-card/index.module.scss";
 import Button from "components/base/button";
-import ButtonContainer from "components/task/existing-card/button-container";
 import { validateDayjsDate } from "utils/helper/validation";
+import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
-import EditTaskForm from "components/task/existing-card/edit-task";
+import EditTaskForm from "components/task/existing-task/edit-task";
 
 function TaskCard({
   indexNo,
@@ -20,6 +20,7 @@ function TaskCard({
   completedAt,
 }) {
   const dispatch = useDispatch();
+
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
