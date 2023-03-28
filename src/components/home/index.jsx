@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styles from "components/home/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
-import TaskCard from "components/task/existing-card";
+import TaskCard from "components/task/existing-task/task-card";
 import FilterBtnContainer from "components/filter-btn-container";
 
 function HomeContainer() {
