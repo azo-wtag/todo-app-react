@@ -1,4 +1,4 @@
-import { LOAD_MORE_TASK } from "store/constants/actionTypes";
+import { LOAD_MORE_TASK, SHOW_LESS_TASK } from "store/constants/actionTypes";
 
 const initialFilterState = {
   visibleCardCount: 9,
@@ -11,6 +11,13 @@ export const filterReducer = (state = initialFilterState, action) => {
       return {
         ...state,
         visibleCardCount: state.visibleCardCount + action.payload,
+      };
+    }
+
+    case SHOW_LESS_TASK: {
+      return {
+        ...state,
+        visibleCardCount: action.payload,
       };
     }
 
