@@ -17,6 +17,7 @@ import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
   TYPE_BUTTON,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
@@ -47,7 +48,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(addNewTaskSchema),
   });
 

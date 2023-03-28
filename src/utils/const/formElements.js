@@ -5,3 +5,5 @@ export const TITLE_FIELD_NAME_ATTRIBUTE = "title";
 
 export const TYPE_SUBMIT = "submit";
 export const TYPE_BUTTON = "button";
+
+export const FORM_VALIDATION_MODE_ONCHANGE = "onchange";
