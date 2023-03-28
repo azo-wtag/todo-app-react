@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import Button from "components/base/button";
 import styles from "./index.module.scss";
-import { loadMoreTask } from "store/actions/filter";
+import { loadMoreTask, showLessTasks } from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
 
 function LoadMoreBtnContainer() {
@@ -38,7 +38,12 @@ function LoadMoreBtnContainer() {
         Load More
       </Button>
 
-      <Button className={showLessButtonClasses}>Show Less</Button>
+      <Button
+        className={showLessButtonClasses}
+        onButtonClick={() => dispatch(showLessTasks())}
+      >
+        Show Less
+      </Button>
     </div>
   );
 }

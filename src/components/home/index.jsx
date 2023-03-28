@@ -7,7 +7,7 @@ import CreateTask from "components/task/create-new";
 import TaskCard from "components/task/existing-task/task-card";
 import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
-import LoadMoreBtnContainer from "components/task/load-more";
+import LoadMoreBtnContainer from "components/load-more-btn-container";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
