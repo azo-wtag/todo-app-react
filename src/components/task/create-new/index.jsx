@@ -12,6 +12,9 @@ import {
   TASK_TEXTAREA_NUM_OF_ROW,
   DELETE_ICON_ALT_TAG,
   DELETE_ICON_PATH,
+  TITLE_FIELD_NAME_ATTRIBUTE,
+  CUSTOM_ERROR_MESSAGE_TYPE,
+  TASK_TITLE_ERROR_MESSAGE,
 } from "utils/const";
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
@@ -23,15 +26,15 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const addNewTask = (task) => {
     const sanitizedTitle = task.title.replace(/(<.*?>)/g, "");
     if (sanitizedTitle === "") {
-      setError("title", {
-        type: "custom",
-        message: "Please enter valid title",
+      setError(TITLE_FIELD_NAME_ATTRIBUTE, {
+        type: CUSTOM_ERROR_MESSAGE_TYPE,
+        message: TASK_TITLE_ERROR_MESSAGE,
       });
-      setValue("title", sanitizedTitle);
+      setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    setValue("title", "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onSuccessfullTaskEntry();
   };
 
@@ -48,14 +51,14 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   });
 
   useEffect(() => {
-    setFocus("title");
+    setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, [setFocus]);
 
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
-        register={{ ...register("title") }}
+        register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
       />
 

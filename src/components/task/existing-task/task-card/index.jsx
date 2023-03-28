@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
 
-import styles from "components/task/existing-card/index.module.scss";
+import styles from "components/task/existing-task/task-card/index.module.scss";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import { TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import ButtonContainer from "components/task/existing-card/button-container";
+import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 
 function TaskCard({
@@ -21,6 +21,7 @@ function TaskCard({
   completedAt,
 }) {
   const dispatch = useDispatch();
+
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) => dayjs(date, "YYYY-MM-DD").format("YYYY-MM-DD");
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
@@ -36,7 +37,7 @@ function TaskCard({
         <h3 className={taskHeaderClasses}>{title}</h3>
       )}
 
-      <p className={styles.date}>created At: {formatDate(createdAt)}</p>
+      <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
         <ButtonContainer
