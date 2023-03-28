@@ -1,6 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
