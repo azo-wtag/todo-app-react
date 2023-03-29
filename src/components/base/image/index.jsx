@@ -2,11 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 
 function Image({ src, alt, className }) {
-  return (
-    <div>
-      <img src={src} alt={alt} className={className} />
-    </div>
-  );
+  return <img src={src} alt={alt} className={className} />;
 }
 
 Image.propTypes = {
