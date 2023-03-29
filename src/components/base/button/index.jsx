@@ -15,14 +15,14 @@ function Button({ children, onButtonClick, className, buttonType }) {
   );
 }
 
-Image.propTypes = {
+Button.propTypes = {
   children: propTypes.oneOfType([propTypes.string, propTypes.node]).isRequired,
   className: propTypes.string,
   onButtonClick: propTypes.func,
   buttonType: propTypes.string,
 };
 
-Image.defaultProps = {
+Button.defaultProps = {
   className: "",
   onButtonClick: () => {},
   buttonType: TYPE_SUBMIT,
