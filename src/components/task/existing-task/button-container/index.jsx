@@ -1,6 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import styles from "./index.module.scss";
 import Button from "components/base/button";
 import Image from "components/base/image";
