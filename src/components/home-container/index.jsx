@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
-import TaskCard from "components/task/existing-task/task-card";
 import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
+import ExistingTaskCardContaienr from "components/task/existing-task/container";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -32,19 +32,9 @@ function HomeContainer() {
           />
         )}
 
-        {tasks.length > 0 &&
-          tasks
-            .slice(0, noOfCardVisible - 1)
-            .map((task, index) => (
-              <TaskCard
-                key={task.id}
-                indexNo={index}
-                title={task.title}
-                createdAt={task.createdAt}
-                isCompleted={task.isCompleted}
-                completedAt={task.completedAt}
-              />
-            ))}
+        <ExistingTaskCardContaienr
+          tasks={tasks.slice(0, noOfCardVisible - 1)}
+        />
       </div>
 
       {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
