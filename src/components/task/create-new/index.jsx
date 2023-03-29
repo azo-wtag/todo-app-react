@@ -26,7 +26,9 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
-    const sanitizedTitle = task.title.replace(TASK_SANITIZE_REGX_PATTERN, "");
+    const sanitizedTitle = task.title
+      .replace(TASK_SANITIZE_REGX_PATTERN, "")
+      .trim();
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
         type: CUSTOM_ERROR_MESSAGE_TYPE,

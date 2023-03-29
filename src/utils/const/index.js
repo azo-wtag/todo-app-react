@@ -25,7 +25,7 @@ import {
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
-} from "./errorMessages";
+} from "utils/const/errorMessages";
 
 export {
   LOGO_ALT_TAG,
