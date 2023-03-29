@@ -1,11 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import styles from "components/base/button/index.module.scss";
-import {
-  DEFAULT_CLASSNAME,
-  DEFAULT_CLICK_HANDLER,
-  TYPE_SUBMIT,
-} from "utils/const";
+import { TYPE_SUBMIT } from "utils/const";
 
 function Button({ children, onButtonClick, className, buttonType }) {
   return (
@@ -27,8 +23,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  className: DEFAULT_CLASSNAME,
-  onButtonClick: DEFAULT_CLICK_HANDLER,
+  className: "",
+  onButtonClick: () => {},
   buttonType: TYPE_SUBMIT,
 };
 
