@@ -22,7 +22,7 @@ import {
   TASK_SANITIZE_REGX_PATTERN,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const/formElements";
-import { CARD_PER_PAGE } from "./tasks";
+import { CARD_PER_PAGE } from "utils/const/tasks";
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
