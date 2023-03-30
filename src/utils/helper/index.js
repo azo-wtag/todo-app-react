@@ -8,6 +8,6 @@ export const generateTaskObject = (title) => {
     title: title,
     createdAt: dayjs().format(TASK_DATE_FORMAT),
     isCompleted: false,
-    completedAt: "",
+    completedAt: null,
   };
 };
