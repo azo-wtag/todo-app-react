@@ -10,13 +10,7 @@ import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTaskFromTodo } from "store/actions/todo";
 
-function TaskCard({
-  indexNo,
-  title,
-  createdAt,
-  isCompleted,
-  isTaskOnEditMode,
-}) {
+function TaskCard({ taskId, title, createdAt, isCompleted, isTaskOnEditMode }) {
   const dispatch = useDispatch();
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -37,7 +31,7 @@ function TaskCard({
       <div className="flex justify-between">
         <ButtonContainer
           onEditButtonClick={() => setIsTextAreaVisible(true)}
-          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
+          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(taskId))}
         />
         {isCompleted && <Button>Completed in days</Button>}
       </div>
@@ -46,7 +40,7 @@ function TaskCard({
 }
 
 TaskCard.propTypes = {
-  indexNo: propTypes.number.isRequired,
+  taskId: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
