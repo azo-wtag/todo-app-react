@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
@@ -12,6 +12,11 @@ function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
+
+  const filteredState = useSelector((state) => state.filter.filteredCardState);
+  useEffect(() => {
+    console.log("state updated");
+  }, [filteredState]);
 
   return (
     <div className={`container mx-auto ${styles.homeWrapper}`}>
