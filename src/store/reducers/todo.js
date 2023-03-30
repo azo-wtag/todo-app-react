@@ -41,7 +41,11 @@ export const todoReducer = (state = initialTodoState, action) => {
 
     case EDIT_TASK: {
       const existingTasks = structuredClone(state.tasks);
-      existingTasks[action.payload.index].title = action.payload.title;
+      const selectedTaskId = findTaskIndexById(
+        action.payload.taskId,
+        existingTasks
+      );
+      existingTasks[selectedTaskId].title = action.payload.title;
       return { ...state, tasks: existingTasks };
     }
 

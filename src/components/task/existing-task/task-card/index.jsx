@@ -34,7 +34,7 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <EditTaskForm
-          taskIndex={taskId}
+          taskId={taskId}
           existingTitle={title}
           onDeleteBtnClick={() => setIsTextAreaVisible(false)}
           onTaskEdit={() => setIsTextAreaVisible(false)}
