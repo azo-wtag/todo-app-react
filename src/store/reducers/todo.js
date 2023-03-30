@@ -4,7 +4,7 @@ import {
   DELETE_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
-import { generateTaskObject } from "utils/helper";
+import { findTaskIndexById, generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
   tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
@@ -23,7 +23,8 @@ export const todoReducer = (state = initialTodoState, action) => {
 
     case DELETE_TASK: {
       const existingTasks = structuredClone(state.tasks);
-      existingTasks.splice(action.payload, 1);
+      const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
+      existingTasks.splice(selectedTaskId, 1);
       return { ...state, tasks: existingTasks };
     }
 

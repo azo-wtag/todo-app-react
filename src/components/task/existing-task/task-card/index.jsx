@@ -13,7 +13,7 @@ import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 
 function TaskCard({
-  indexNo,
+  taskId,
   title,
   createdAt,
   isCompleted,
@@ -42,9 +42,9 @@ function TaskCard({
 
       <div className="flex justify-between">
         <ButtonContainer
-          onDoneButtonClick={() => dispatch(markTaskAsDone(indexNo))}
+          onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
           onEditButtonClick={() => setIsTextAreaVisible(true)}
-          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
+          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(taskId))}
           isTaskCompleted={isCompleted}
         />
         {isCompleted && (
@@ -58,7 +58,7 @@ function TaskCard({
 }
 
 TaskCard.propTypes = {
-  indexNo: propTypes.number.isRequired,
+  taskId: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
