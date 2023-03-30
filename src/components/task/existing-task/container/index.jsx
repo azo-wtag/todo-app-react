@@ -5,10 +5,10 @@ import TaskCard from "components/task/existing-task/task-card";
 function ExistingTaskCardContaienr({ tasks }) {
   return (
     <>
-      {tasks.map((task, index) => (
+      {tasks.map((task) => (
         <TaskCard
           key={task.id}
-          indexNo={index}
+          taskId={task.id}
           title={task.title}
           createdAt={task.createdAt}
           isCompleted={task.isCompleted}
