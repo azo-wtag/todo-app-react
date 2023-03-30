@@ -1,7 +1,8 @@
 import { LOAD_MORE_TASK, SHOW_LESS_TASK } from "store/constants/actionTypes";
+import { CARD_PER_PAGE } from "utils/const";
 
 const initialFilterState = {
-  visibleCardCount: 9,
+  visibleCardCount: CARD_PER_PAGE,
   filteredCardState: 1,
 };
 
