@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
@@ -7,11 +7,27 @@ import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import ExistingTaskCardContaienr from "components/task/existing-task/container";
+import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
+import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
+
+  const filteredState = useSelector((state) => state.filter.filteredCardState);
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  useEffect(() => {
+    function filterTasks() {
+      if (filteredState === TASK_FILTER_COMPLETED)
+        setFilteredTasks(filterCompletedTask(tasks));
+      else if (filteredState === TASK_FILTER_INCOMPLETED)
+        setFilteredTasks(filterInCompletedTask(tasks));
+      else setFilteredTasks(tasks);
+    }
+
+    filterTasks();
+  }, [filteredState]);
 
   return (
     <div className={`container mx-auto ${styles.homeWrapper}`}>
@@ -33,11 +49,11 @@ function HomeContainer() {
         )}
 
         <ExistingTaskCardContaienr
-          tasks={tasks.slice(0, noOfCardVisible - 1)}
+          tasks={filteredTasks.slice(0, noOfCardVisible - 1)}
         />
       </div>
 
-      {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
+      {filteredTasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
     </div>
   );
 }
