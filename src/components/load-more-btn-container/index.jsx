@@ -9,24 +9,24 @@ import { CARD_PER_PAGE } from "utils/const";
 
 function LoadMoreBtnContainer() {
   const dispatch = useDispatch();
-  const totalTaskCount = useSelector((state) => state.todo.tasks.length);
-  const visibleTaskCount = useSelector(
+  const numOfTotalTask = useSelector((state) => state.todo.tasks.length);
+  const numOfVisibleTask = useSelector(
     (state) => state.filter.visibleCardCount
   );
 
   const handleLoadMoreBtnClick = () => {
-    const nextPageCardCount =
-      (totalTaskCount - visibleTaskCount) % CARD_PER_PAGE;
-    if (nextPageCardCount >= CARD_PER_PAGE)
+    const numOfCardOnLoadMore =
+      (numOfTotalTask - numOfVisibleTask) % CARD_PER_PAGE;
+    if (numOfCardOnLoadMore >= CARD_PER_PAGE)
       dispatch(loadMoreTask(CARD_PER_PAGE));
-    else dispatch(loadMoreTask(nextPageCardCount));
+    else dispatch(loadMoreTask(numOfCardOnLoadMore));
   };
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
-    "d-none": totalTaskCount === visibleTaskCount,
+    "d-none": numOfTotalTask === numOfVisibleTask,
   });
   const showLessButtonClasses = classNames({
-    "d-none": totalTaskCount > visibleTaskCount,
+    "d-none": numOfTotalTask > numOfVisibleTask,
   });
 
   return (
