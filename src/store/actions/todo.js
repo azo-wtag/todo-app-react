@@ -12,17 +12,17 @@ export const addTaskToTodo = (task) => {
   };
 };
 
-export const deleteTaskFromTodo = (taskIndex) => {
+export const deleteTaskFromTodo = (taskId) => {
   return {
     type: DELETE_TASK,
-    payload: taskIndex,
+    payload: taskId,
   };
 };
 
-export const markTaskAsDone = (taskIndex) => {
+export const markTaskAsDone = (taskId) => {
   return {
     type: MARK_TASK_DONE,
-    payload: taskIndex,
+    payload: taskId,
   };
 };
 
