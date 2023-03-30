@@ -30,8 +30,9 @@ export const todoReducer = (state = initialTodoState, action) => {
 
     case MARK_TASK_DONE: {
       const existingTasks = structuredClone(state.tasks);
-      existingTasks[action.payload].isCompleted = true;
-      existingTasks[action.payload].completedAt = dayjs().format("YYYY-MM-DD");
+      const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
+      existingTasks[selectedTaskId].isCompleted = true;
+      existingTasks[selectedTaskId].completedAt = dayjs().format("YYYY-MM-DD");
       return { ...state, tasks: existingTasks };
     }
 

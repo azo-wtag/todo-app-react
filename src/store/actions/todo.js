@@ -18,9 +18,9 @@ export const deleteTaskFromTodo = (taskId) => {
   };
 };
 
-export const markTaskAsDone = (taskIndex) => {
+export const markTaskAsDone = (taskId) => {
   return {
     type: MARK_TASK_DONE,
-    payload: taskIndex,
+    payload: taskId,
   };
 };
