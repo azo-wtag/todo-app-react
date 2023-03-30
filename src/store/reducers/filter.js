@@ -1,9 +1,9 @@
 import { LOAD_MORE_TASK, SHOW_LESS_TASK } from "store/constants/actionTypes";
-import { CARD_PER_PAGE } from "utils/const";
+import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 
 const initialFilterState = {
   visibleCardCount: CARD_PER_PAGE,
-  filteredCardState: 1,
+  filteredCardState: TASK_FILTER_ALL,
 };
 
 export const filterReducer = (state = initialFilterState, action) => {
