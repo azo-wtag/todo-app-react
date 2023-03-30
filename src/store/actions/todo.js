@@ -7,9 +7,9 @@ export const addTaskToTodo = (task) => {
   };
 };
 
-export const deleteTaskFromTodo = (taskIndex) => {
+export const deleteTaskFromTodo = (taskId) => {
   return {
     type: DELETE_TASK,
-    payload: taskIndex,
+    payload: taskId,
   };
 };
