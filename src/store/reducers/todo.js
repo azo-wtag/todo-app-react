@@ -4,6 +4,7 @@ import {
   DELETE_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
+import { TASK_DATE_FORMAT } from "utils/const";
 import { findTaskIndexById, generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
@@ -32,7 +33,8 @@ export const todoReducer = (state = initialTodoState, action) => {
       const existingTasks = structuredClone(state.tasks);
       const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
       existingTasks[selectedTaskId].isCompleted = true;
-      existingTasks[selectedTaskId].completedAt = dayjs().format("YYYY-MM-DD");
+      existingTasks[selectedTaskId].completedAt =
+        dayjs().format(TASK_DATE_FORMAT);
       return { ...state, tasks: existingTasks };
     }
 
