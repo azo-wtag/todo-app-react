@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
 import Button from "components/base/button";
-import styles from "./index.module.scss";
+import styles from "components/load-more-btn-container/index.module.scss";
 import { loadMoreTask, showLessTasks } from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
 
