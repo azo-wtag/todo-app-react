@@ -5,15 +5,15 @@ import dayjs from "dayjs";
 import classnames from "classnames";
 
 import styles from "components/task/existing-task/task-card/index.module.scss";
+import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 import EditTaskForm from "components/task/existing-task/edit-task";
 
 function TaskCard({
-  indexNo,
+  taskId,
   title,
   createdAt,
   isCompleted,
@@ -34,7 +34,7 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <EditTaskForm
-          taskIndex={indexNo}
+          taskId={taskId}
           existingTitle={title}
           onDeleteBtnClick={() => setIsTextAreaVisible(false)}
           onTaskEdit={() => setIsTextAreaVisible(false)}
@@ -48,9 +48,9 @@ function TaskCard({
         <p className={styles.date}>created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDoneButtonClick={() => dispatch(markTaskAsDone(indexNo))}
+            onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
             onEditButtonClick={() => setIsTextAreaVisible(true)}
-            onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(indexNo))}
+            onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(taskId))}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (
@@ -64,7 +64,7 @@ function TaskCard({
 }
 
 TaskCard.propTypes = {
-  indexNo: propTypes.number.isRequired,
+  taskId: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,

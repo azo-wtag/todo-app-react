@@ -17,24 +17,19 @@ import {
 import { taskSchema } from "utils/schema";
 import { editTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 
-function EditTaskForm({
-  taskIndex,
-  existingTitle,
-  onDeleteBtnClick,
-  onTaskEdit,
-}) {
+function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
   useEffect(() => setValue("title", existingTitle), [existingTitle]);
 
   const editTask = (task) => {
-    dispath(editTaskFromTodo({ index: taskIndex, title: task.title }));
+    dispath(editTaskFromTodo({ taskId, title: task.title }));
     setValue("title", "");
     onTaskEdit();
   };
 
   const saveTaskAsDone = (task) => {
-    dispath(editTaskFromTodo({ index: taskIndex, title: task.title }));
-    dispath(markTaskAsDone(taskIndex));
+    dispath(editTaskFromTodo({ taskId, title: task.title }));
+    dispath(markTaskAsDone(taskId));
     setValue("title", "");
     onTaskEdit();
   };
@@ -71,7 +66,7 @@ function EditTaskForm({
 }
 
 EditTaskForm.propTypes = {
-  taskIndex: propTypes.number.isRequired,
+  taskId: propTypes.string.isRequired,
   onDeleteBtnClick: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };
