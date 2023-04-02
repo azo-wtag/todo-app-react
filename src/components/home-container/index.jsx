@@ -27,7 +27,7 @@ function HomeContainer() {
     }
 
     filterTasks();
-  }, [filteredState]);
+  }, [filteredState, tasks]);
 
   return (
     <div className={`container mx-auto ${styles.homeWrapper}`}>
