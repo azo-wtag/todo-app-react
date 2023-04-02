@@ -1,12 +1,8 @@
 import React from "react";
 import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
-import {
-  LOGO_ALT_TAG,
-  LOGO_IMG_PATH,
-  SEARCH_ICON_ALT_TAG,
-  SEARCH_ICON_PATH,
-} from "utils/const";
+import { LOGO_ALT_TAG, LOGO_IMG_PATH } from "utils/const";
+import SearchField from "components/base/search-field";
 
 function NavBar() {
   return (
@@ -19,7 +15,7 @@ function NavBar() {
       </div>
 
       <div>
-        <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
+        <SearchField />
       </div>
     </nav>
   );
