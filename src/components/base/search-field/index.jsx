@@ -5,7 +5,7 @@ import { SEARCH_ICON_ALT_TAG, SEARCH_ICON_PATH } from "utils/const";
 
 function SearchField() {
   return (
-    <div className="">
+    <div className="flex items-center">
       <InputField />
       <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
     </div>
