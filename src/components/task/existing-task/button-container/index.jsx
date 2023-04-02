@@ -11,13 +11,13 @@ import {
   EDIT_ICON_PATH,
 } from "utils/const";
 
-function ButtonContainer({ onEditButtonClick }) {
+function ButtonContainer() {
   return (
     <div className="flex items-center">
       <Button className={styles.doneBtn}>
         <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
       </Button>
-      <Button className={styles.editBtn} onButtonClick={onEditButtonClick}>
+      <Button className={styles.editBtn}>
         <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
       </Button>
       <Button className={styles.deleteBtn}>
