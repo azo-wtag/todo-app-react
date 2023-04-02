@@ -15,11 +15,10 @@ function LoadMoreBtnContainer() {
   );
 
   const handleLoadMoreBtnClick = () => {
-    const numOfCardOnLoadMore =
-      (numOfTotalTask - numOfVisibleTask) % CARD_PER_PAGE;
-    if (numOfCardOnLoadMore >= CARD_PER_PAGE)
+    const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
+    if (numOfRemainingCard >= CARD_PER_PAGE)
       dispatch(loadMoreTask(CARD_PER_PAGE));
-    else dispatch(loadMoreTask(numOfCardOnLoadMore));
+    else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
   };
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
