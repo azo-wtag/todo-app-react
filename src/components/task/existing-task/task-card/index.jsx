@@ -33,7 +33,7 @@ function TaskCard({
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-  const handleDeleButtonClick = (taskId) => {
+  const handleDeleButtonClick = () => {
     dispatch(deleteTaskFromTodo(taskId));
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
