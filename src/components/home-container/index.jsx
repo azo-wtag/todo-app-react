@@ -48,7 +48,11 @@ function HomeContainer() {
           />
         )}
 
-        <ExistingTaskCardContaienr tasks={tasks.slice(0, noOfCardVisible)} />
+        {filteredTasks.length > 0 && (
+          <ExistingTaskCardContaienr
+            tasks={filteredTasks.slice(0, noOfCardVisible)}
+          />
+        )}
       </div>
 
       {filteredTasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
