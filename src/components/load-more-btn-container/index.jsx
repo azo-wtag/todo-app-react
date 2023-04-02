@@ -25,7 +25,7 @@ function LoadMoreBtnContainer() {
     "d-none": numOfTotalTask === numOfVisibleTask,
   });
   const showLessButtonClasses = classNames({
-    "d-none": numOfTotalTask > numOfVisibleTask,
+    "d-none": numOfVisibleTask < numOfTotalTask,
   });
 
   if (numOfTotalTask <= CARD_PER_PAGE) return null;
