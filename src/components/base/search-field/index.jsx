@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import debounce from "lodash.debounce";
+import { useDispatch } from "react-redux";
 import InputField from "components/base/input/input";
 import Image from "components/base/image";
 import {
@@ -9,21 +11,30 @@ import {
   SEARCH_ICON_PATH,
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
-import { taskSchema } from "utils/schema";
+import { searchTaskSchema } from "utils/schema";
+import { setSearchKey } from "store/actions/filter";
 
 function SearchField() {
-  const searchTaskByTitle = (task) => {
-    console.log(task);
-  };
+  const dispatch = useDispatch();
+
+  const searchTaskByTitle = debounce((task) => {
+    dispatch(setSearchKey(task.title));
+  }, 500);
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: FORM_VALIDATION_MODE_ONCHANGE,
-    resolver: yupResolver(taskSchema),
+    resolver: yupResolver(searchTaskSchema),
   });
+
+  useEffect(() => {
+    const subscription = watch(handleSubmit(searchTaskByTitle));
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <form
