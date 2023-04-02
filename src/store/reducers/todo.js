@@ -26,7 +26,11 @@ const initialTodoState = {
     generateTaskObject("Complete Initial setup of the Todo App 14"),
     generateTaskObject("Complete Initial setup of the Todo App 15"),
     generateTaskObject("Complete Initial setup of the Todo App 16"),
-    generateTaskObject("Complete Initial setup of the Todo App"),
+    generateTaskObject("Complete Initial setup of the Todo App 17"),
+    generateTaskObject("Complete Initial setup of the Todo App 18"),
+    generateTaskObject("Complete Initial setup of the Todo App 19"),
+    generateTaskObject("Complete Initial setup of the Todo App 20"),
+    generateTaskObject("Complete Initial setup of the Todo App 21"),
   ],
 };
 
