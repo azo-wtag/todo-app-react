@@ -1,4 +1,5 @@
 import {
+  DECREASE_NUM_OF_VISIBLE_TASK,
   FILTER_TASK,
   LOAD_MORE_TASK,
   SHOW_LESS_TASK,
@@ -28,6 +29,13 @@ export const filterReducer = (state = initialFilterState, action) => {
 
     case FILTER_TASK: {
       return { ...state, filteredCardState: action.payload };
+    }
+
+    case DECREASE_NUM_OF_VISIBLE_TASK: {
+      return {
+        ...state,
+        visibleCardCount: state.visibleCardCount - action.payload,
+      };
     }
 
     default:

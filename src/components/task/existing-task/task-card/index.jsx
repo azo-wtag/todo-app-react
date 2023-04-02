@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import propTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
 
 import styles from "components/task/existing-task/task-card/index.module.scss";
 import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
+import EditTaskForm from "components/task/existing-task/edit-task";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
-import EditTaskForm from "components/task/existing-task/edit-task";
+import { decreaseNumOfVisibleTasks } from "store/actions/filter";
 
 function TaskCard({
   taskId,
@@ -27,6 +28,16 @@ function TaskCard({
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
   const calculateDateDifference = (startDate, endDate = dayjs()) =>
     endDate.diff(startDate, "day") + 1;
+
+  const tasks = useSelector((state) => state.todo.tasks);
+  const numOfCardVisible = useSelector(
+    (state) => state.filter.visibleCardCount
+  );
+  const handleDeleButtonClick = () => {
+    dispatch(deleteTaskFromTodo(taskId));
+    if (tasks.length === numOfCardVisible)
+      dispatch(decreaseNumOfVisibleTasks());
+  };
 
   const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
 
@@ -50,7 +61,7 @@ function TaskCard({
           <ButtonContainer
             onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
             onEditButtonClick={() => setIsTextAreaVisible(true)}
-            onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(taskId))}
+            onDeleteButtonClick={handleDeleButtonClick}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (

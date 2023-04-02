@@ -1,4 +1,5 @@
 import {
+  DECREASE_NUM_OF_VISIBLE_TASK,
   FILTER_TASK,
   LOAD_MORE_TASK,
   SHOW_LESS_TASK,
@@ -23,5 +24,12 @@ export const filterTask = (tasksState = TASK_FILTER_ALL) => {
   return {
     type: FILTER_TASK,
     payload: tasksState,
+  };
+};
+
+export const decreaseNumOfVisibleTasks = (taskCount = 1) => {
+  return {
+    type: DECREASE_NUM_OF_VISIBLE_TASK,
+    payload: taskCount,
   };
 };
