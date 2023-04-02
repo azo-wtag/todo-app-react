@@ -28,6 +28,8 @@ function LoadMoreBtnContainer() {
     "d-none": numOfTotalTask > numOfVisibleTask,
   });
 
+  if (numOfTotalTask <= CARD_PER_PAGE) return null;
+
   return (
     <div className="flex justify-center">
       <Button
