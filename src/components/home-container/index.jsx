@@ -8,7 +8,11 @@ import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import ExistingTaskCardContaienr from "components/task/existing-task/container";
 import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
-import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
+import {
+  filterCompletedTask,
+  filterInCompletedTask,
+  filterTaskByTitle,
+} from "utils/helper";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -16,18 +20,19 @@ function HomeContainer() {
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
+  const searchedKey = useSelector((state) => state.filter.searchKey);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
       if (filteredState === TASK_FILTER_COMPLETED)
-        setFilteredTasks(filterCompletedTask(tasks));
+        setFilteredTasks(filterCompletedTask(tasks, searchedKey));
       else if (filteredState === TASK_FILTER_INCOMPLETED)
-        setFilteredTasks(filterInCompletedTask(tasks));
-      else setFilteredTasks(tasks);
+        setFilteredTasks(filterInCompletedTask(tasks, searchedKey));
+      else setFilteredTasks(filterTaskByTitle(tasks, searchedKey));
     }
 
     filterTasks();
-  }, [filteredState, tasks]);
+  }, [filteredState, tasks, searchedKey]);
 
   return (
     <div className={`container mx-auto ${styles.homeWrapper}`}>
