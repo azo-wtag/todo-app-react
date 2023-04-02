@@ -2,6 +2,7 @@ import {
   DECREASE_NUM_OF_VISIBLE_TASK,
   FILTER_TASK,
   LOAD_MORE_TASK,
+  SET_SEARCH_KEY,
   SHOW_LESS_TASK,
 } from "store/constants/actionTypes";
 import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
@@ -9,6 +10,7 @@ import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 const initialFilterState = {
   visibleCardCount: CARD_PER_PAGE,
   filteredCardState: TASK_FILTER_ALL,
+  searchKey: "",
 };
 
 export const filterReducer = (state = initialFilterState, action) => {
@@ -37,6 +39,9 @@ export const filterReducer = (state = initialFilterState, action) => {
         visibleCardCount: state.visibleCardCount - action.payload,
       };
     }
+
+    case SET_SEARCH_KEY:
+      return { ...state, searchKey: action.payload };
 
     default:
       return state;
