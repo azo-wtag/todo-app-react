@@ -31,7 +31,7 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
   }, []);
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
-    "d-none": numOfTotalTask === numOfVisibleTask,
+    "d-none": numOfTotalTask <= numOfVisibleTask,
   });
   const showLessButtonClasses = classNames({
     "d-none": numOfVisibleTask < numOfTotalTask,
