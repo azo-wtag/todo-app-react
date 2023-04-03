@@ -60,7 +60,11 @@ function HomeContainer() {
         )}
       </div>
 
-      {filteredTasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
+      {filteredTasks.length <= 0 ? (
+        <NoTaskFound />
+      ) : (
+        <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
+      )}
     </div>
   );
 }

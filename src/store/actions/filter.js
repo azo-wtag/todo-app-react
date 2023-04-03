@@ -3,7 +3,7 @@ import {
   FILTER_TASK,
   LOAD_MORE_TASK,
   SET_SEARCH_KEY,
-  SHOW_LESS_TASK,
+  RESET_VISIBLE_TASK_COUNT,
 } from "store/constants/actionTypes";
 import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 
@@ -16,7 +16,7 @@ export const loadMoreTask = (taskCount = CARD_PER_PAGE) => {
 
 export const showLessTasks = (taskCount = CARD_PER_PAGE) => {
   return {
-    type: SHOW_LESS_TASK,
+    type: RESET_VISIBLE_TASK_COUNT,
     payload: taskCount,
   };
 };
@@ -39,5 +39,12 @@ export const setSearchKey = (keyword) => {
   return {
     type: SET_SEARCH_KEY,
     payload: keyword,
+  };
+};
+
+export const resetVisibleTaskCount = (taskCount = CARD_PER_PAGE) => {
+  return {
+    type: RESET_VISIBLE_TASK_COUNT,
+    payload: taskCount,
   };
 };
