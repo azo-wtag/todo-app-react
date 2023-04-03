@@ -2,7 +2,7 @@ import {
   DECREASE_NUM_OF_VISIBLE_TASK,
   FILTER_TASK,
   LOAD_MORE_TASK,
-  SHOW_LESS_TASK,
+  RESET_VISIBLE_TASK_COUNT,
 } from "store/constants/actionTypes";
 import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 
@@ -20,7 +20,7 @@ export const filterReducer = (state = initialFilterState, action) => {
       };
     }
 
-    case SHOW_LESS_TASK: {
+    case RESET_VISIBLE_TASK_COUNT: {
       return {
         ...state,
         visibleCardCount: action.payload,
