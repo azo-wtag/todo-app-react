@@ -40,6 +40,7 @@ function ButtonContainer({
 ButtonContainer.propTypes = {
   onDoneButtonClick: propTypes.func.isRequired,
   onDeleteButtonClick: propTypes.func.isRequired,
+  onEditButtonClick: propTypes.func.isRequired,
   isTaskCompleted: propTypes.bool.isRequired,
 };
 
