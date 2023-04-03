@@ -26,8 +26,10 @@ function TaskCard({
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) =>
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
-  const calculateDateDifference = (startDate, endDate = dayjs()) =>
-    endDate.diff(startDate, "day") + 1;
+  const calculateDateDifference = (startDate, endDate = dayjs()) => {
+    const dateDifference = endDate.diff(startDate, "day");
+    return dateDifference === 0 ? 1 : dateDifference;
+  };
 
   const tasks = useSelector((state) => state.todo.tasks);
   const numOfCardVisible = useSelector(
