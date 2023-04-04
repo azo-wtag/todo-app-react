@@ -13,6 +13,9 @@ export const ERROR_TOAST_DEFAULT_OPTIONS = {
   draggable: true,
   progress: undefined,
   theme: "colored",
+  style: {
+    backgroundColor: "#E85F5F",
+  },
 };
 
 export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
@@ -27,4 +30,7 @@ export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
   draggable: true,
   progress: undefined,
   theme: "colored",
+  style: {
+    backgroundColor: "#0BC375",
+  },
 };
