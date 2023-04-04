@@ -31,7 +31,7 @@ import {
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
-} from "utils/const/errorMessages";
+} from "utils/const/toastMessages";
 import {
   ERROR_TOAST_DEFAULT_OPTIONS,
   SUCCESS_TOAST_DEFAULT_OPTIONS,
