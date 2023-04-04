@@ -7,14 +7,14 @@ import {
 
 export const showSuccessToast = (
   message,
-  options = ERROR_TOAST_DEFAULT_OPTIONS
+  options = SUCCESS_TOAST_DEFAULT_OPTIONS
 ) => {
-  toast.error(message, options);
+  toast.success(message, options);
 };
 
 export const showErrorToast = (
   message,
-  options = SUCCESS_TOAST_DEFAULT_OPTIONS
+  options = ERROR_TOAST_DEFAULT_OPTIONS
 ) => {
   toast.error(message, options);
 };
