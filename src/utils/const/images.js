@@ -11,6 +11,7 @@ export const SEARCH_ICON_ALT_TAG = "task search icon";
 export const DELETE_ICON_ALT_TAG = "delete task button icon";
 export const EDIT_ICON_ALT_TAG = "edit task button icon";
 export const CHECK_ICON_ALT_TAG = "complete task button icon";
+export const CHECK_WHITE_ICON_ALT_TAG = "Success toast white icon";
 export const NO_TASK_FOUND_ICON_ALT_TAG = "no task found icon";
 
 export const LOGO_IMG_PATH = logoImage;
