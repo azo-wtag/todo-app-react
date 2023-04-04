@@ -17,10 +17,12 @@ import {
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
   TASK_SANITIZE_REGX_PATTERN,
+  TASK_ADDED_SUCCESS_MESSAGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTaskToTodo } from "store/actions/todo";
+import { showSuccessToast } from "utils/toast";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
@@ -39,6 +41,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
     onSuccessfullTaskEntry();
   };
 
