@@ -1,4 +1,7 @@
-import { CHECK_ICON_WHITE_PATH } from "utils/const/images";
+import {
+  CHECK_ICON_WHITE_PATH,
+  CHECK_WHITE_ICON_ALT_TAG,
+} from "utils/const/images";
 
 export const ERROR_TOAST_DEFAULT_OPTIONS = {
   icon: false,
@@ -13,7 +16,9 @@ export const ERROR_TOAST_DEFAULT_OPTIONS = {
 };
 
 export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
-  icon: () => <img src={CHECK_ICON_WHITE_PATH} alt="data" />,
+  icon: () => (
+    <img src={CHECK_ICON_WHITE_PATH} alt={CHECK_WHITE_ICON_ALT_TAG} />
+  ),
   position: "top-center",
   autoClose: 5000,
   hideProgressBar: false,
