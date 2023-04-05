@@ -25,9 +25,11 @@ function TaskCard({
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) =>
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
-  const calculateDateDifference = (startDate, endDate = dayjs()) => {
-    const dateDifference = endDate.diff(startDate, "day");
-    return dateDifference === 0 ? 1 : dateDifference;
+  const calculateDateDifference = (completedAt, createdAt) => {
+    const dateDifference = dayjs(completedAt).diff(createdAt, "day");
+    return dateDifference === 0
+      ? `1 day`
+      : `${Math.abs(dateDifference) + 1} days`;
   };
 
   const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
@@ -51,7 +53,7 @@ function TaskCard({
         />
         {isCompleted && (
           <Button>
-            Completed in {calculateDateDifference(completedAt)} days
+            Completed in {calculateDateDifference(completedAt, createdAt)}
           </Button>
         )}
       </div>
