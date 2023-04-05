@@ -16,7 +16,7 @@ import {
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTaskFromTodo, markTaskAsDone } from "store/actions/todo";
-
+import styles from "components/task/existing-task/edit-task/index.module.scss";
 function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
   useEffect(() => setValue("title", existingTitle), [existingTitle]);
@@ -50,14 +50,27 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register("title") }}
         error={errors.title}
+        className={`fw-500 ${styles.textArea}`}
       />
 
-      <div className="flex items-center">
-        <Button onButtonClick={handleSubmit(editTask)}>Save</Button>
-        <Button onButtonClick={handleSubmit(saveTaskAsDone)}>
+      <div className={`flex items-center ${styles.btnContainer}`}>
+        <Button
+          onButtonClick={handleSubmit(editTask)}
+          className={`bg-white ${styles.saveBtn}`}
+        >
+          Save
+        </Button>
+        <Button
+          onButtonClick={handleSubmit(saveTaskAsDone)}
+          className={`bg-white ${styles.doneBtn}`}
+        >
           <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
         </Button>
-        <Button buttonType={TYPE_BUTTON} onButtonClick={onDeleteBtnClick}>
+        <Button
+          buttonType={TYPE_BUTTON}
+          onButtonClick={onDeleteBtnClick}
+          className="bg-white"
+        >
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>

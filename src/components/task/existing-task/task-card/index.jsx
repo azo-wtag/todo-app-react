@@ -45,7 +45,7 @@ function TaskCard({
       dispatch(decreaseNumOfVisibleTasks());
   };
 
-  const taskHeaderClasses = classnames(styles.header, "fw-700", "color-grey", {
+  const taskHeaderClasses = classnames(styles.header, "fw-700", "text-grey1", {
     "text-line-thorught text-green1": isCompleted,
   });
 
@@ -75,7 +75,9 @@ function TaskCard({
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (
-            <Button>
+            <Button
+              className={`bg-violet2 text-white1 ${styles.completedText}`}
+            >
               Completed in {calculateDateDifference(completedAt, createdAt)}
             </Button>
           )}

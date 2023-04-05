@@ -1,0 +1,34 @@
+@import "styles/base.scss";
+
+.textArea {
+  outline: 3px solid $violet-color1;
+  border: none;
+  padding: 0;
+  border-radius: 0.313rem;
+  width: calc(100% - 1rem);
+  padding: 0.25rem 0.5rem;
+  color: $grey-color1;
+  line-height: 1.172rem;
+  font-size: 1rem;
+}
+
+.btnContainer {
+  margin-top: 1.313rem;
+
+  .textArea:focus {
+    outline: 3px solid $violet-color1;
+    border: none;
+  }
+
+  .saveBtn {
+    border: 1px solid $white-color1;
+    padding: 0.563rem 0.813;
+    color: $grey-color1;
+    font-size: 1rem;
+    line-height: 1.172rem;
+  }
+
+  .doneBtn {
+    margin: 0 1.375rem;
+  }
+}

@@ -72,6 +72,14 @@
   font-weight: 700;
 }
 
+.fw-500 {
+  font-weight: 500;
+}
+
+.text-white1 {
+  color: $white-color1;
+}
+
 .text-grey1 {
   color: $grey-color1;
 }
@@ -86,4 +94,8 @@
 
 .bg-white {
   background-color: $white-color1;
+}
+
+.bg-violet2 {
+  background-color: $violet-color2;
 }

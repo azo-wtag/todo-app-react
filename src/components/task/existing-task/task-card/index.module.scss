@@ -6,11 +6,18 @@
 
   .header {
     font-size: 1.5rem;
+    line-height: 1.758rem;
   }
 
   .date {
     margin-top: 0.563rem;
     margin-bottom: 1.5rem;
     font-size: 0.875rem;
+  }
+
+  .completedText {
+    padding: 0.313rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
   }
 }
