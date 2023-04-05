@@ -43,13 +43,9 @@ function TaskCard({
       dispatch(decreaseNumOfVisibleTasks());
   };
 
-  const taskHeaderClasses = classnames(
-    "fw-700",
-    {
-      "text-line-thorught": isCompleted,
-    },
-    "color-grey"
-  );
+  const taskHeaderClasses = classnames(styles.header, "fw-700", "color-grey", {
+    "text-line-thorught text-green1": isCompleted,
+  });
 
   if (isTextAreaVisible) {
     return (

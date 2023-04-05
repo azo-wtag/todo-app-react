@@ -4,8 +4,13 @@
   border: 1px solid $grey-color3;
   padding: 0.938rem;
 
+  .header {
+    font-size: 1.5rem;
+  }
+
   .date {
     margin-top: 0.563rem;
     margin-bottom: 1.5rem;
+    font-size: 0.875rem;
   }
 }
