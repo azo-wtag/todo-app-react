@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
@@ -13,6 +13,7 @@ import {
   filterInCompletedTask,
   filterTaskByTitle,
 } from "utils/helper";
+import { resetVisibleTaskCount } from "store/actions/filter";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -33,6 +34,11 @@ function HomeContainer() {
 
     filterTasks();
   }, [filteredState, tasks, searchedKey]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetVisibleTaskCount());
+  }, [filteredState]);
 
   return (
     <div className={`container mx-auto ${styles.homeWrapper}`}>
