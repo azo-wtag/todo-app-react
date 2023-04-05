@@ -43,7 +43,13 @@ function TaskCard({
       dispatch(decreaseNumOfVisibleTasks());
   };
 
-  const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
+  const taskHeaderClasses = classnames(
+    "fw-700",
+    {
+      "text-line-thorught": isCompleted,
+    },
+    "color-grey"
+  );
 
   if (isTextAreaVisible) {
     return (
@@ -60,7 +66,9 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
-        <p className={styles.date}>created At: {formatDate(createdAt)}</p>
+        <p className={`text-grey2 ${styles.date}`}>
+          created At: {formatDate(createdAt)}
+        </p>
         <div className="flex justify-between">
           <ButtonContainer
             onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
