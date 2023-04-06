@@ -45,8 +45,10 @@ export const filterReducer = (state = initialFilterState, action) => {
     case SET_SEARCH_KEY:
       return { ...state, searchKey: action.payload };
 
-    case SET_IS_TASK_FILTERING:
+    case SET_IS_TASK_FILTERING: {
+      console.log(action.payload);
       return { ...state, isFiltering: action.payload };
+    }
 
     default:
       return state;
