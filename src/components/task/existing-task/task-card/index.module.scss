@@ -3,6 +3,7 @@
 .card {
   border: 1px solid $grey-color3;
   padding: 0.938rem;
+  border-radius: 0.313rem;
 
   .header {
     font-size: 1.5rem;
@@ -17,7 +18,7 @@
 
   .completedText {
     padding: 0.313rem 0.75rem;
-    border-radius: 5px;
+    border-radius: 0.313rem;
     font-size: 0.75rem;
   }
 }
