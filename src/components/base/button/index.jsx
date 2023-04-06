@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
+import { connect } from "react-redux";
 
 function Button({
   children,
@@ -30,11 +31,14 @@ Button.propTypes = {
   isDisabled: propTypes.bool,
 };
 
+const mapStateToProps = (state) => ({
+  isDisabled: state.filter.isFiltering,
+});
+
 Button.defaultProps = {
   className: "",
   onButtonClick: () => {},
   buttonType: TYPE_SUBMIT,
-  isDisabled: false,
 };
 
-export default Button;
+export default connect(mapStateToProps)(Button);
