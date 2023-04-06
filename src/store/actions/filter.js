@@ -4,6 +4,7 @@ import {
   LOAD_MORE_TASK,
   SET_SEARCH_KEY,
   RESET_VISIBLE_TASK_COUNT,
+  TOGGLE_IS_TASK_FILTERING,
 } from "store/constants/actionTypes";
 import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 
@@ -46,5 +47,12 @@ export const resetVisibleTaskCount = (taskCount = CARD_PER_PAGE) => {
   return {
     type: RESET_VISIBLE_TASK_COUNT,
     payload: taskCount,
+  };
+};
+
+export const setIsTaskFiltering = (isFiltering) => {
+  return {
+    type: TOGGLE_IS_TASK_FILTERING,
+    payload: isFiltering,
   };
 };
