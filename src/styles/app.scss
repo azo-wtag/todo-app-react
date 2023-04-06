@@ -60,12 +60,24 @@
   display: grid;
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .gap-34px {
   gap: 2.125rem;
+}
+
+@media only screen and (min-width: $breakpoint-sm) {
+  .grid-cols-sm-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: $breakpoint-md) {
+  .grid-cols-lg-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .fw-700 {
@@ -81,7 +93,7 @@
 }
 
 .text-grey1 {
-  color: $grey-color1;
+  color: $black-color1;
 }
 
 .text-grey2 {
@@ -98,4 +110,8 @@
 
 .bg-violet2 {
   background-color: $violet-color2;
+}
+
+.bg-violet3 {
+  background-color: $violet-color3;
 }

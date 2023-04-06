@@ -7,7 +7,13 @@ import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import ExistingTaskCardContaienr from "components/task/existing-task/container";
-import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
+import Image from "components/base/image";
+import {
+  PLUS_ICON_ALT_TAG,
+  PLUS_ICON_PATH,
+  TASK_FILTER_COMPLETED,
+  TASK_FILTER_INCOMPLETED,
+} from "utils/const";
 import {
   filterCompletedTask,
   filterInCompletedTask,
@@ -47,35 +53,41 @@ function HomeContainer() {
   }, [filteredState]);
 
   return (
-    <div className={`container mx-auto ${styles.homeWrapper}`}>
-      <h1>Add Tasks</h1>
-      <div className={`flex justify-between ${styles.buttonContainer}`}>
-        <Button onButtonClick={() => setIsNewTaskRequested(true)}>
-          Create
-        </Button>
-        <FilterBtnContainer />
-      </div>
+    <div className={styles.homeWrapper}>
+      <div className={`container mx-auto`}>
+        <h1 className={styles.heading}>Add Tasks</h1>
+        <div className={`flex justify-between ${styles.buttonContainer}`}>
+          <Button
+            onButtonClick={() => setIsNewTaskRequested(true)}
+            className={`fw-500 flex items-center justify-center ${styles.createTaskBtn}`}
+          >
+            <Image src={PLUS_ICON_PATH} alt={PLUS_ICON_ALT_TAG} />
+            <span className={styles.createTxt}>Create</span>
+          </Button>
+          <FilterBtnContainer />
+        </div>
 
-      <div className="grid grid-cols-3 gap-34px">
-        {isNewTaskRequested && (
-          <CreateTask
-            onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
-            onDeleteBtnClick={() => setIsNewTaskRequested(false)}
-          />
+        <div className="grid grid-cols-3 grid-cols-sm-2 grid-cols-lg-3 gap-34px">
+          {isNewTaskRequested && (
+            <CreateTask
+              onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
+              onDeleteBtnClick={() => setIsNewTaskRequested(false)}
+            />
+          )}
+
+          {filteredTasks.length > 0 && (
+            <ExistingTaskCardContaienr
+              tasks={filteredTasks.slice(0, noOfCardVisible)}
+            />
+          )}
+        </div>
+
+        {filteredTasks.length <= 0 ? (
+          <NoTaskFound />
+        ) : (
+          <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
         )}
-
-        {filteredTasks.length > 0 && (
-          <ExistingTaskCardContaienr
-            tasks={filteredTasks.slice(0, noOfCardVisible)}
-          />
-        )}
       </div>
-
-      {filteredTasks.length <= 0 ? (
-        <NoTaskFound />
-      ) : (
-        <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
-      )}
     </div>
   );
 }

@@ -1,4 +1,14 @@
-.loadMoreBtn {
+@import "styles/base.scss";
+
+.loadMoreBtn,
+.showLessBtn {
   margin-top: 3.563rem;
   margin-bottom: 3.875rem;
+  background-color: $black-color1;
+  color: $white-color1;
+  width: 7.313rem;
+  height: 2.25rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.172rem;
 }

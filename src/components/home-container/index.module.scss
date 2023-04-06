@@ -1,8 +1,31 @@
+@import "styles/base.scss";
+
 .homeWrapper {
-  margin-top: 4rem;
+  padding-top: 4rem;
+  background-color: $violet-color3;
+
+  .heading {
+    font-size: 1.875rem;
+    line-height: 2.197rem;
+    color: $black-color1;
+  }
 
   .buttonContainer {
     margin-top: 1.75rem;
     margin-bottom: 2.125rem;
+
+    .createTaskBtn {
+      background-color: $violet-color2;
+      color: $white-color1;
+      width: 6.45rem;
+      height: 2.25rem;
+      border-radius: 0.313rem;
+      font-size: 1rem;
+      line-height: 1.172rem;
+
+      .createTxt {
+        margin-left: 0.313rem;
+      }
+    }
   }
 }
