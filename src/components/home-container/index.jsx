@@ -14,7 +14,7 @@ function HomeContainer() {
   const handleCreateBtnClick = () => setIsNewTaskRequested(true);
 
   return (
-    <div className={`container mx-auto ${styles.homeWrapper}`}>
+    <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
       <div className={`flex justify-between ${styles.buttonContainer}`}>
         <Button onButtonClick={handleCreateBtnClick}>Create</Button>
@@ -22,7 +22,7 @@ function HomeContainer() {
         <FilterBtnContainer />
       </div>
 
-      <div className="grid grid-cols-3 gap-34px">
+      <div className="grid grid-cols-3 card-gap">
         {isNewTaskRequested && (
           <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
         )}

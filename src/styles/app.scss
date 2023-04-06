@@ -16,7 +16,7 @@
   border: none;
 }
 
-.container {
+.home-container {
   width: 80%;
 }
 
@@ -44,6 +44,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.gap-34px {
+.card-gap {
   gap: 2.125rem;
 }
