@@ -13,29 +13,35 @@ import {
   filterInCompletedTask,
   filterTaskByTitle,
 } from "utils/helper";
-import { resetVisibleTaskCount } from "store/actions/filter";
+import {
+  resetVisibleTaskCount,
+  toggleIsTaskFiltering,
+} from "store/actions/filter";
 
 function HomeContainer() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.todo.tasks);
   const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
   const searchedKey = useSelector((state) => state.filter.searchKey);
+  // const isFilteringActive = useSelector((state) => state.filter.isFiltering);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
+      dispatch(toggleIsTaskFiltering(true));
       if (filteredState === TASK_FILTER_COMPLETED)
         setFilteredTasks(filterCompletedTask(tasks, searchedKey));
       else if (filteredState === TASK_FILTER_INCOMPLETED)
         setFilteredTasks(filterInCompletedTask(tasks, searchedKey));
       else setFilteredTasks(filterTaskByTitle(tasks, searchedKey));
+      dispatch(toggleIsTaskFiltering(false));
     }
 
     filterTasks();
   }, [filteredState, tasks, searchedKey]);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetVisibleTaskCount());
   }, [filteredState]);
@@ -47,7 +53,6 @@ function HomeContainer() {
         <Button onButtonClick={() => setIsNewTaskRequested(true)}>
           Create
         </Button>
-
         <FilterBtnContainer />
       </div>
 
