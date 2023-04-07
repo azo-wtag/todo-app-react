@@ -16,8 +16,8 @@ import {
   TASK_TITLE_ERROR_MESSAGE,
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
-  TASK_SANITIZE_REGX_PATTERN,
   TASK_ADDED_SUCCESS_MESSAGE,
+  TASK_SANITIZE_REGEX_PATTERN,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
@@ -29,7 +29,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
   const addNewTask = (task) => {
     const sanitizedTitle = task.title
-      .replace(TASK_SANITIZE_REGX_PATTERN, "")
+      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
       .trim();
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {

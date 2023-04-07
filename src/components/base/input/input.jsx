@@ -1,5 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
+import { INPUT_TYPE_TEXT } from "utils/const";
 
 function InputField({ classNames, type, register, error }) {
   return (
@@ -19,7 +20,7 @@ InputField.propTypes = {
 
 InputField.defaultProps = {
   classNames: "",
-  type: "text",
+  type: INPUT_TYPE_TEXT,
 };
 
 export default InputField;

@@ -8,7 +8,7 @@ function TextArea({ numOfRows, register, error, className }) {
       <textarea
         name="data"
         {...register}
-        className={`width-100 ${className}`}
+        className={`width-full ${className}`}
         rows={numOfRows}
       ></textarea>
       {error && <p>{error.message}</p>}
