@@ -37,23 +37,21 @@ const initialTodoState = {
 export const todoReducer = (state = initialTodoState, action) => {
   switch (action.type) {
     case ADD_TASK: {
-      const existingTasks = structuredClone(state.tasks);
-      existingTasks.unshift(action.payload);
       return {
         ...state,
-        tasks: existingTasks,
+        tasks: [action.payload, ...state.tasks],
       };
     }
 
     case DELETE_TASK: {
-      const existingTasks = structuredClone(state.tasks);
-      const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
-      existingTasks.splice(selectedTaskId, 1);
-      return { ...state, tasks: existingTasks };
+      const filteredTasks = state.tasks.filter(
+        (todo) => todo.id !== action.payload
+      );
+      return { ...state, tasks: filteredTasks };
     }
 
     case MARK_TASK_DONE: {
-      const existingTasks = structuredClone(state.tasks);
+      const existingTasks = [...state.tasks];
       const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
       existingTasks[selectedTaskId].isCompleted = true;
       existingTasks[selectedTaskId].completedAt =
