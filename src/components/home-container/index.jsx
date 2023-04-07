@@ -53,7 +53,7 @@ function HomeContainer() {
   }, [filteredState]);
 
   return (
-    <div className={styles.homeWrapper}>
+    <div className={`${styles.homeWrapper}`}>
       <div className={`home-container mx-auto`}>
         <h1 className={styles.heading}>Add Tasks</h1>
         <div className={`flex justify-between ${styles.buttonContainer}`}>
