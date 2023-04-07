@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.width-100 {
+.width-full {
   width: 100%;
 }
 
@@ -24,7 +24,7 @@
   display: none;
 }
 
-.container {
+.home-container {
   width: 80%;
 }
 
@@ -60,6 +60,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.gap-34px {
+.card-gap {
   gap: 2.125rem;
 }
