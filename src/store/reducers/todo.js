@@ -29,7 +29,7 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case MARK_TASK_DONE: {
-      const existingTasks = structuredClone(state.tasks);
+      const existingTasks = [...state.tasks];
       const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
       existingTasks[selectedTaskId].isCompleted = true;
       existingTasks[selectedTaskId].completedAt =
