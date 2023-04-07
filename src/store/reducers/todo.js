@@ -38,7 +38,7 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case EDIT_TASK: {
-      const existingTasks = structuredClone(state.tasks);
+      const existingTasks = [...state.tasks];
       const selectedTaskId = findTaskIndexById(
         action.payload.taskId,
         existingTasks
