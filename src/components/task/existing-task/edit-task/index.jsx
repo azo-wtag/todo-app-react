@@ -13,24 +13,28 @@ import {
   DELETE_ICON_ALT_TAG,
   DELETE_ICON_PATH,
   TYPE_BUTTON,
+  TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
 function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
-  useEffect(() => setValue("title", existingTitle), [existingTitle]);
+  useEffect(
+    () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
+    [existingTitle]
+  );
 
   const editTask = (task) => {
     dispath(editTaskFromTodo({ taskId, title: task.title }));
-    setValue("title", "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onTaskEdit();
   };
 
   const saveTaskAsDone = (task) => {
     dispath(editTaskFromTodo({ taskId, title: task.title }));
     dispath(markTaskAsDone(taskId));
-    setValue("title", "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onTaskEdit();
   };
 
@@ -38,17 +42,22 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     register,
     handleSubmit,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(taskSchema),
   });
 
+  useEffect(() => {
+    setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+  }, [setFocus]);
+
   return (
     <form>
       <TextArea
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
-        register={{ ...register("title") }}
+        register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
         className={`fw-500 ${styles.textArea}`}
       />
