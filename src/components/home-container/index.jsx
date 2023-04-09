@@ -21,7 +21,9 @@ import {
 function HomeContainer() {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.todo.tasks);
-  const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
+  const numOfCardVisible = useSelector(
+    (state) => state.filter.visibleCardCount
+  );
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
@@ -46,6 +48,7 @@ function HomeContainer() {
     dispatch(resetVisibleTaskCount());
   }, [filteredState]);
 
+  const isTaskEmpty = filteredTasks.length <= 0;
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
@@ -64,14 +67,14 @@ function HomeContainer() {
           />
         )}
 
-        {filteredTasks.length > 0 && (
+        {!isTaskEmpty && (
           <ExistingTaskCardContaienr
-            tasks={filteredTasks.slice(0, noOfCardVisible)}
+            tasks={filteredTasks.slice(0, numOfCardVisible)}
           />
         )}
       </div>
 
-      {filteredTasks.length <= 0 ? (
+      {isTaskEmpty ? (
         <NoTaskFound />
       ) : (
         <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
