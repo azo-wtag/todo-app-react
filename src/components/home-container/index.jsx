@@ -58,7 +58,9 @@ function HomeContainer() {
     <div className={`${styles.homeWrapper}`}>
       <div className={`home-container mx-auto`}>
         <h1 className={styles.heading}>Add Tasks</h1>
-        <div className={`flex justify-between ${styles.buttonContainer}`}>
+        <div
+          className={`flex flex-col flex-md-row justify-between ${styles.buttonContainer}`}
+        >
           <Button
             onButtonClick={() => setIsNewTaskRequested(true)}
             className={`fw-500 flex items-center justify-center ${styles.createTaskBtn}`}
@@ -68,7 +70,7 @@ function HomeContainer() {
           </Button>
           <FilterBtnContainer />
         </div>
-        <div className="grid grid-cols-3 grid-cols-sm-2 grid-cols-lg-3 card-gap">
+        <div className="grid grid-cols-3 grid-cols-md-2 grid-cols-lg-3 card-gap">
           {isNewTaskRequested && (
             <CreateTask
               onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}

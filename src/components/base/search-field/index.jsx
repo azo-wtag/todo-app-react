@@ -13,6 +13,7 @@ import {
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
 import { setSearchKey } from "store/actions/filter";
+import styles from "components/base/search-field/index.module.scss";
 
 function SearchField() {
   const dispatch = useDispatch();
@@ -38,12 +39,13 @@ function SearchField() {
 
   return (
     <form
-      className="flex items-center"
+      className={`flex items-center ${styles.formContainer}`}
       onSubmit={handleSubmit(searchTaskByTitle)}
     >
       <InputField
         register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
         error={errors.title}
+        classNames={styles.searchField}
       />
       <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
     </form>

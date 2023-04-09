@@ -60,6 +60,16 @@
   flex-direction: column;
 }
 
+@media only screen and (min-width: $breakpoint-sm) {
+  .flex-md-col {
+    flex-direction: column;
+  }
+
+  .flex-md-row {
+    flex-direction: row;
+  }
+}
+
 .grid {
   display: grid;
 }
@@ -73,7 +83,7 @@
 }
 
 @media only screen and (min-width: $breakpoint-sm) {
-  .grid-cols-sm-2 {
+  .grid-cols-md-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

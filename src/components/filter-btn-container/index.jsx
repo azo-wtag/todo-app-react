@@ -13,7 +13,7 @@ function FilterBtnContainer() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.buttonContainer}>
       <Button
         onButtonClick={() => dispatch(filterTask(TASK_FILTER_ALL))}
         className={`bg-white ${styles.allBtn}`}

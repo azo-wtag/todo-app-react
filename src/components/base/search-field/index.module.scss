@@ -1,0 +1,28 @@
+@import "styles/base.scss";
+
+.formContainer {
+  width: 100%;
+  padding: 0.938rem 0;
+
+  .searchField {
+    border: 3px solid $violet-color1;
+    border-radius: 0.313rem;
+    height: 2rem;
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+
+  .searchField:focus {
+    outline: none;
+    border-radius: 0.313rem;
+    font-size: 1rem;
+    line-height: 1.172rem;
+  }
+}
+
+@media only screen and (min-width: $breakpoint-sm) {
+  .formContainer {
+    width: 45%;
+    padding: 0.938rem 0;
+  }
+}

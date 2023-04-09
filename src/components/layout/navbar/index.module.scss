@@ -1,3 +1,11 @@
+@import "styles/base.scss";
+
 .navbar {
-  padding: 0.938rem 0;
+  .logoContainer {
+    padding: 0.938rem 0;
+
+    .heading {
+      margin-left: 0.875rem;
+    }
+  }
 }
