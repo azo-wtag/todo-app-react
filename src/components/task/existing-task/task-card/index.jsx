@@ -49,7 +49,7 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
-        <p className={styles.date}>created At: {formatDate(createdAt)}</p>
+        <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
             onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
