@@ -20,6 +20,15 @@
   }
 }
 
+.visibleSearchField {
+  opacity: 1;
+}
+
+.hiddenSearchField {
+  opacity: 0;
+  height: 0;
+}
+
 @media only screen and (min-width: $breakpoint-sm) {
   .formContainer {
     width: 45%;

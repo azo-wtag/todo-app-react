@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import classnames from "classnames";
 import debounce from "lodash.debounce";
 import { useDispatch } from "react-redux";
 import InputField from "components/base/input/input";
 import Image from "components/base/image";
+import Button from "components/base/button";
 import {
   FORM_VALIDATION_MODE_ONCHANGE,
   SEARCH_ICON_ALT_TAG,
@@ -17,6 +19,7 @@ import styles from "components/base/search-field/index.module.scss";
 
 function SearchField() {
   const dispatch = useDispatch();
+  const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(true);
 
   const searchTaskByTitle = debounce((task) => {
     dispatch(setSearchKey(task.title));
@@ -37,17 +40,30 @@ function SearchField() {
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  const handleSearchButtonClick = () => {
+    setIsSearchFieldVisible(!isSearchFieldVisible);
+  };
+
+  const searchBoxClassNames = classnames(styles.searchField, {
+    [styles.visibleSearchField]: isSearchFieldVisible,
+  });
+
   return (
     <form
-      className={`flex items-center ${styles.formContainer}`}
+      className={`flex items-center justify-end ${styles.formContainer}`}
       onSubmit={handleSubmit(searchTaskByTitle)}
     >
-      <InputField
-        register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
-        error={errors.title}
-        classNames={styles.searchField}
-      />
-      <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
+      {isSearchFieldVisible && (
+        <InputField
+          register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
+          error={errors.title}
+          classNames={searchBoxClassNames}
+        />
+      )}
+
+      <Button onButtonClick={handleSearchButtonClick} className="bg-white">
+        <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
+      </Button>
     </form>
   );
 }
