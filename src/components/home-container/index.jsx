@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
@@ -9,8 +9,10 @@ import LoadMoreBtnContainer from "components/load-more-btn-container";
 import ExistingTaskCardContaienr from "components/task/existing-task/container";
 import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
 import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
+import { resetVisibleTaskCount } from "store/actions/filter";
 
 function HomeContainer() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.todo.tasks);
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
@@ -30,6 +32,10 @@ function HomeContainer() {
 
     filterTasks();
   }, [filteredState, tasks]);
+
+  useEffect(() => {
+    dispatch(resetVisibleTaskCount());
+  }, [filteredState]);
 
   const isTaskEmpty = filteredTasks.length <= 0;
   return (
