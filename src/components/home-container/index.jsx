@@ -68,7 +68,6 @@ function HomeContainer() {
           </Button>
           <FilterBtnContainer />
         </div>
-
         <div className="grid grid-cols-3 grid-cols-sm-2 grid-cols-lg-3 card-gap">
           {isNewTaskRequested && (
             <CreateTask
@@ -77,18 +76,18 @@ function HomeContainer() {
             />
           )}
 
-        {!isTaskEmpty && (
-          <ExistingTaskCardContaienr
-            tasks={filteredTasks.slice(0, numOfCardVisible)}
-          />
+          {!isTaskEmpty && (
+            <ExistingTaskCardContaienr
+              tasks={filteredTasks.slice(0, numOfCardVisible)}
+            />
+          )}
+        </div>
+        {isTaskEmpty ? (
+          <NoTaskFound />
+        ) : (
+          <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
         )}
       </div>
-
-      {isTaskEmpty ? (
-        <NoTaskFound />
-      ) : (
-        <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
-      )}
     </div>
   );
 }
