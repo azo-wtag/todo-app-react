@@ -65,7 +65,7 @@ function TaskCard({
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
         <p className={`text-grey2 ${styles.date}`}>
-          created At: {formatDate(createdAt)}
+          Created At: {formatDate(createdAt)}
         </p>
         <div className="flex justify-between">
           <ButtonContainer

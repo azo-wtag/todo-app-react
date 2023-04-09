@@ -1,8 +1,8 @@
 import React from "react";
 import propTypes from "prop-types";
+import { connect } from "react-redux";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
-import { connect } from "react-redux";
 
 function Button({
   children,
