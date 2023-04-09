@@ -11,6 +11,7 @@ function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
+  const isTaskAvailable = tasks.length > 0;
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
@@ -30,7 +31,7 @@ function HomeContainer() {
           />
         )}
 
-        {tasks.length > 0 &&
+        {isTaskAvailable &&
           tasks.map((task) => (
             <TaskCard
               key={task.id}
@@ -43,7 +44,7 @@ function HomeContainer() {
           ))}
       </div>
 
-      {tasks.length <= 0 ? (
+      {!isTaskAvailable ? (
         <NoTaskFound />
       ) : (
         <div className="flex justify-center">
