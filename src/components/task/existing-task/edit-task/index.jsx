@@ -42,11 +42,16 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     register,
     handleSubmit,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(taskSchema),
   });
+
+  useEffect(() => {
+    setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+  }, [setFocus]);
 
   return (
     <form>
