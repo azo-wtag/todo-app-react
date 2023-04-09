@@ -2,7 +2,6 @@ import React from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
-import { connect } from "react-redux";
 
 function TextArea({ numOfRows, register, error, isDisabled }) {
   return (
