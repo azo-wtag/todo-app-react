@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
+import styles from "components/base/text-area/index.module.scss";
 
 function TextArea({ numOfRows, register, error, className, isDisabled }) {
   return (
@@ -13,7 +14,7 @@ function TextArea({ numOfRows, register, error, className, isDisabled }) {
         rows={numOfRows}
         disabled={isDisabled}
       ></textarea>
-      {error && <p>{error.message}</p>}
+      {error && <p className={styles.errorMessage}>{error.message}</p>}
     </div>
   );
 }
