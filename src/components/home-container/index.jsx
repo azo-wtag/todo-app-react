@@ -15,6 +15,7 @@ function HomeContainer() {
   );
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
+  const isTaskEmpty = tasks.length <= 0;
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
@@ -37,7 +38,7 @@ function HomeContainer() {
         <ExistingTaskCardContaienr tasks={tasks.slice(0, numOfCardVisible)} />
       </div>
 
-      {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
+      {isTaskEmpty ? <NoTaskFound /> : <LoadMoreBtnContainer />}
     </div>
   );
 }
