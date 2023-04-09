@@ -10,7 +10,9 @@ import ExistingTaskCardContaienr from "components/task/existing-task/container";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
-  const noOfCardVisible = useSelector((state) => state.filter.visibleCardCount);
+  const numOfCardVisible = useSelector(
+    (state) => state.filter.visibleCardCount
+  );
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   return (
@@ -32,7 +34,7 @@ function HomeContainer() {
           />
         )}
 
-        <ExistingTaskCardContaienr tasks={tasks.slice(0, noOfCardVisible)} />
+        <ExistingTaskCardContaienr tasks={tasks.slice(0, numOfCardVisible)} />
       </div>
 
       {tasks.length <= 0 ? <NoTaskFound /> : <LoadMoreBtnContainer />}
