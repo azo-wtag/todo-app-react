@@ -11,7 +11,7 @@ import {
 function NavBar() {
   return (
     <nav
-      className={`container flex justify-between width-100 mx-auto ${styles.navbar}`}
+      className={`home-container flex justify-between width-full mx-auto ${styles.navbar}`}
     >
       <div className="flex">
         <Image src={LOGO_IMG_PATH} alt={LOGO_ALT_TAG} />
