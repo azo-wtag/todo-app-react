@@ -28,7 +28,6 @@ function HomeContainer() {
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
   const searchedKey = useSelector((state) => state.filter.searchKey);
-  // const isFilteringActive = useSelector((state) => state.filter.isFiltering);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
