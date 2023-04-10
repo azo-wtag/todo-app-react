@@ -47,6 +47,7 @@ function SearchField() {
   }, [searchedKey]);
 
   const handleSearchButtonClick = () => {
+    if (isSearchFieldVisible) dispatch(setSearchKey(""));
     setIsSearchFieldVisible(!isSearchFieldVisible);
   };
 
