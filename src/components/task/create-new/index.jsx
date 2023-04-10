@@ -18,11 +18,13 @@ import {
   FORM_VALIDATION_MODE_ONCHANGE,
   TASK_ADDED_SUCCESS_MESSAGE,
   TASK_SANITIZE_REGEX_PATTERN,
+  TASK_FILTER_ALL,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTaskToTodo } from "store/actions/todo";
 import { showSuccessToast } from "utils/toast";
+import { filterTask } from "store/actions/filter";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
@@ -40,7 +42,8 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    dispatch(filterTask(TASK_FILTER_ALL));
     showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
     onSuccessfullTaskEntry();
   };
