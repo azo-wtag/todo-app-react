@@ -56,7 +56,7 @@ function SearchField() {
     if (isSearchFieldVisible) setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, [isSearchFieldVisible]);
 
-  const searchBoxClassNames = classnames(styles.searchField, {
+  const searchBoxClassNames = classnames(styles.searchField, "fw-500", {
     [styles.visibleSearchField]: isSearchFieldVisible,
   });
 

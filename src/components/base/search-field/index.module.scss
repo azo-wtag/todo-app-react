@@ -10,13 +10,15 @@
     height: 2rem;
     width: calc(100% - 1rem);
     box-sizing: border-box;
+    font-size: 1rem;
+    padding-left: 0.75rem;
+    line-height: 1.172rem;
+    color: $black-color1;
   }
 
   .searchField:focus {
     outline: none;
     border-radius: 0.313rem;
-    font-size: 1rem;
-    line-height: 1.172rem;
   }
 }
 
