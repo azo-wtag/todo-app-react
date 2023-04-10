@@ -38,7 +38,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onSuccessfullTaskEntry();
   };
 

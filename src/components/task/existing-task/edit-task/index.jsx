@@ -27,14 +27,14 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
 
   const editTask = (task) => {
     dispath(editTaskFromTodo({ taskId, title: task.title }));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
 
   const saveTaskAsDone = (task) => {
     dispath(editTaskFromTodo({ taskId, title: task.title }));
     dispath(markTaskAsDone(taskId));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
 
