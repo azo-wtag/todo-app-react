@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import debounce from "lodash.debounce";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InputField from "components/base/input/input";
 import Image from "components/base/image";
 import {
@@ -25,6 +25,7 @@ function SearchField() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     mode: FORM_VALIDATION_MODE_ONCHANGE,
@@ -35,6 +36,11 @@ function SearchField() {
     const subscription = watch(handleSubmit(searchTaskByTitle));
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  const searchedKey = useSelector((state) => state.filter.searchKey);
+  useEffect(() => {
+    if (!searchedKey) setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+  }, [searchedKey]);
 
   return (
     <form
