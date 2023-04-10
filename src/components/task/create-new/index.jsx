@@ -22,7 +22,7 @@ import {
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTaskToTodo } from "store/actions/todo";
-import { filterTask } from "store/actions/filter";
+import { filterTask, setSearchKey } from "store/actions/filter";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
+    dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
   };
 
