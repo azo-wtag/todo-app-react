@@ -19,7 +19,7 @@ import styles from "components/base/search-field/index.module.scss";
 
 function SearchField() {
   const dispatch = useDispatch();
-  const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(true);
+  const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(false);
 
   const searchTaskByTitle = debounce((task) => {
     dispatch(setSearchKey(task.title));
