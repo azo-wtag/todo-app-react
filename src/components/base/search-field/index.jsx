@@ -30,6 +30,7 @@ function SearchField() {
     handleSubmit,
     watch,
     setValue,
+    setFocus,
     formState: { errors },
   } = useForm({
     mode: FORM_VALIDATION_MODE_ONCHANGE,
@@ -50,6 +51,10 @@ function SearchField() {
     if (isSearchFieldVisible) dispatch(setSearchKey(""));
     setIsSearchFieldVisible(!isSearchFieldVisible);
   };
+
+  useEffect(() => {
+    if (isSearchFieldVisible) setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+  }, [isSearchFieldVisible]);
 
   const searchBoxClassNames = classnames(styles.searchField, {
     [styles.visibleSearchField]: isSearchFieldVisible,
