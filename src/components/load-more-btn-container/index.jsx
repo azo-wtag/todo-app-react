@@ -1,15 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import propTypes from "prop-types";
 
 import Button from "components/base/button";
 import styles from "components/load-more-btn-container/index.module.scss";
-import {
-  loadMoreTask,
-  resetVisibleTaskCount,
-  showLessTasks,
-} from "store/actions/filter";
+import { loadMoreTask, showLessTasks } from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
 
 function LoadMoreBtnContainer({ numOfTotalTask }) {
@@ -24,11 +20,6 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
       dispatch(loadMoreTask(CARD_PER_PAGE));
     else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
   };
-
-  useEffect(() => {
-    if (numOfTotalTask < numOfVisibleTask)
-      dispatch(resetVisibleTaskCount(numOfTotalTask));
-  }, []);
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, "fw-500", {
     "d-none": numOfTotalTask <= numOfVisibleTask,

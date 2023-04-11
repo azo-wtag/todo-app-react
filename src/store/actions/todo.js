@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import supabase from "config/index";
 import {
   ADD_TASK,
@@ -6,6 +7,7 @@ import {
   LOAD_TASK_FROM_DB,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
+import { TASK_DATE_FORMAT } from "utils/const";
 import { showErrorToast } from "utils/toast";
 
 export const addTaskToTodo = (task) => {
@@ -20,16 +22,36 @@ export const addTaskToTodo = (task) => {
 };
 
 export const deleteTaskFromTodo = (taskId) => {
-  return {
-    type: DELETE_TASK,
-    payload: taskId,
+  return async (dispatch) => {
+    try {
+      await supabase.from("tasks").delete().eq("id", taskId);
+      dispatch({
+        type: DELETE_TASK,
+        payload: taskId,
+      });
+    } catch (error) {
+      showErrorToast(error.message);
+    }
   };
 };
 
 export const markTaskAsDone = (taskId) => {
-  return {
-    type: MARK_TASK_DONE,
-    payload: taskId,
+  return async (dispatch) => {
+    try {
+      await supabase
+        .from("tasks")
+        .update({
+          isCompleted: true,
+          completedAt: dayjs().format(TASK_DATE_FORMAT),
+        })
+        .eq("id", taskId);
+      dispatch({
+        type: MARK_TASK_DONE,
+        payload: taskId,
+      });
+    } catch (error) {
+      showErrorToast(error.message);
+    }
   };
 };
 
