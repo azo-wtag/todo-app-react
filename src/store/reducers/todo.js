@@ -5,33 +5,13 @@ import {
   EDIT_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
-import { TASK_DATE_FORMAT } from "utils/const";
+import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
 import { findTaskIndexById, generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [
-    generateTaskObject("Complete Initial setup of the Todo App 1"),
-    generateTaskObject("Complete Initial setup of the Todo App 2"),
-    // generateTaskObject("Complete Initial setup of the Todo App 3"),
-    // generateTaskObject("Complete Initial setup of the Todo App 4"),
-    // generateTaskObject("Complete Initial setup of the Todo App 5"),
-    // generateTaskObject("Complete Initial setup of the Todo App 6"),
-    // generateTaskObject("Complete Initial setup of the Todo App 7"),
-    // generateTaskObject("Complete Initial setup of the Todo App 8"),
-    // generateTaskObject("Complete Initial setup of the Todo App 9"),
-    // generateTaskObject("Complete Initial setup of the Todo App 10"),
-    // generateTaskObject("Complete Initial setup of the Todo App 11"),
-    // generateTaskObject("Complete Initial setup of the Todo App 12"),
-    // generateTaskObject("Complete Initial setup of the Todo App 13"),
-    // generateTaskObject("Complete Initial setup of the Todo App 14"),
-    // generateTaskObject("Complete Initial setup of the Todo App 15"),
-    // generateTaskObject("Complete Initial setup of the Todo App 16"),
-    // generateTaskObject("Complete Initial setup of the Todo App 17"),
-    // generateTaskObject("Complete Initial setup of the Todo App 18"),
-    // generateTaskObject("Complete Initial setup of the Todo App 19"),
-    // generateTaskObject("Complete Initial setup of the Todo App 20"),
-    // generateTaskObject("Complete Initial setup of the Todo App 21"),
-  ],
+  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, () => {
+    return generateTaskObject("Complete Initial setup of the Todo App 1");
+  }),
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
