@@ -9,8 +9,10 @@ import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
 import { findTaskIndexById, generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, () => {
-    return generateTaskObject("Complete Initial setup of the Todo App 1");
+  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
+    return generateTaskObject(
+      `Complete Initial setup of the Todo App  ${i + 1}`
+    );
   }),
 };
 

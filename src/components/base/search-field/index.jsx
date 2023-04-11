@@ -14,16 +14,22 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
-import { setSearchKey } from "store/actions/filter";
+import { setSearchKey, toggleIsTaskFiltering } from "store/actions/filter";
 import styles from "components/base/search-field/index.module.scss";
 
 function SearchField() {
   const dispatch = useDispatch();
   const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(false);
 
-  const searchTaskByTitle = debounce((task) => {
-    dispatch(setSearchKey(task.title));
+  const debouncedSearchTask = debounce((title) => {
+    dispatch(setSearchKey(title));
+    dispatch(toggleIsTaskFiltering(false));
   }, 500);
+
+  const searchTaskByTitle = (task) => {
+    dispatch(toggleIsTaskFiltering(true));
+    debouncedSearchTask(task.title);
+  };
 
   const {
     register,
@@ -40,7 +46,7 @@ function SearchField() {
   useEffect(() => {
     const subscription = watch(handleSubmit(searchTaskByTitle));
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, []);
 
   const searchedKey = useSelector((state) => state.filter.searchKey);
   useEffect(() => {
