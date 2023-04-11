@@ -1,3 +1,4 @@
+import supabase from "config/index";
 import {
   ADD_TASK,
   DELETE_TASK,
@@ -7,9 +8,13 @@ import {
 } from "store/constants/actionTypes";
 
 export const addTaskToTodo = (task) => {
-  return {
-    type: ADD_TASK,
-    payload: task,
+  return async (dispatch) => {
+    try {
+      await supabase.from("tasks").insert([task]);
+      dispatch({ type: ADD_TASK, payload: task });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
