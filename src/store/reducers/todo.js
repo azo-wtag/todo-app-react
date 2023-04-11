@@ -3,17 +3,14 @@ import {
   ADD_TASK,
   DELETE_TASK,
   EDIT_TASK,
+  LOAD_TASK_FROM_DB,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
-import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
-import { findTaskIndexById, generateTaskObject } from "utils/helper";
+import { TASK_DATE_FORMAT } from "utils/const";
+import { findTaskIndexById } from "utils/helper";
 
 const initialTodoState = {
-  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
-    return generateTaskObject(
-      `Complete Initial setup of the Todo App  ${i + 1}`
-    );
-  }),
+  tasks: [],
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
@@ -49,6 +46,14 @@ export const todoReducer = (state = initialTodoState, action) => {
       );
       existingTasks[selectedTaskId].title = action.payload.title;
       return { ...state, tasks: existingTasks };
+    }
+
+    case LOAD_TASK_FROM_DB: {
+      console.log(...action.payload);
+      return {
+        ...state,
+        tasks: [...action.payload],
+      };
     }
 
     default:

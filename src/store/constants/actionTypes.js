@@ -2,6 +2,7 @@ export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 export const EDIT_TASK = "EDIT_TASK";
 export const MARK_TASK_DONE = "MARK_TASK_DONE";
+export const LOAD_TASK_FROM_DB = "LOAD_TASK_FROM_DB";
 
 export const LOAD_MORE_TASK = "LOAD_MORE_TASK";
 export const RESET_VISIBLE_TASK_COUNT = "RESET_VISIBLE_TASK_COUNT";
