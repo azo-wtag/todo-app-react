@@ -4,13 +4,22 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "App";
 import reportWebVitals from "reportWebVitals";
-import { legacy_createStore as createStore } from "redux";
+import {
+  applyMiddleware,
+  compose,
+  legacy_createStore as createStore,
+} from "redux";
 import rootReducer from "store";
 import { Provider } from "react-redux";
+import { asyncFunctionMiddleware } from "store/middleware";
 
+const middlewareEnhancer = applyMiddleware(asyncFunctionMiddleware);
 const myStore = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    middlewareEnhancer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
