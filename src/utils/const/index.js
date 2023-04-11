@@ -22,7 +22,7 @@ import {
   TASK_SANITIZE_REGEX_PATTERN,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const/formElements";
-import { CARD_PER_PAGE } from "utils/const/tasks";
+import { CARD_PER_PAGE, NUM_OF_FAKE_TASK_IN_STORE } from "utils/const/tasks";
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
@@ -45,6 +45,7 @@ export {
   TASK_TEXTAREA_NUM_OF_ROW,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CARD_PER_PAGE,
+  NUM_OF_FAKE_TASK_IN_STORE,
   TYPE_SUBMIT,
   TYPE_BUTTON,
   TASK_DATE_FORMAT,
