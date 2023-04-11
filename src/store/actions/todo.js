@@ -6,6 +6,7 @@ import {
   LOAD_TASK_FROM_DB,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
+import { showErrorToast } from "utils/toast";
 
 export const addTaskToTodo = (task) => {
   return async (dispatch) => {
@@ -13,7 +14,7 @@ export const addTaskToTodo = (task) => {
       await supabase.from("tasks").insert([task]);
       dispatch({ type: ADD_TASK, payload: task });
     } catch (error) {
-      console.log(error);
+      showErrorToast(error.message);
     }
   };
 };
@@ -33,9 +34,20 @@ export const markTaskAsDone = (taskId) => {
 };
 
 export const editTaskFromTodo = (payload) => {
-  return {
-    type: EDIT_TASK,
-    payload,
+  return async (dispatch) => {
+    try {
+      await supabase
+        .from("tasks")
+        .update({ title: payload.title })
+        .eq("id", payload.taskId);
+
+      dispatch({
+        type: EDIT_TASK,
+        payload,
+      });
+    } catch (error) {
+      showErrorToast(error.message);
+    }
   };
 };
 
