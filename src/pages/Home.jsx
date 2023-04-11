@@ -6,13 +6,18 @@ import Layout from "components/layout";
 import supabase from "config";
 import { useDispatch } from "react-redux";
 import { loadTaskFromDB } from "store/actions/todo";
+import { showErrorToast } from "utils/toast";
 
 function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchTasks() {
-      const { data } = await supabase.from("tasks").select();
-      dispatch(loadTaskFromDB(data));
+      try {
+        const { data } = await supabase.from("tasks").select();
+        dispatch(loadTaskFromDB(data));
+      } catch (error) {
+        showErrorToast(error.message);
+      }
     }
 
     fetchTasks();

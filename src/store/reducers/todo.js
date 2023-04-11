@@ -49,7 +49,6 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case LOAD_TASK_FROM_DB: {
-      console.log(...action.payload);
       return {
         ...state,
         tasks: [...action.payload],
