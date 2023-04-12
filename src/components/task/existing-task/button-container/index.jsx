@@ -22,7 +22,7 @@ function ButtonContainer({ onDeleteButtonClick }) {
         <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
       </Button>
 
-      <Button className={styles.deleteBtn} onButtonClick={onDeleteButtonClick}>
+      <Button className={styles.deleteBtn} onClick={onDeleteButtonClick}>
         <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
       </Button>
     </div>

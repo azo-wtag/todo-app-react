@@ -70,7 +70,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON} onButtonClick={onDeleteBtnClick}>
+        <Button buttonType={TYPE_BUTTON} onClick={onDeleteBtnClick}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
