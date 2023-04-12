@@ -7,7 +7,7 @@ import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
-import { addTaskToTodo } from "store/actions/todo";
+import { addTask } from "store/actions/todo";
 import {
   TASK_TEXTAREA_NUM_OF_ROW,
   DELETE_ICON_ALT_TAG,
@@ -39,7 +39,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       return;
     }
-    dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
+    dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onSuccessfullTaskEntry();
   };
