@@ -19,7 +19,7 @@ InputField.propTypes = {
 };
 
 InputField.defaultProps = {
-  classNames: "",
+  classNames: null,
   type: INPUT_TYPE_TEXT,
 };
 
