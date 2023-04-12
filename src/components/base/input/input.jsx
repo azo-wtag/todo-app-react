@@ -4,10 +4,10 @@ import { INPUT_TYPE_TEXT } from "utils/const";
 
 function InputField({ classNames, type, register, error }) {
   return (
-    <div>
+    <>
       <input type={type} className={classNames} {...register} />{" "}
       {error && <p>{error.message}</p>}
-    </div>
+    </>
   );
 }
 
@@ -19,7 +19,7 @@ InputField.propTypes = {
 };
 
 InputField.defaultProps = {
-  classNames: "",
+  classNames: null,
   type: INPUT_TYPE_TEXT,
 };
 

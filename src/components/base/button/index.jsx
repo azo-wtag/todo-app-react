@@ -4,17 +4,11 @@ import { connect } from "react-redux";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
-function Button({
-  children,
-  onButtonClick,
-  className,
-  buttonType,
-  isDisabled,
-}) {
+function Button({ children, onClick, className, buttonType, isDisabled }) {
   return (
     <button
       className={`${styles.button} ${className}`}
-      onClick={onButtonClick}
+      onClick={onClick}
       type={buttonType}
       disabled={isDisabled}
     >
@@ -26,7 +20,7 @@ function Button({
 Button.propTypes = {
   children: propTypes.oneOfType([propTypes.string, propTypes.node]).isRequired,
   className: propTypes.string,
-  onButtonClick: propTypes.func,
+  onClick: propTypes.func,
   buttonType: propTypes.string,
   isDisabled: propTypes.bool,
 };
@@ -37,7 +31,7 @@ const mapStateToProps = (state) => ({
 
 Button.defaultProps = {
   className: "",
-  onButtonClick: () => {},
+  onClick: () => {},
   buttonType: TYPE_SUBMIT,
 };
 

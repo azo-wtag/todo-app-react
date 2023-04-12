@@ -22,15 +22,15 @@ function ButtonContainer({
     <div className="flex items-center">
       {!isTaskCompleted && (
         <>
-          <Button className={styles.doneBtn} onButtonClick={onDoneButtonClick}>
+          <Button className={styles.doneBtn} onClick={onDoneButtonClick}>
             <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
           </Button>
-          <Button className={styles.editBtn} onButtonClick={onEditButtonClick}>
+          <Button className={styles.editBtn} onClick={onEditButtonClick}>
             <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
           </Button>
         </>
       )}
-      <Button className={styles.deleteBtn} onButtonClick={onDeleteButtonClick}>
+      <Button className={styles.deleteBtn} onClick={onDeleteButtonClick}>
         <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
       </Button>
     </div>

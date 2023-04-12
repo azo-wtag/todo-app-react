@@ -4,7 +4,7 @@ import {
   LOAD_MORE_TASK,
   SET_SEARCH_KEY,
   RESET_VISIBLE_TASK_COUNT,
-  SET_IS_TASK_FILTERING,
+  SET_IS_FILTERING,
 } from "store/constants/actionTypes";
 import { CARD_PER_PAGE, TASK_FILTER_ALL } from "utils/const";
 
@@ -45,7 +45,7 @@ export const filterReducer = (state = initialFilterState, action) => {
     case SET_SEARCH_KEY:
       return { ...state, searchKey: action.payload };
 
-    case SET_IS_TASK_FILTERING: {
+    case SET_IS_FILTERING: {
       return { ...state, isFiltering: action.payload };
     }
 
