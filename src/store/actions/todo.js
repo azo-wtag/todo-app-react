@@ -26,7 +26,7 @@ export const markAsDone = (taskId) => {
   };
 };
 
-export const editTaskFromTodo = (payload) => {
+export const editTask = (payload) => {
   return {
     type: EDIT_TASK,
     payload,

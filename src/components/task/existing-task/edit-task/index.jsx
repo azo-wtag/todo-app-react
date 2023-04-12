@@ -16,7 +16,7 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
-import { editTaskFromTodo, markAsDone } from "store/actions/todo";
+import { editTask, markAsDone } from "store/actions/todo";
 
 function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
@@ -25,14 +25,14 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     [existingTitle]
   );
 
-  const editTask = (task) => {
-    dispath(editTaskFromTodo({ taskId, title: task.title }));
+  const updateTask = (task) => {
+    dispath(editTask({ taskId, title: task.title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
 
-  const saveTaskAsDone = (task) => {
-    dispath(editTaskFromTodo({ taskId, title: task.title }));
+  const saveAsDone = (task) => {
+    dispath(editTask({ taskId, title: task.title }));
     dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
@@ -62,8 +62,8 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
       />
 
       <div className="flex items-center">
-        <Button onClick={handleSubmit(editTask)}>Save</Button>
-        <Button onClick={handleSubmit(saveTaskAsDone)}>
+        <Button onClick={handleSubmit(updateTask)}>Save</Button>
+        <Button onClick={handleSubmit(saveAsDone)}>
           <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDeleteBtnClick}>
