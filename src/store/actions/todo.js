@@ -18,7 +18,7 @@ export const deleteTask = (taskId) => {
   };
 };
 
-export const markTaskAsDone = (taskId) => {
+export const markAsDone = (taskId) => {
   return {
     type: MARK_TASK_DONE,
     payload: taskId,
