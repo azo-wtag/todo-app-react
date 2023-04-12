@@ -50,7 +50,7 @@ export const resetVisibleTaskCount = (taskCount = CARD_PER_PAGE) => {
   };
 };
 
-export const toggleIsTaskFiltering = (isFiltering) => {
+export const toggleIsFiltering = (isFiltering) => {
   return {
     type: SET_IS_TASK_FILTERING,
     payload: isFiltering,
