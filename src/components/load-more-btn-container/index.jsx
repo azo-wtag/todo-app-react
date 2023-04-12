@@ -34,14 +34,14 @@ function LoadMoreBtnContainer() {
     <div className="flex justify-center">
       <Button
         className={loadMoreButtonClasses}
-        onButtonClick={handleLoadMoreBtnClick}
+        onClick={handleLoadMoreBtnClick}
       >
         Load More
       </Button>
 
       <Button
         className={showLessButtonClasses}
-        onButtonClick={() => dispatch(showLessTasks())}
+        onClick={() => dispatch(showLessTasks())}
       >
         Show Less
       </Button>
