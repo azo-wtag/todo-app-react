@@ -10,7 +10,7 @@ import Button from "components/base/button";
 import EditTaskForm from "components/task/existing-task/edit-task";
 import { TASK_DATE_FORMAT, TASK_DELETED_SUCCESS_MESSAGE } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import { decreaseNumOfVisibleTasks } from "store/actions/filter";
+import { decreaseNumOfVisibleTasks, setisLoading } from "store/actions/filter";
 import { showErrorToast } from "utils/toast";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
@@ -34,10 +34,12 @@ function TaskCard({
     (state) => state.filter.visibleCardCount
   );
   const handleDeleButtonClick = () => {
+    dispatch(setisLoading(true));
     dispatch(deleteTask(taskId));
     showErrorToast(TASK_DELETED_SUCCESS_MESSAGE);
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
+    dispatch(setisLoading(false));
   };
 
   const taskHeaderClasses = classnames(styles.header, "fw-700", "text-grey1", {
