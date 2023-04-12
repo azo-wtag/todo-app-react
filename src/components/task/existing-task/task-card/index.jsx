@@ -10,7 +10,7 @@ import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
 import { TASK_DATE_FORMAT, TASK_TEXTAREA_NUM_OF_ROW } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
+import { deleteTask, markTaskAsDone } from "store/actions/todo";
 
 function TaskCard({
   taskId,
@@ -48,7 +48,7 @@ function TaskCard({
         <ButtonContainer
           onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
           onEditButtonClick={() => setIsTextAreaVisible(true)}
-          onDeleteButtonClick={() => dispatch(deleteTaskFromTodo(taskId))}
+          onDeleteButtonClick={() => dispatch(deleteTask(taskId))}
           isTaskCompleted={isCompleted}
         />
         {isCompleted && (
