@@ -13,15 +13,11 @@ function FilterBtnContainer() {
 
   return (
     <div>
-      <Button onButtonClick={() => dispatch(filterTask(TASK_FILTER_ALL))}>
-        All
-      </Button>
-      <Button
-        onButtonClick={() => dispatch(filterTask(TASK_FILTER_INCOMPLETED))}
-      >
+      <Button onClick={() => dispatch(filterTask(TASK_FILTER_ALL))}>All</Button>
+      <Button onClick={() => dispatch(filterTask(TASK_FILTER_INCOMPLETED))}>
         Incomplete
       </Button>
-      <Button onButtonClick={() => dispatch(filterTask(TASK_FILTER_COMPLETED))}>
+      <Button onClick={() => dispatch(filterTask(TASK_FILTER_COMPLETED))}>
         Complete
       </Button>
     </div>
