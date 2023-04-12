@@ -6,7 +6,6 @@ function TextArea({ numOfRows, register, error }) {
   return (
     <div>
       <textarea
-        name="data"
         {...register}
         className="width-full"
         rows={numOfRows}
