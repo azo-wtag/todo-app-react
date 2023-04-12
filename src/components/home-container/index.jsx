@@ -51,10 +51,8 @@ function HomeContainer() {
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
-      <div className={`flex justify-between ${styles.buttonContainer}`}>
-        <Button onButtonClick={() => setIsNewTaskRequested(true)}>
-          Create
-        </Button>
+      <div className={`flex justify-between ${styles.actionBarContainer}`}>
+        <Button onClick={() => setIsNewTaskRequested(true)}>Create</Button>
         <FilterBtnContainer />
       </div>
 

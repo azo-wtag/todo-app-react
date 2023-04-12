@@ -5,16 +5,15 @@ import { connect } from "react-redux";
 
 function TextArea({ numOfRows, register, error, isDisabled }) {
   return (
-    <div>
+    <>
       <textarea
-        name="data"
         {...register}
         className="width-full"
         rows={numOfRows}
         disabled={isDisabled}
       ></textarea>
       {error && <p>{error.message}</p>}
-    </div>
+    </>
   );
 }
 
