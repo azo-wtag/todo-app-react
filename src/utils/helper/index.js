@@ -19,3 +19,10 @@ export const findTaskById = (taskId, tasks) => {
 export const findTaskIndexById = (taskId, tasks) => {
   return tasks.findIndex((task) => task.id === taskId);
 };
+
+export const calculateDateDifference = (completedAt, createdAt) => {
+  const dateDifference = dayjs(completedAt).diff(createdAt, "day");
+  return dateDifference === 0
+    ? `1 day`
+    : `${Math.abs(dateDifference) + 1} days`;
+};

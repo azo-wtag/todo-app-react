@@ -10,8 +10,9 @@ import Button from "components/base/button";
 import EditTaskForm from "components/task/existing-task/edit-task";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import { deleteTaskFromTodo, markTaskAsDone } from "store/actions/todo";
 import { decreaseNumOfVisibleTasks } from "store/actions/filter";
+import { deleteTask, markAsDone } from "store/actions/todo";
+import { calculateDateDifference } from "utils/helper";
 
 function TaskCard({
   taskId,
@@ -26,24 +27,18 @@ function TaskCard({
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) =>
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
-  const calculateDateDifference = (completedAt, createdAt) => {
-    const dateDifference = dayjs(completedAt).diff(createdAt, "day");
-    return dateDifference === 0
-      ? `1 day`
-      : `${Math.abs(dateDifference) + 1} days`;
-  };
 
   const tasks = useSelector((state) => state.todo.tasks);
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
   const handleDeleButtonClick = () => {
-    dispatch(deleteTaskFromTodo(taskId));
+    dispatch(deleteTask(taskId));
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
   };
 
-  const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
+  const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
   if (isTextAreaVisible) {
     return (
@@ -63,7 +58,7 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDoneButtonClick={() => dispatch(markTaskAsDone(taskId))}
+            onDoneButtonClick={() => dispatch(markAsDone(taskId))}
             onEditButtonClick={() => setIsTextAreaVisible(true)}
             onDeleteButtonClick={handleDeleButtonClick}
             isTaskCompleted={isCompleted}

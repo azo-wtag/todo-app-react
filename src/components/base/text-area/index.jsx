@@ -4,15 +4,14 @@ import { TEXTAREA_DEFAULT_ROW } from "utils/const";
 
 function TextArea({ numOfRows, register, error }) {
   return (
-    <div>
+    <>
       <textarea
-        name="data"
         {...register}
         className="width-full"
         rows={numOfRows}
       ></textarea>
       {error && <p>{error.message}</p>}
-    </div>
+    </>
   );
 }
 
