@@ -24,12 +24,13 @@ import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/actions/todo";
 import { showSuccessToast } from "utils/toast";
-import { filterTask, setSearchKey } from "store/actions/filter";
+import { filterTask, setisLoading, setSearchKey } from "store/actions/filter";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
+    dispatch(setisLoading(true));
     const sanitizedTitle = task.title
       .replace(TASK_SANITIZE_REGEX_PATTERN, "")
       .trim();
@@ -41,6 +42,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
 
+      dispatch(setisLoading(false));
       return;
     }
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
@@ -49,6 +51,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
     dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
+    dispatch(setisLoading(false));
   };
 
   const {
