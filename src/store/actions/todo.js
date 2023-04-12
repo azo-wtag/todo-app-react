@@ -10,7 +10,7 @@ import {
 import { TASK_DATE_FORMAT } from "utils/const";
 import { showErrorToast } from "utils/toast";
 
-export const addTaskToTodo = (task) => {
+export const addTask = (task) => {
   return async (dispatch) => {
     try {
       await supabase.from("tasks").insert([task]);
@@ -21,7 +21,7 @@ export const addTaskToTodo = (task) => {
   };
 };
 
-export const deleteTaskFromTodo = (taskId) => {
+export const deleteTask = (taskId) => {
   return async (dispatch) => {
     try {
       await supabase.from("tasks").delete().eq("id", taskId);
@@ -35,7 +35,7 @@ export const deleteTaskFromTodo = (taskId) => {
   };
 };
 
-export const markTaskAsDone = (taskId) => {
+export const markAsDone = (taskId) => {
   return async (dispatch) => {
     try {
       await supabase
@@ -55,7 +55,7 @@ export const markTaskAsDone = (taskId) => {
   };
 };
 
-export const editTaskFromTodo = (payload) => {
+export const editTask = (payload) => {
   return async (dispatch) => {
     try {
       await supabase

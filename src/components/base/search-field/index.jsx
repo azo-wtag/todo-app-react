@@ -14,7 +14,7 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
-import { setSearchKey, toggleIsTaskFiltering } from "store/actions/filter";
+import { setSearchKey, toggleIsFiltering } from "store/actions/filter";
 import styles from "components/base/search-field/index.module.scss";
 
 function SearchField() {
@@ -23,11 +23,11 @@ function SearchField() {
 
   const debouncedSearchTask = debounce((title) => {
     dispatch(setSearchKey(title));
-    dispatch(toggleIsTaskFiltering(false));
+    dispatch(toggleIsFiltering(false));
   }, 500);
 
   const searchTaskByTitle = (task) => {
-    dispatch(toggleIsTaskFiltering(true));
+    dispatch(toggleIsFiltering(true));
     debouncedSearchTask(task.title);
   };
 
@@ -79,7 +79,7 @@ function SearchField() {
         />
       )}
 
-      <Button onButtonClick={handleSearchButtonClick} className="bg-white">
+      <Button onClick={handleSearchButtonClick} className="bg-white">
         <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
       </Button>
     </form>

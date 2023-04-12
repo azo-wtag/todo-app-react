@@ -15,19 +15,19 @@ function FilterBtnContainer() {
   return (
     <div className={styles.buttonContainer}>
       <Button
-        onButtonClick={() => dispatch(filterTask(TASK_FILTER_ALL))}
+        onClick={() => dispatch(filterTask(TASK_FILTER_ALL))}
         className={`bg-white ${styles.allBtn}`}
       >
         All
       </Button>
       <Button
-        onButtonClick={() => dispatch(filterTask(TASK_FILTER_INCOMPLETED))}
+        onClick={() => dispatch(filterTask(TASK_FILTER_INCOMPLETED))}
         className={`bg-white ${styles.incompleteBtn}`}
       >
         Incomplete
       </Button>
       <Button
-        onButtonClick={() => dispatch(filterTask(TASK_FILTER_COMPLETED))}
+        onClick={() => dispatch(filterTask(TASK_FILTER_COMPLETED))}
         className={`bg-white ${styles.completeBtn}`}
       >
         Complete
