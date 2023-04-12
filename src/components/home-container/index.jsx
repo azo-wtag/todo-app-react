@@ -10,21 +10,20 @@ function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
-  const handleSuccessfulTaskEntry = () => setIsNewTaskRequested(false);
-  const handleCreateBtnClick = () => setIsNewTaskRequested(true);
-
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
       <div className={`flex justify-between ${styles.actionBarContainer}`}>
-        <Button onClick={handleCreateBtnClick}>Create</Button>
+        <Button onClick={() => setIsNewTaskRequested(true)}>Create</Button>
 
         <FilterBtnContainer />
       </div>
 
       <div className="grid grid-cols-3 card-gap">
         {isNewTaskRequested && (
-          <CreateTask onSuccessfullTaskEntry={handleSuccessfulTaskEntry} />
+          <CreateTask
+            onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
+          />
         )}
 
         {tasks.map((task) => (
