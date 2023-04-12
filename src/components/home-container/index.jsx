@@ -13,10 +13,7 @@ import {
   filterInCompletedTask,
   filterTaskByTitle,
 } from "utils/helper";
-import {
-  resetVisibleTaskCount,
-  toggleIsTaskFiltering,
-} from "store/actions/filter";
+import { resetVisibleTaskCount, toggleIsFiltering } from "store/actions/filter";
 
 function HomeContainer() {
   const dispatch = useDispatch();
@@ -31,13 +28,13 @@ function HomeContainer() {
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
-      dispatch(toggleIsTaskFiltering(true));
+      dispatch(toggleIsFiltering(true));
       if (filteredState === TASK_FILTER_COMPLETED)
         setFilteredTasks(filterCompletedTask(tasks, searchedKey));
       else if (filteredState === TASK_FILTER_INCOMPLETED)
         setFilteredTasks(filterInCompletedTask(tasks, searchedKey));
       else setFilteredTasks(filterTaskByTitle(tasks, searchedKey));
-      dispatch(toggleIsTaskFiltering(false));
+      dispatch(toggleIsFiltering(false));
     }
 
     filterTasks();
@@ -51,10 +48,8 @@ function HomeContainer() {
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
-      <div className={`flex justify-between ${styles.buttonContainer}`}>
-        <Button onButtonClick={() => setIsNewTaskRequested(true)}>
-          Create
-        </Button>
+      <div className={`flex justify-between ${styles.actionBarContainer}`}>
+        <Button onClick={() => setIsNewTaskRequested(true)}>Create</Button>
         <FilterBtnContainer />
       </div>
 
