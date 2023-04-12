@@ -3,11 +3,11 @@ import propTypes from "prop-types";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
-function Button({ children, onButtonClick, className, buttonType }) {
+function Button({ children, onClick, className, buttonType }) {
   return (
     <button
       className={`${styles.button} ${className}`}
-      onClick={onButtonClick}
+      onClick={onClick}
       type={buttonType}
     >
       {children}
@@ -18,13 +18,13 @@ function Button({ children, onButtonClick, className, buttonType }) {
 Button.propTypes = {
   children: propTypes.oneOfType([propTypes.string, propTypes.node]).isRequired,
   className: propTypes.string,
-  onButtonClick: propTypes.func,
+  onClick: propTypes.func,
   buttonType: propTypes.string,
 };
 
 Button.defaultProps = {
   className: "",
-  onButtonClick: () => {},
+  onClick: () => {},
   buttonType: TYPE_SUBMIT,
 };
 
