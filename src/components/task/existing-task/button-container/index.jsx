@@ -25,7 +25,7 @@ function ButtonContainer({
           <Button className={styles.doneBtn} onClick={onDoneButtonClick}>
             <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
           </Button>
-          <Button className={styles.editBtn} onButtonClick={onEditButtonClick}>
+          <Button className={styles.editBtn} onClick={onEditButtonClick}>
             <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
           </Button>
         </>
