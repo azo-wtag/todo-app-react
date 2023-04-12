@@ -32,7 +32,7 @@ function TaskCard({
       : `${Math.abs(dateDifference) + 1} days`;
   };
 
-  const taskHeaderClasses = classnames({ "text-line-thorught": isCompleted });
+  const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
   return (
     <div className={styles.card}>
