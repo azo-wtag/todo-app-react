@@ -4,10 +4,10 @@ import Layout from "components/layout";
 
 function Home() {
   return (
-    <div>
+    <>
       <Layout />
       <HomeContainer />
-    </div>
+    </>
   );
 }
 
