@@ -11,6 +11,7 @@ import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import EditTaskForm from "components/task/existing-task/edit-task";
+import { calculateDateDifference } from "utils/helper";
 
 function TaskCard({
   taskId,
@@ -25,12 +26,6 @@ function TaskCard({
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
   const formatDate = (date) =>
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
-  const calculateDateDifference = (completedAt, createdAt) => {
-    const dateDifference = dayjs(completedAt).diff(createdAt, "day");
-    return dateDifference === 0
-      ? `1 day`
-      : `${Math.abs(dateDifference) + 1} days`;
-  };
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 

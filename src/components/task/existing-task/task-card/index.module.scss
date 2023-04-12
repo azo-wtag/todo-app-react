@@ -1,5 +1,7 @@
+@import "styles/base.scss";
+
 .card {
-  border: 1px solid #dde2ff;
+  border: 1px solid $violet-color1;
   padding: 0.938rem;
 
   .date {
