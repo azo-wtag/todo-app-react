@@ -41,3 +41,10 @@ export const filterTaskByTitle = (tasks, title = "") => {
     task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
   );
 };
+
+export const calculateDateDifference = (completedAt, createdAt) => {
+  const dateDifference = dayjs(completedAt).diff(createdAt, "day");
+  return dateDifference === 0
+    ? `1 day`
+    : `${Math.abs(dateDifference) + 1} days`;
+};

@@ -16,8 +16,9 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
-import { editTaskFromTodo, markTaskAsDone } from "store/actions/todo";
+import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
+
 function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
   useEffect(
@@ -25,15 +26,15 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     [existingTitle]
   );
 
-  const editTask = (task) => {
-    dispath(editTaskFromTodo({ taskId, title: task.title }));
+  const updateTask = (task) => {
+    dispath(editTask({ taskId, title: task.title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
 
-  const saveTaskAsDone = (task) => {
-    dispath(editTaskFromTodo({ taskId, title: task.title }));
-    dispath(markTaskAsDone(taskId));
+  const saveAsDone = (task) => {
+    dispath(editTask({ taskId, title: task.title }));
+    dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
@@ -64,20 +65,20 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
 
       <div className={`flex items-center ${styles.btnContainer}`}>
         <Button
-          onButtonClick={handleSubmit(editTask)}
+          onClick={handleSubmit(updateTask)}
           className={`bg-white ${styles.saveBtn}`}
         >
           Save
         </Button>
         <Button
-          onButtonClick={handleSubmit(saveTaskAsDone)}
+          onClick={handleSubmit(saveAsDone)}
           className={`bg-white ${styles.doneBtn}`}
         >
           <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
         </Button>
         <Button
           buttonType={TYPE_BUTTON}
-          onButtonClick={onDeleteBtnClick}
+          onClick={onDeleteBtnClick}
           className="bg-white"
         >
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
