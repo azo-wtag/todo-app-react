@@ -79,7 +79,7 @@ function SearchField() {
         />
       )}
 
-      <Button onButtonClick={handleSearchButtonClick} className="bg-white">
+      <Button onClick={handleSearchButtonClick} className="bg-white">
         <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
       </Button>
     </form>
