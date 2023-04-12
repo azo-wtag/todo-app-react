@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,17 +26,22 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     [existingTitle]
   );
 
+  const [isTaskUpdating, setIsTaskUpdating] = useState(false);
   const updateTask = (task) => {
+    setIsTaskUpdating(true);
     dispath(editTask({ taskId, title: task.title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
+    setIsTaskUpdating(false);
   };
 
   const saveAsDone = (task) => {
+    setIsTaskUpdating(true);
     dispath(editTask({ taskId, title: task.title }));
     dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
+    setIsTaskUpdating(false);
   };
 
   const {
@@ -53,6 +58,8 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, [setFocus]);
+
+  if (isTaskUpdating) return <div>Loading</div>;
 
   return (
     <form>
