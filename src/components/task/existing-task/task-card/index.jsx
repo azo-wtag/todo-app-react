@@ -33,9 +33,9 @@ function TaskCard({
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-  const handleDeleButtonClick = () => {
+  const handleDeleButtonClick = async () => {
     dispatch(setisLoading(true));
-    dispatch(deleteTask(taskId));
+    await dispatch(deleteTask(taskId));
     showErrorToast(TASK_DELETED_SUCCESS_MESSAGE);
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
