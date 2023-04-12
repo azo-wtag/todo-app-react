@@ -6,16 +6,15 @@ import styles from "components/base/text-area/index.module.scss";
 
 function TextArea({ numOfRows, register, error, className, isDisabled }) {
   return (
-    <div>
+    <>
       <textarea
-        name="data"
         {...register}
         className={`width-full ${className}`}
         rows={numOfRows}
         disabled={isDisabled}
       ></textarea>
       {error && <p className={styles.errorMessage}>{error.message}</p>}
-    </div>
+    </>
   );
 }
 

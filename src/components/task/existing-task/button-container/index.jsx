@@ -24,13 +24,13 @@ function ButtonContainer({
         <>
           <Button
             className={`bg-white ${styles.doneBtn}`}
-            onButtonClick={onDoneButtonClick}
+            onClick={onDoneButtonClick}
           >
             <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
           </Button>
           <Button
             className={`bg-white ${styles.editBtn}`}
-            onButtonClick={onEditButtonClick}
+            onClick={onEditButtonClick}
           >
             <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
           </Button>
@@ -38,7 +38,7 @@ function ButtonContainer({
       )}
       <Button
         className={`bg-white ${styles.deleteBtn}`}
-        onButtonClick={onDeleteButtonClick}
+        onClick={onDeleteButtonClick}
       >
         <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
       </Button>

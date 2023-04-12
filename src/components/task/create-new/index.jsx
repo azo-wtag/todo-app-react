@@ -22,7 +22,7 @@ import {
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
-import { addTaskToTodo } from "store/actions/todo";
+import { addTask } from "store/actions/todo";
 import { showSuccessToast } from "utils/toast";
 import { filterTask, setSearchKey } from "store/actions/filter";
 
@@ -38,10 +38,12 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
         type: CUSTOM_ERROR_MESSAGE_TYPE,
         message: TASK_TITLE_ERROR_MESSAGE,
       });
+
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
+
       return;
     }
-    dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
+    dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
     showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
@@ -81,7 +83,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
         <Button
           className="bg-white"
           buttonType={TYPE_BUTTON}
-          onButtonClick={onDeleteBtnClick}
+          onClick={onDeleteBtnClick}
         >
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
