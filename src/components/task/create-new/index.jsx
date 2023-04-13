@@ -73,7 +73,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
-        className={styles.textArea}
+        className={`${styles.textArea}`}
       />
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
