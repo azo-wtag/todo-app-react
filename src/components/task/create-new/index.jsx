@@ -22,7 +22,7 @@ import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/actions/todo";
 
-function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
+function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
@@ -70,7 +70,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDeleteBtnClick}>
+        <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
@@ -80,7 +80,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
-  onDeleteBtnClick: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
 };
 
 export default CreateTask;

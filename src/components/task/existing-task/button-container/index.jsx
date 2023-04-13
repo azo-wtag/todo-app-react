@@ -12,25 +12,20 @@ import {
   EDIT_ICON_PATH,
 } from "utils/const";
 
-function ButtonContainer({
-  onDoneButtonClick,
-  onEditButtonClick,
-  onDeleteButtonClick,
-  isTaskCompleted,
-}) {
+function ButtonContainer({ onDone, onEdit, onDelete, isTaskCompleted }) {
   return (
     <div className="flex items-center">
       {!isTaskCompleted && (
         <>
-          <Button className={styles.doneBtn} onClick={onDoneButtonClick}>
+          <Button className={styles.doneBtn} onClick={onDone}>
             <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
           </Button>
-          <Button className={styles.editBtn} onClick={onEditButtonClick}>
+          <Button className={styles.editBtn} onClick={onEdit}>
             <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
           </Button>
         </>
       )}
-      <Button className={styles.deleteBtn} onClick={onDeleteButtonClick}>
+      <Button className={styles.deleteBtn} onClick={onDelete}>
         <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
       </Button>
     </div>
@@ -38,9 +33,9 @@ function ButtonContainer({
 }
 
 ButtonContainer.propTypes = {
-  onDoneButtonClick: propTypes.func.isRequired,
-  onDeleteButtonClick: propTypes.func.isRequired,
-  onEditButtonClick: propTypes.func.isRequired,
+  onDone: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
+  onEdit: propTypes.func.isRequired,
   isTaskCompleted: propTypes.bool.isRequired,
 };
 
