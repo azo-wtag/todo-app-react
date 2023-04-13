@@ -32,7 +32,7 @@ function TaskCard({
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-  const handleDeleButtonClick = () => {
+  const handleDeleteClick = () => {
     dispatch(deleteTask(taskId));
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
@@ -60,7 +60,7 @@ function TaskCard({
           <ButtonContainer
             onDone={() => dispatch(markAsDone(taskId))}
             onEdit={() => setIsTextAreaVisible(true)}
-            onDelete={handleDeleButtonClick}
+            onDelete={handleDeleteClick}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (
