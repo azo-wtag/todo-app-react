@@ -9,6 +9,7 @@ import {
 } from "store/constants/actionTypes";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { showErrorToast } from "utils/toast";
+import { setisLoading } from "./filter";
 
 export const addTask = (task) => {
   return async (dispatch) => {
@@ -38,6 +39,7 @@ export const deleteTask = (taskId) => {
 export const markAsDone = (taskId) => {
   return async (dispatch) => {
     try {
+      dispatch(setisLoading(true));
       await supabase
         .from("tasks")
         .update({
@@ -52,6 +54,7 @@ export const markAsDone = (taskId) => {
     } catch (error) {
       showErrorToast(error.message);
     }
+    dispatch(setisLoading(false));
   };
 };
 
