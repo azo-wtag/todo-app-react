@@ -18,6 +18,7 @@ import {
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
+import Loader from "components/base/loader";
 
 function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   const dispath = useDispatch();
@@ -27,18 +28,18 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
   );
 
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
-  const updateTask = (task) => {
+  const updateTask = async (task) => {
     setIsTaskUpdating(true);
-    dispath(editTask({ taskId, title: task.title }));
+    await dispath(editTask({ taskId, title: task.title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
     setIsTaskUpdating(false);
   };
 
-  const saveAsDone = (task) => {
+  const saveAsDone = async (task) => {
     setIsTaskUpdating(true);
-    dispath(editTask({ taskId, title: task.title }));
-    dispath(markAsDone(taskId));
+    await dispath(editTask({ taskId, title: task.title }));
+    await dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
     setIsTaskUpdating(false);
@@ -59,7 +60,12 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, [setFocus]);
 
-  if (isTaskUpdating) return <div>Loading</div>;
+  if (isTaskUpdating)
+    return (
+      <div className="relative width-full height-full">
+        <Loader imageClassName={styles.loaderImage} />
+      </div>
+    );
 
   return (
     <form>
