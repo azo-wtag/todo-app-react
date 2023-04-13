@@ -14,7 +14,7 @@ function LoadMoreBtnContainer() {
     (state) => state.filter.visibleCardCount
   );
 
-  const handleLoadMoreBtnClick = () => {
+  const handleLoadMoreClick = () => {
     const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
     if (numOfRemainingCard >= CARD_PER_PAGE)
       dispatch(loadMoreTask(CARD_PER_PAGE));
@@ -32,10 +32,7 @@ function LoadMoreBtnContainer() {
 
   return (
     <div className="flex justify-center">
-      <Button
-        className={loadMoreButtonClasses}
-        onClick={handleLoadMoreBtnClick}
-      >
+      <Button className={loadMoreButtonClasses} onClick={handleLoadMoreClick}>
         Load More
       </Button>
 
