@@ -25,7 +25,7 @@ function HomeContainer() {
         {isNewTaskRequested && (
           <CreateTask
             onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
-            onDeleteBtnClick={() => setIsNewTaskRequested(false)}
+            onDelete={() => setIsNewTaskRequested(false)}
           />
         )}
 

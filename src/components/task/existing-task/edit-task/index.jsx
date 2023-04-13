@@ -18,7 +18,7 @@ import {
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 
-function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
+function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispath = useDispatch();
   useEffect(
     () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
@@ -66,7 +66,7 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
         <Button onClick={handleSubmit(saveAsDone)}>
           <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
         </Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDeleteBtnClick}>
+        <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
           <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
         </Button>
       </div>
@@ -76,7 +76,7 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
 
 EditTaskForm.propTypes = {
   taskId: propTypes.string.isRequired,
-  onDeleteBtnClick: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };
 
