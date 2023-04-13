@@ -46,7 +46,7 @@ function TaskCard({
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
-          onDeleteBtnClick={() => setIsTextAreaVisible(false)}
+          onDelete={() => setIsTextAreaVisible(false)}
           onTaskEdit={() => setIsTextAreaVisible(false)}
         />
       </div>
@@ -58,9 +58,9 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDoneButtonClick={() => dispatch(markAsDone(taskId))}
-            onEditButtonClick={() => setIsTextAreaVisible(true)}
-            onDeleteButtonClick={handleDeleButtonClick}
+            onDone={() => dispatch(markAsDone(taskId))}
+            onEdit={() => setIsTextAreaVisible(true)}
+            onDelete={handleDeleButtonClick}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (
