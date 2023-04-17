@@ -43,10 +43,10 @@ function SearchField() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const searchedKey = useSelector((state) => state.filter.searchKey);
+  const searchdKey = useSelector((state) => state.filter.searchKey);
   useEffect(() => {
-    if (!searchedKey) setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
-  }, [searchedKey]);
+    if (!searchdKey) setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+  }, [searchdKey]);
 
   return (
     <form
