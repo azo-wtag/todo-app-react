@@ -33,7 +33,7 @@ function TaskCard({
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-  const handleDeleButtonClick = () => {
+  const handleDeleteClick = () => {
     dispatch(deleteTask(taskId));
     showErrorToast(TASK_DELETED_SUCCESS_MESSAGE);
     if (tasks.length === numOfCardVisible)
@@ -48,7 +48,7 @@ function TaskCard({
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
-          onDeleteBtnClick={() => setIsTextAreaVisible(false)}
+          onDelete={() => setIsTextAreaVisible(false)}
           onTaskEdit={() => setIsTextAreaVisible(false)}
         />
       </div>
@@ -60,9 +60,9 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDoneButtonClick={() => dispatch(markAsDone(taskId))}
-            onEditButtonClick={() => setIsTextAreaVisible(true)}
-            onDeleteButtonClick={handleDeleButtonClick}
+            onDone={() => dispatch(markAsDone(taskId))}
+            onEdit={() => setIsTextAreaVisible(true)}
+            onDelete={handleDeleteClick}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (

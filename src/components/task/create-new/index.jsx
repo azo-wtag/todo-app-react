@@ -9,8 +9,8 @@ import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import {
   TASK_TEXTAREA_NUM_OF_ROW,
-  DELETE_ICON_ALT_TAG,
-  DELETE_ICON_PATH,
+  ALT_DELETE_ICON_TAG,
+  PATH_DELETE_ICON,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
@@ -23,10 +23,14 @@ import {
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/actions/todo";
+import {
+  filterTask,
+  resetVisibleTaskCount,
+  setSearchKey,
+} from "store/actions/filter";
 import { showSuccessToast } from "utils/toast";
-import { filterTask, setSearchKey } from "store/actions/filter";
 
-function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
+function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
   const dispatch = useDispatch();
 
   const addNewTask = (task) => {
@@ -47,6 +51,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
     showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
+    dispatch(resetVisibleTaskCount());
     dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
   };
@@ -77,8 +82,8 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDeleteBtnClick}>
-          <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
+        <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
+          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
@@ -87,7 +92,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteBtnClick }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
-  onDeleteBtnClick: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
 };
 
 export default CreateTask;
