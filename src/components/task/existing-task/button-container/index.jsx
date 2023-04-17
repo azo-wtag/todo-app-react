@@ -4,12 +4,12 @@ import styles from "components/task/existing-task/button-container/index.module.
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  CHECK_ICON_ALT_TAG,
-  CHECK_ICON_PATH,
-  DELETE_ICON_ALT_TAG,
-  DELETE_ICON_PATH,
-  EDIT_ICON_ALT_TAG,
-  EDIT_ICON_PATH,
+  ALT_CHECK_ICON_TAG,
+  PATH_CHECK_ICON,
+  ALT_DELETE_ICON_TAG,
+  PATH_DELETE_ICON,
+  ALT_EDIT_ICON_TAG,
+  PATH_EDIT_ICON,
 } from "utils/const";
 
 function ButtonContainer({ onDone, onEdit, onDelete, isTaskCompleted }) {
@@ -18,15 +18,15 @@ function ButtonContainer({ onDone, onEdit, onDelete, isTaskCompleted }) {
       {!isTaskCompleted && (
         <>
           <Button className={styles.doneBtn} onClick={onDone}>
-            <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
+            <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
           </Button>
           <Button className={styles.editBtn} onClick={onEdit}>
-            <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
+            <Image src={PATH_EDIT_ICON} alt={ALT_EDIT_ICON_TAG} />
           </Button>
         </>
       )}
       <Button className={styles.deleteBtn} onClick={onDelete}>
-        <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
+        <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
       </Button>
     </div>
   );
