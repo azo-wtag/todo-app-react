@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import InputField from "components/base/input/input";
 import Image from "components/base/image";
 import {
+  ALT_SEARCH_ICON_TAG,
   FORM_VALIDATION_MODE_ONCHANGE,
-  SEARCH_ICON_ALT_TAG,
-  SEARCH_ICON_PATH,
+  PATH_SEARCH_ICON,
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
@@ -57,7 +57,7 @@ function SearchField() {
         register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
         error={errors.title}
       />
-      <Image src={SEARCH_ICON_PATH} alt={SEARCH_ICON_ALT_TAG} />
+      <Image src={PATH_SEARCH_ICON} alt={ALT_SEARCH_ICON_TAG} />
     </form>
   );
 }
