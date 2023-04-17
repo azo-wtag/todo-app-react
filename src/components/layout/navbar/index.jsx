@@ -2,10 +2,10 @@ import React from "react";
 import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
 import {
-  ALT_LOGO_TAG,
   PATH_LOGO_ICON,
   ALT_SEARCH_ICON_TAG,
   PATH_SEARCH_ICON,
+  ALT_LOGO_TAG,
 } from "utils/const";
 
 function NavBar() {
