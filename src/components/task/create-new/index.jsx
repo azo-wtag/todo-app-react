@@ -9,8 +9,8 @@ import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import {
   TASK_TEXTAREA_NUM_OF_ROW,
-  DELETE_ICON_ALT_TAG,
-  DELETE_ICON_PATH,
+  ALT_DELETE_ICON_TAG,
+  PATH_DELETE_ICON,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
@@ -74,7 +74,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
-          <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
+          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
