@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import rootReducer from "store/index";
 import CreateTask from "components/task/create-new";
 import { ALT_DELETE_ICON_TAG } from "utils/const";
+import renderConnected from "utils/helper/rendererConnected";
 
 jest.mock("@supabase/supabase-js", () => ({
   createClient: jest.fn(),
@@ -54,13 +55,12 @@ test("should validate form fields", async () => {
   const mockDelete = jest.fn();
 
   const user = userEvent.setup();
-  render(
-    <Provider store={createStore(rootReducer, applyMiddleware(thunk))}>
-      <CreateTask
-        onSuccessfullTaskEntry={mockSuccessEntry}
-        onDelete={mockDelete}
-      />
-    </Provider>
+
+  renderConnected(
+    <CreateTask
+      onSuccessfullTaskEntry={mockSuccessEntry}
+      onDelete={mockDelete}
+    />
   );
 
   const taskTitleInput = screen.getByRole("textbox");
