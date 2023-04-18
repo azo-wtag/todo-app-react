@@ -24,21 +24,21 @@ function HomeContainer() {
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
-  const searchedKey = useSelector((state) => state.filter.searchKey);
+  const searchdKey = useSelector((state) => state.filter.searchKey);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
       dispatch(toggleIsFiltering(true));
       if (filteredState === TASK_FILTER_COMPLETED)
-        setFilteredTasks(filterCompletedTask(tasks, searchedKey));
+        setFilteredTasks(filterCompletedTask(tasks, searchdKey));
       else if (filteredState === TASK_FILTER_INCOMPLETED)
-        setFilteredTasks(filterInCompletedTask(tasks, searchedKey));
-      else setFilteredTasks(filterTaskByTitle(tasks, searchedKey));
+        setFilteredTasks(filterInCompletedTask(tasks, searchdKey));
+      else setFilteredTasks(filterTaskByTitle(tasks, searchdKey));
       dispatch(toggleIsFiltering(false));
     }
 
     filterTasks();
-  }, [filteredState, tasks, searchedKey]);
+  }, [filteredState, tasks, searchdKey]);
 
   useEffect(() => {
     dispatch(resetVisibleTaskCount());
@@ -57,7 +57,7 @@ function HomeContainer() {
         {isNewTaskRequested && (
           <CreateTask
             onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
-            onDeleteBtnClick={() => setIsNewTaskRequested(false)}
+            onDelete={() => setIsNewTaskRequested(false)}
           />
         )}
 
