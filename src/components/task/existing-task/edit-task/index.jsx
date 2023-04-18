@@ -8,19 +8,19 @@ import Button from "components/base/button";
 import Image from "components/base/image";
 import {
   TASK_TEXTAREA_NUM_OF_ROW,
-  CHECK_ICON_ALT_TAG,
-  CHECK_ICON_PATH,
-  DELETE_ICON_ALT_TAG,
-  DELETE_ICON_PATH,
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
+  PATH_CHECK_ICON,
+  ALT_CHECK_ICON_TAG,
+  PATH_DELETE_ICON,
+  ALT_DELETE_ICON_TAG,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
 import Loader from "components/base/loader";
 
-function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
+function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispath = useDispatch();
   useEffect(
     () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
@@ -87,14 +87,14 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
           onClick={handleSubmit(saveAsDone)}
           className={`bg-white ${styles.doneBtn}`}
         >
-          <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
+          <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button
           buttonType={TYPE_BUTTON}
-          onClick={onDeleteBtnClick}
+          onClick={onDelete}
           className="bg-white"
         >
-          <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
+          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
@@ -103,7 +103,7 @@ function EditTaskForm({ taskId, existingTitle, onDeleteBtnClick, onTaskEdit }) {
 
 EditTaskForm.propTypes = {
   taskId: propTypes.string.isRequired,
-  onDeleteBtnClick: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };
 
