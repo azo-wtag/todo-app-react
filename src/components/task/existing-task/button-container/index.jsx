@@ -4,52 +4,38 @@ import styles from "components/task/existing-task/button-container/index.module.
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  CHECK_ICON_ALT_TAG,
-  CHECK_ICON_PATH,
-  DELETE_ICON_ALT_TAG,
-  DELETE_ICON_PATH,
-  EDIT_ICON_ALT_TAG,
-  EDIT_ICON_PATH,
+  ALT_CHECK_ICON_TAG,
+  PATH_CHECK_ICON,
+  ALT_DELETE_ICON_TAG,
+  PATH_DELETE_ICON,
+  ALT_EDIT_ICON_TAG,
+  PATH_EDIT_ICON,
 } from "utils/const";
 
-function ButtonContainer({
-  onDoneButtonClick,
-  onEditButtonClick,
-  onDeleteButtonClick,
-  isTaskCompleted,
-}) {
+function ButtonContainer({ onDone, onEdit, onDelete, isTaskCompleted }) {
   return (
     <div className="flex items-center">
       {!isTaskCompleted && (
         <>
-          <Button
-            className={`bg-white ${styles.doneBtn}`}
-            onClick={onDoneButtonClick}
-          >
-            <Image src={CHECK_ICON_PATH} alt={CHECK_ICON_ALT_TAG} />
+          <Button className={`bg-white ${styles.doneBtn}`} onClick={onDone}>
+            <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
           </Button>
-          <Button
-            className={`bg-white ${styles.editBtn}`}
-            onClick={onEditButtonClick}
-          >
-            <Image src={EDIT_ICON_PATH} alt={EDIT_ICON_ALT_TAG} />
+          <Button className={`bg-white ${styles.editBtn}`} onClick={onEdit}>
+            <Image src={PATH_EDIT_ICON} alt={ALT_EDIT_ICON_TAG} />
           </Button>
         </>
       )}
-      <Button
-        className={`bg-white ${styles.deleteBtn}`}
-        onClick={onDeleteButtonClick}
-      >
-        <Image src={DELETE_ICON_PATH} alt={DELETE_ICON_ALT_TAG} />
+      <Button className={`bg-white ${styles.deleteBtn}`} onClick={onDelete}>
+        <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
       </Button>
     </div>
   );
 }
 
 ButtonContainer.propTypes = {
-  onDoneButtonClick: propTypes.func.isRequired,
-  onDeleteButtonClick: propTypes.func.isRequired,
-  onEditButtonClick: propTypes.func.isRequired,
+  onDone: propTypes.func.isRequired,
+  onDelete: propTypes.func.isRequired,
+  onEdit: propTypes.func.isRequired,
   isTaskCompleted: propTypes.bool.isRequired,
 };
 
