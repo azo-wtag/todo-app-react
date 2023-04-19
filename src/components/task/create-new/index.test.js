@@ -60,6 +60,12 @@ test("should validate form fields", async () => {
   expect(errorLabel).toBeInTheDocument();
 
   await act(async () => {
+    await user.type(taskTitleInput, "<script><script></script></script>");
+    await user.click(addTaskButton);
+  });
+  expect(mockSuccessEntry).not.toBeCalled();
+
+  await act(async () => {
     await user.type(taskTitleInput, "Free ? Review a PR");
     await user.click(addTaskButton);
   });
