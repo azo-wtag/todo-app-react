@@ -38,15 +38,17 @@ function SearchField() {
     resolver: yupResolver(searchTaskSchema),
   });
 
+  const searchdKey = useSelector((state) => state.filter.searchKey);
   useEffect(() => {
+    if (searchdKey === "") setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+  }, [searchdKey]);
+
+  useEffect(() => {
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+
     const subscription = watch(handleSubmit(searchTaskByTitle));
     return () => subscription.unsubscribe();
   }, []);
-
-  const searchdKey = useSelector((state) => state.filter.searchKey);
-  useEffect(() => {
-    if (!searchdKey) setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
-  }, [searchdKey]);
 
   return (
     <form
