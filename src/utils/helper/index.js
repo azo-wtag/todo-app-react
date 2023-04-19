@@ -29,6 +29,8 @@ export const filterTaskByStatusTitle = (tasks, isCompleted, title = "") => {
 };
 
 export const filterTaskByTitle = (tasks, title = "") => {
+  if (title === "") return tasks;
+
   return tasks.filter((task) =>
     task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
   );
