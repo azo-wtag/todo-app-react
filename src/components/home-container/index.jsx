@@ -8,11 +8,7 @@ import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import ExistingTaskCardContaienr from "components/task/existing-task/container";
 import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
-import {
-  filterCompletedTask,
-  filterInCompletedTask,
-  filterTaskByTitle,
-} from "utils/helper";
+import { filterTaskByStatusTitle, filterTaskByTitle } from "utils/helper";
 import { resetVisibleTaskCount, toggleIsFiltering } from "store/actions/filter";
 
 function HomeContainer() {
@@ -24,21 +20,28 @@ function HomeContainer() {
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
-  const searchdKey = useSelector((state) => state.filter.searchKey);
+  const searchKey = useSelector((state) => state.filter.searchKey);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
       dispatch(toggleIsFiltering(true));
-      if (filteredState === TASK_FILTER_COMPLETED)
-        setFilteredTasks(filterCompletedTask(tasks, searchdKey));
-      else if (filteredState === TASK_FILTER_INCOMPLETED)
-        setFilteredTasks(filterInCompletedTask(tasks, searchdKey));
-      else setFilteredTasks(filterTaskByTitle(tasks, searchdKey));
+      const isCompleted = true;
+      if (filteredState === TASK_FILTER_COMPLETED) {
+        setFilteredTasks(
+          filterTaskByStatusTitle(tasks, isCompleted, searchKey)
+        );
+      } else if (filteredState === TASK_FILTER_INCOMPLETED) {
+        setFilteredTasks(
+          filterTaskByStatusTitle(tasks, !isCompleted, searchKey)
+        );
+      } else {
+        setFilteredTasks(filterTaskByTitle(tasks, searchKey));
+      }
       dispatch(toggleIsFiltering(false));
     }
 
     filterTasks();
-  }, [filteredState, tasks, searchdKey]);
+  }, [filteredState, tasks, searchKey]);
 
   useEffect(() => {
     dispatch(resetVisibleTaskCount());
