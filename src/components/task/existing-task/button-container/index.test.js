@@ -17,51 +17,56 @@ const mockSupabase = {
 };
 createClient.mockReturnValue(mockSupabase);
 
-test("should hide save & done button for completed task", async () => {
-  renderConnected(
-    <TaskCard
-      taskId="#123"
-      title="Review a PR"
-      createdAt="2023-04-11"
-      isCompleted={true}
-      completedAt={"2023-04-11"}
-    />
-  );
-
-  const saveBtn = screen.queryByRole("button", {
-    name: /edit task button icon/i,
+describe("<TaskCard />", () => {
+  beforeEach(() => {
+    renderConnected(
+      <>
+        <ToastContainer />
+        <TaskCard
+          taskId="#123"
+          title="Review a PR"
+          createdAt="2023-04-11"
+          isCompleted={true}
+          completedAt={"2023-04-12"}
+        />
+      </>
+    );
   });
-  expect(saveBtn).not.toBeInTheDocument();
 
-  const markAsDoneBtn = screen.queryByRole("button", {
-    name: /complete task button icon/i,
+  afterEach(() => {
+    jest.clearAllMocks();
   });
-  expect(markAsDoneBtn).not.toBeInTheDocument();
-});
 
-test("should remove task on delete button click", async () => {
-  const user = userEvent.setup();
+  test("should hide save & done button for completed task", async () => {
+    const saveBtn = screen.queryByRole("button", {
+      name: /edit task button icon/i,
+    });
+    expect(saveBtn).not.toBeInTheDocument();
 
-  renderConnected(
-    <>
-      <ToastContainer />
-      <TaskCard
-        taskId="#123"
-        title="Review a PR"
-        createdAt="2023-04-11"
-        isCompleted={true}
-        completedAt={"2023-04-11"}
-      />
-    </>
-  );
-
-  const deleteButton = screen.getByRole("button", {
-    name: /delete task button icon/i,
+    const markAsDoneBtn = screen.queryByRole("button", {
+      name: /complete task button icon/i,
+    });
+    expect(markAsDoneBtn).not.toBeInTheDocument();
   });
-  expect(deleteButton).toBeInTheDocument();
-  await act(async () => {
-    await user.click(deleteButton);
+
+  test("should match date difference between task creation & completion time", () => {
+    const completedDaysBtn = screen.getByRole("button", {
+      name: /completed in/i,
+    });
+    expect(completedDaysBtn).toHaveTextContent(/completed in 2 days/i);
   });
-  const deleteMsg = screen.getByText(/task deleted successfully/i);
-  expect(deleteMsg).toBeInTheDocument();
+
+  test("should remove task on delete button click", async () => {
+    const user = userEvent.setup();
+
+    const deleteButton = screen.getByRole("button", {
+      name: /delete task button icon/i,
+    });
+    expect(deleteButton).toBeInTheDocument();
+    await act(async () => {
+      await user.click(deleteButton);
+    });
+    const deleteMsg = screen.getByText(/task deleted successfully/i);
+    expect(deleteMsg).toBeInTheDocument();
+  });
 });
