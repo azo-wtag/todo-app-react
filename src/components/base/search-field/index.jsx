@@ -45,7 +45,6 @@ function SearchField() {
 
   useEffect(() => {
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
-
     const subscription = watch(handleSubmit(searchTaskByTitle));
     return () => subscription.unsubscribe();
   }, []);
