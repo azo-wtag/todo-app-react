@@ -38,10 +38,10 @@ function SearchField() {
     resolver: yupResolver(searchTaskSchema),
   });
 
-  const searchdKey = useSelector((state) => state.filter.searchKey);
+  const searchKey = useSelector((state) => state.filter.searchKey);
   useEffect(() => {
-    if (searchdKey === "") setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
-  }, [searchdKey]);
+    if (searchKey === "") setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+  }, [searchKey]);
 
   useEffect(() => {
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");

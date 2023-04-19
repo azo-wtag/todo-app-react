@@ -20,7 +20,7 @@ function HomeContainer() {
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
-  const searchdKey = useSelector((state) => state.filter.searchKey);
+  const searchKey = useSelector((state) => state.filter.searchKey);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
@@ -28,20 +28,20 @@ function HomeContainer() {
       const isCompleted = true;
       if (filteredState === TASK_FILTER_COMPLETED) {
         setFilteredTasks(
-          filterTaskByStatusTitle(tasks, isCompleted, searchdKey)
+          filterTaskByStatusTitle(tasks, isCompleted, searchKey)
         );
       } else if (filteredState === TASK_FILTER_INCOMPLETED) {
         setFilteredTasks(
-          filterTaskByStatusTitle(tasks, !isCompleted, searchdKey)
+          filterTaskByStatusTitle(tasks, !isCompleted, searchKey)
         );
       } else {
-        setFilteredTasks(filterTaskByTitle(tasks, searchdKey));
+        setFilteredTasks(filterTaskByTitle(tasks, searchKey));
       }
       dispatch(toggleIsFiltering(false));
     }
 
     filterTasks();
-  }, [filteredState, tasks, searchdKey]);
+  }, [filteredState, tasks, searchKey]);
 
   useEffect(() => {
     dispatch(resetVisibleTaskCount());
