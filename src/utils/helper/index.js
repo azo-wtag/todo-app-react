@@ -20,23 +20,17 @@ export const findTaskIndexById = (taskId, tasks) => {
   return tasks.findIndex((task) => task.id === taskId);
 };
 
-export const filterCompletedTask = (tasks, title = "") => {
+export const filterTaskByStatusTitle = (tasks, isCompleted, title = "") => {
   return tasks.filter(
     (task) =>
-      task.isCompleted &&
-      task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
-  );
-};
-
-export const filterInCompletedTask = (tasks, title = "") => {
-  return tasks.filter(
-    (task) =>
-      !task.isCompleted &&
+      task.isCompleted === isCompleted &&
       task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
   );
 };
 
 export const filterTaskByTitle = (tasks, title = "") => {
+  if (title === "") return tasks;
+
   return tasks.filter((task) =>
     task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
   );
