@@ -1,11 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import thunk from "redux-thunk";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-
 import rootReducer from "store/index";
-// Replace this with the appropriate imports for your project
 
 const renderConnected = (
   ui,
