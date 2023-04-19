@@ -64,6 +64,23 @@ test("should validate form fields", async () => {
     await user.click(addTaskButton);
   });
   expect(mockSuccessEntry).not.toBeCalled();
+});
+
+test("should add task to list when form submitter", async () => {
+  const mockSuccessEntry = jest.fn();
+  const mockDelete = jest.fn();
+
+  const user = userEvent.setup();
+
+  renderConnected(
+    <CreateTask
+      onSuccessfullTaskEntry={mockSuccessEntry}
+      onDelete={mockDelete}
+    />
+  );
+
+  const taskTitleInput = screen.getByRole("textbox");
+  const addTaskButton = screen.getByRole("button", { name: /add task/i });
 
   await act(async () => {
     await user.type(taskTitleInput, "Free ? Review a PR");
