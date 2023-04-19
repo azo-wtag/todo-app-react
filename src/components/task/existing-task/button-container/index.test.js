@@ -17,6 +17,28 @@ const mockSupabase = {
 };
 createClient.mockReturnValue(mockSupabase);
 
+test("should hide save & done button for completed task", async () => {
+  renderConnected(
+    <TaskCard
+      taskId="#123"
+      title="Review a PR"
+      createdAt="2023-04-11"
+      isCompleted={true}
+      completedAt={"2023-04-11"}
+    />
+  );
+
+  const saveBtn = screen.queryByRole("button", {
+    name: /edit task button icon/i,
+  });
+  expect(saveBtn).not.toBeInTheDocument();
+
+  const markAsDoneBtn = screen.queryByRole("button", {
+    name: /complete task button icon/i,
+  });
+  expect(markAsDoneBtn).not.toBeInTheDocument();
+});
+
 test("should remove task on delete button click", async () => {
   const user = userEvent.setup();
 
