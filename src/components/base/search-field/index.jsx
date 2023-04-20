@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import InputField from "components/base/input/input";
 import Image from "components/base/image";
@@ -13,14 +12,16 @@ import {
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
 import { setSearchKey, toggleIsFiltering } from "store/actions/filter";
+import { debounce } from "utils/helper";
 
 function SearchField() {
   const dispatch = useDispatch();
 
   const debouncedSearchTask = debounce((title) => {
+    console.log("searche called", title);
     dispatch(setSearchKey(title));
     dispatch(toggleIsFiltering(false));
-  }, 500);
+  }, 800);
 
   const searchTaskByTitle = (task) => {
     dispatch(toggleIsFiltering(true));
