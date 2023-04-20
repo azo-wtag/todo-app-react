@@ -42,3 +42,15 @@ export const calculateDateDifference = (completedAt, createdAt) => {
     ? `1 day`
     : `${Math.abs(dateDifference) + 1} days`;
 };
+
+export const debounce = (fn, delay) => {
+  let timerId;
+  return function (...args) {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+};
