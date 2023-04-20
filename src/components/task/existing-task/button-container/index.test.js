@@ -1,6 +1,4 @@
-import { act, screen } from "@testing-library/react";
-import { createClient } from "@supabase/supabase-js";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 import renderConnected from "utils/helper/rendererConnected";
 import ButtonContainer from "components/task/existing-task/button-container";
 
