@@ -18,7 +18,11 @@ const mockSupabase = {
 createClient.mockReturnValue(mockSupabase);
 
 describe("<TaskCard />", () => {
-  beforeEach(() => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("should match date difference between task creation & completion time", () => {
     renderConnected(
       <>
         <ToastContainer />
@@ -31,13 +35,7 @@ describe("<TaskCard />", () => {
         />
       </>
     );
-  });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("should match date difference between task creation & completion time", () => {
     const completedDaysBtn = screen.getByRole("button", {
       name: /completed in/i,
     });
@@ -46,6 +44,19 @@ describe("<TaskCard />", () => {
 
   test("should remove task on delete button click", async () => {
     const user = userEvent.setup();
+
+    renderConnected(
+      <>
+        <ToastContainer />
+        <TaskCard
+          taskId="#123"
+          title="Review a PR"
+          createdAt="2023-04-11"
+          isCompleted={true}
+          completedAt={"2023-04-12"}
+        />
+      </>
+    );
 
     const deleteButton = screen.getByRole("button", {
       name: /delete task button icon/i,
