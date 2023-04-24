@@ -7,7 +7,7 @@ import LoadMoreBtnContainer from ".";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 
-test("load", async () => {
+test("should update the visibility class of load-more & show-less button on load-more button click", async () => {
   const user = userEvent.setup();
   const store = createStore(
     rootReducer,
