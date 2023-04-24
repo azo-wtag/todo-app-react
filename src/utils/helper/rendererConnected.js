@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import thunk from "redux-thunk";
+import { asyncFunctionMiddleware } from "store/middleware";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "store/index";
@@ -8,7 +8,7 @@ import rootReducer from "store/index";
 const renderConnected = (
   ui,
   {
-    store = createStore(rootReducer, applyMiddleware(thunk)),
+    store = createStore(rootReducer, applyMiddleware(asyncFunctionMiddleware)),
     ...renderOptions
   } = {}
 ) => {
