@@ -66,7 +66,7 @@ test("should validate form fields", async () => {
   expect(mockSuccessEntry).not.toBeCalled();
 });
 
-test("should add task to list when form submitter", async () => {
+test("should add task to list after submitting form", async () => {
   const mockSuccessEntry = jest.fn();
   const mockDelete = jest.fn();
 
