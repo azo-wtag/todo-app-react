@@ -1,7 +1,7 @@
-export const CUSTOM_ERROR_MESSAGE_TYPE = "custom";
-export const TASK_TITLE_ERROR_MESSAGE = "Please enter valid a task";
+export const ERROR_MESSAGE_CUSTOM_TYPE = "custom";
+export const ERROR_MESSAGE_TASK_TITLE = "Please enter valid a task";
 
-export const TASK_ADDED_SUCCESS_MESSAGE = "Task added successfully";
-export const TASK_DELETED_SUCCESS_MESSAGE = "Task deleted successfully";
-export const SOMETHING_GOES_WRONG_MESSAGE =
+export const SUCCESS_MESSAGE_TASK_ADDED = "Task added successfully";
+export const SUCCESS_MESSAGE_TASK_DELETED = "Task deleted successfully";
+export const ERROR_MESSAGE_SOMETHING_GOES_WRONG =
   "Something went wrong please try again";
