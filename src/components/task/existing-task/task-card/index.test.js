@@ -68,4 +68,40 @@ describe("<TaskCard />", () => {
     const deleteMsg = screen.getByText(/task deleted successfully/i);
     expect(deleteMsg).toBeInTheDocument();
   });
+
+  test("Should show edit-task-form on edit button click", async () => {
+    const user = userEvent.setup();
+
+    renderConnected(
+      <>
+        <TaskCard
+          taskId="#123"
+          title="Review a PR"
+          createdAt="2023-04-11"
+          isCompleted={false}
+        />
+      </>
+    );
+
+    const editButton = screen.getByRole("button", {
+      name: /edit task button icon/i,
+    });
+    expect(editButton).toBeInTheDocument();
+    await act(async () => {
+      await user.click(editButton);
+    });
+
+    const saveBtn = screen.getByRole("button", {
+      name: /save/i,
+    });
+    expect(saveBtn).toBeInTheDocument();
+    const cancelBtn = screen.getByRole("button", {
+      name: /delete task button icon/i,
+    });
+    expect(cancelBtn).toBeInTheDocument();
+    const doneBtn = screen.getByRole("button", {
+      name: /complete task button icon/i,
+    });
+    expect(doneBtn).toBeInTheDocument();
+  });
 });
