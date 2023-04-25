@@ -32,4 +32,7 @@ test("should render no-task-found component if task length == 0", () => {
 
   const noTaskFound = screen.getByAltText(/no task found icon/i);
   expect(noTaskFound).toBeInTheDocument();
+
+  const nullLoadMoreBtn = screen.queryByText(/load more/i);
+  expect(nullLoadMoreBtn).not.toBeInTheDocument();
 });
