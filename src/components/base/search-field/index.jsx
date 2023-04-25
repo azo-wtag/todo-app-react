@@ -68,22 +68,20 @@ function SearchField() {
   });
 
   return (
-    <form
-      className={`flex items-center justify-end ${styles.formContainer}`}
-      onSubmit={handleSubmit(searchTaskByTitle)}
-    >
+    <div className={`flex items-center justify-end ${styles.formContainer}`}>
       {isSearchFieldVisible && (
-        <InputField
-          register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
-          error={errors.title}
-          classNames={searchBoxClassNames}
-        />
+        <form className="width-full" onSubmit={handleSubmit(searchTaskByTitle)}>
+          <InputField
+            register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
+            error={errors.title}
+            classNames={searchBoxClassNames}
+          />
+        </form>
       )}
-
       <Button onClick={handleSearchButtonClick} className="bg-white">
         <Image src={PATH_SEARCH_ICON} alt={ALT_SEARCH_ICON_TAG} />
       </Button>
-    </form>
+    </div>
   );
 }
 
