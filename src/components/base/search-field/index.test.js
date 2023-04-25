@@ -69,13 +69,13 @@ describe("<SearchBar />", () => {
     const searchInput = screen.getByRole("textbox");
 
     await act(async () => {
-      await user.type(searchInput, "task");
+      await user.type(searchInput, "task", { delay: 500 });
+      await user.click(searchInput, "{enter}");
     });
     expect(searchInput).toHaveValue("task");
 
     await new Promise((r) => setTimeout(r, 800));
     const actions = store.getActions();
-    console.log(actions);
     expect(
       actions.filter((action) => action.type === SET_SEARCH_KEY).length
     ).toBe(1);
