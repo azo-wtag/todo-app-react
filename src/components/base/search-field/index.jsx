@@ -18,7 +18,6 @@ function SearchField() {
   const dispatch = useDispatch();
 
   const debouncedSearchTask = debounce((title) => {
-    console.log("searche called", title);
     dispatch(setSearchKey(title));
     dispatch(toggleIsFiltering(false));
   }, 800);
