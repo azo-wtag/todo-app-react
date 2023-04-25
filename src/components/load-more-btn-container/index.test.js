@@ -2,10 +2,10 @@ import { Provider } from "react-redux";
 import { act } from "react-dom/test-utils";
 import { render, screen } from "@testing-library/react";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import userEvent from "@testing-library/user-event";
 import rootReducer from "store/index";
 import { asyncFunctionMiddleware } from "store/middleware";
-import LoadMoreBtnContainer from ".";
-import userEvent from "@testing-library/user-event";
+import LoadMoreBtnContainer from "components/load-more-btn-container";
 
 test("should update the visibility class of load-more & show-less button on load-more button click", async () => {
   const user = userEvent.setup();
