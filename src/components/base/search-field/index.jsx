@@ -22,7 +22,6 @@ function SearchField() {
   const [isSearchFieldVisible, setIsSearchFieldVisible] = useState(false);
 
   const debouncedSearchTask = debounce((title) => {
-    console.log("searche called", title);
     dispatch(setSearchKey(title));
     dispatch(toggleIsFiltering(false));
   }, 800);
