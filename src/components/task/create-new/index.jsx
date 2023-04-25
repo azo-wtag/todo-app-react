@@ -12,11 +12,11 @@ import {
   ALT_DELETE_ICON_TAG,
   PATH_DELETE_ICON,
   TITLE_FIELD_NAME_ATTRIBUTE,
-  CUSTOM_ERROR_MESSAGE_TYPE,
-  TASK_TITLE_ERROR_MESSAGE,
+  ERROR_MESSAGE_CUSTOM_TYPE,
+  ERROR_MESSAGE_TASK_TITLE,
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
-  TASK_ADDED_SUCCESS_MESSAGE,
+  SUCCESS_MESSAGE_TASK_ADDED,
   TASK_SANITIZE_REGEX_PATTERN,
   TASK_FILTER_ALL,
 } from "utils/const";
@@ -39,8 +39,8 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
       .trim();
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
-        type: CUSTOM_ERROR_MESSAGE_TYPE,
-        message: TASK_TITLE_ERROR_MESSAGE,
+        type: ERROR_MESSAGE_CUSTOM_TYPE,
+        message: ERROR_MESSAGE_TASK_TITLE,
       });
 
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
@@ -49,7 +49,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
-    showSuccessToast(TASK_ADDED_SUCCESS_MESSAGE);
+    showSuccessToast(SUCCESS_MESSAGE_TASK_ADDED);
     dispatch(resetVisibleTaskCount());
     dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
