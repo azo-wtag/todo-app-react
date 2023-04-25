@@ -1,10 +1,10 @@
-import rootReducer from "store/index";
-import { applyMiddleware, legacy_createStore as createStore } from "redux";
-import { asyncFunctionMiddleware } from "store/middleware";
-import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import LoadMoreBtnContainer from ".";
 import { act } from "react-dom/test-utils";
+import { render, screen } from "@testing-library/react";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import rootReducer from "store/index";
+import { asyncFunctionMiddleware } from "store/middleware";
+import LoadMoreBtnContainer from ".";
 import userEvent from "@testing-library/user-event";
 
 test("should update the visibility class of load-more & show-less button on load-more button click", async () => {
