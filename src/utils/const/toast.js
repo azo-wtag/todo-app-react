@@ -10,7 +10,10 @@ const DRAGGABLE = true;
 const PROGRESS = undefined;
 const THEME = "colored";
 
+export const NUM_OF_CONCURRENT_TOAST = 3;
+
 export const ERROR_TOAST_DEFAULT_OPTIONS = {
+  toastId: "error-toast-1",
   icon: false,
   position: TOAST_POSITION,
   autoClose: AUTO_CLOSE,
@@ -29,6 +32,7 @@ export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
   icon: () => (
     <Image src={PATH_CHECK_WHITE_ICON} alt={ALT_CHECK_WHITE_ICON_TAG} />
   ),
+  toastId: "success-toast-1",
   position: TOAST_POSITION,
   autoClose: AUTO_CLOSE,
   hideProgressBar: HIDE_PROGRESSBAR,
