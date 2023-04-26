@@ -43,6 +43,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
         message: ERROR_MESSAGE_TASK_TITLE,
       });
       showErrorToast(ERROR_MESSAGE_CUSTOM_TYPE);
+
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
       return;
     }
