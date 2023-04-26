@@ -18,7 +18,10 @@ import {
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 import { showSuccessToast } from "utils/toast";
-import { SUCCESS_MESSAGE_TASK_UPDATED } from "utils/const/toastMessages";
+import {
+  SUCCESS_MESSAGE_EDITED_TASK_DONE,
+  SUCCESS_MESSAGE_TASK_UPDATED,
+} from "utils/const/toastMessages";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispath = useDispatch();
@@ -38,6 +41,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     dispath(editTask({ taskId, title: task.title }));
     dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
   };
 
