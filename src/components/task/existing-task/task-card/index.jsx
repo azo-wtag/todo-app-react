@@ -11,9 +11,10 @@ import EditTaskForm from "components/task/existing-task/edit-task";
 import { TASK_DATE_FORMAT, SUCCESS_MESSAGE_TASK_DELETED } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import { decreaseNumOfVisibleTasks } from "store/actions/filter";
-import { showErrorToast } from "utils/toast";
+import { showSuccessToast } from "utils/toast";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
+import { SUCCESS_MESSAGE_TASK_DONE } from "utils/const/toastMessages";
 
 function TaskCard({
   taskId,
@@ -35,9 +36,14 @@ function TaskCard({
   );
   const handleDeleteClick = () => {
     dispatch(deleteTask(taskId));
-    showErrorToast(SUCCESS_MESSAGE_TASK_DELETED);
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DELETED);
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
+  };
+
+  const handleDoneClick = () => {
+    dispatch(markAsDone(taskId));
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   };
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
@@ -60,7 +66,7 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDone={() => dispatch(markAsDone(taskId))}
+            onDone={handleDoneClick}
             onEdit={() => setIsTextAreaVisible(true)}
             onDelete={handleDeleteClick}
             isTaskCompleted={isCompleted}
