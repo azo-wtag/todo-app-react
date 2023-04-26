@@ -17,7 +17,7 @@ import {
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
-import { showSuccessToast } from "utils/toast";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 import {
   SUCCESS_MESSAGE_EDITED_TASK_DONE,
   SUCCESS_MESSAGE_TASK_UPDATED,
@@ -45,6 +45,10 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     onTaskEdit();
   };
 
+  const onValidationError = (errors) => {
+    showErrorToast(errors.title.message);
+  };
+
   const {
     register,
     handleSubmit,
@@ -69,8 +73,10 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       />
 
       <div className="flex items-center">
-        <Button onClick={handleSubmit(updateTask)}>Save</Button>
-        <Button onClick={handleSubmit(saveAsDone)}>
+        <Button onClick={handleSubmit(updateTask, onValidationError)}>
+          Save
+        </Button>
+        <Button onClick={handleSubmit(saveAsDone, onValidationError)}>
           <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
