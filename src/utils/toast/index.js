@@ -9,6 +9,7 @@ export const showSuccessToast = (
   message,
   options = SUCCESS_TOAST_DEFAULT_OPTIONS
 ) => {
+  toast.dismiss();
   toast.success(message, options);
 };
 
@@ -16,5 +17,6 @@ export const showErrorToast = (
   message,
   options = ERROR_TOAST_DEFAULT_OPTIONS
 ) => {
+  toast.dismiss();
   toast.error(message, options);
 };

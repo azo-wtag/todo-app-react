@@ -2,7 +2,7 @@ import Image from "components/base/image";
 import { ALT_CHECK_WHITE_ICON_TAG, PATH_CHECK_WHITE_ICON } from "utils/const";
 
 const TOAST_POSITION = "top-center";
-const AUTO_CLOSE = 5000;
+const AUTO_CLOSE = 2000;
 const HIDE_PROGRESSBAR = false;
 const CLOSE_ONCLICK = true;
 const PAUSE_ONHOVER = true;
@@ -13,7 +13,6 @@ const THEME = "colored";
 export const NUM_OF_CONCURRENT_TOAST = 3;
 
 export const ERROR_TOAST_DEFAULT_OPTIONS = {
-  toastId: "error-toast-1",
   icon: false,
   position: TOAST_POSITION,
   autoClose: AUTO_CLOSE,
@@ -32,7 +31,6 @@ export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
   icon: () => (
     <Image src={PATH_CHECK_WHITE_ICON} alt={ALT_CHECK_WHITE_ICON_TAG} />
   ),
-  toastId: "success-toast-1",
   position: TOAST_POSITION,
   autoClose: AUTO_CLOSE,
   hideProgressBar: HIDE_PROGRESSBAR,
