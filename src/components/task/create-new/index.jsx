@@ -68,7 +68,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
     resolver: yupResolver(taskSchema),
   });
 
-  const onError = (errors) => {
+  const onValidationError = (errors) => {
     showErrorToast(errors.title.message);
   };
 
@@ -77,7 +77,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
   }, [setFocus]);
 
   return (
-    <form onSubmit={handleSubmit(addNewTask, onError)}>
+    <form onSubmit={handleSubmit(addNewTask, onValidationError)}>
       <TextArea
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
