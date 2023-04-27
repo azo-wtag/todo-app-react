@@ -14,6 +14,9 @@ import {
   ALT_CHECK_ICON_TAG,
   PATH_DELETE_ICON,
   ALT_DELETE_ICON_TAG,
+  TASK_SANITIZE_REGEX_PATTERN,
+  CUSTOM_ERROR_MESSAGE_TYPE,
+  TASK_TITLE_ERROR_MESSAGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
@@ -25,14 +28,33 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     [existingTitle]
   );
 
+  const titleSanitizer = (title) => {
+    const sanitizedTitle = title
+      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
+      .trim();
+    if (sanitizedTitle === "") {
+      setError(TITLE_FIELD_NAME_ATTRIBUTE, {
+        type: CUSTOM_ERROR_MESSAGE_TYPE,
+        message: TASK_TITLE_ERROR_MESSAGE,
+      });
+      setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
+    }
+
+    return sanitizedTitle;
+  };
+
   const updateTask = (task) => {
-    dispath(editTask({ taskId, title: task.title }));
+    const title = titleSanitizer(task.title);
+    if (title === "") return;
+    dispath(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
 
   const saveAsDone = (task) => {
-    dispath(editTask({ taskId, title: task.title }));
+    const title = titleSanitizer(task.title);
+    if (title === "") return;
+    dispath(editTask({ taskId, title: title }));
     dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
@@ -43,6 +65,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     handleSubmit,
     setValue,
     setFocus,
+    setError,
     formState: { errors },
   } = useForm({
     mode: "onChange",
