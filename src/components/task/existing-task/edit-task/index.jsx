@@ -15,16 +15,14 @@ import {
   PATH_DELETE_ICON,
   ALT_DELETE_ICON_TAG,
   TASK_SANITIZE_REGEX_PATTERN,
-  CUSTOM_ERROR_MESSAGE_TYPE,
-  TASK_TITLE_ERROR_MESSAGE,
+  ERROR_MESSAGE_CUSTOM_TYPE,
+  ERROR_MESSAGE_TASK_TITLE,
+  SUCCESS_MESSAGE_TASK_UPDATED,
+  SUCCESS_MESSAGE_EDITED_TASK_DONE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 import { showErrorToast, showSuccessToast } from "utils/toast";
-import {
-  SUCCESS_MESSAGE_EDITED_TASK_DONE,
-  SUCCESS_MESSAGE_TASK_UPDATED,
-} from "utils/const/toastMessages";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispath = useDispatch();
@@ -39,8 +37,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       .trim();
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
-        type: CUSTOM_ERROR_MESSAGE_TYPE,
-        message: TASK_TITLE_ERROR_MESSAGE,
+        type: ERROR_MESSAGE_CUSTOM_TYPE,
+        message: ERROR_MESSAGE_TASK_TITLE,
       });
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
     }
