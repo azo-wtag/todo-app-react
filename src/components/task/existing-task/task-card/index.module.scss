@@ -1,9 +1,9 @@
 @import "styles/base.scss";
 
 .card {
+  border-radius: 0.313rem;
   border: 1px solid $grey-color3;
   padding: 0.938rem;
-  border-radius: 0.313rem;
 
   .header {
     font-size: 1.5rem;
@@ -11,14 +11,14 @@
   }
 
   .date {
-    margin-top: 0.563rem;
-    margin-bottom: 1.5rem;
     font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0.563rem;
   }
 
   .completedText {
-    padding: 0.313rem 0.75rem;
     border-radius: 0.313rem;
     font-size: 0.75rem;
+    padding: 0.313rem 0.75rem;
   }
 }
