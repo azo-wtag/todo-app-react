@@ -28,7 +28,7 @@ import {
   resetVisibleTaskCount,
   setSearchKey,
 } from "store/actions/filter";
-import { showSuccessToast } from "utils/toast";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
   const dispatch = useDispatch();
@@ -42,11 +42,11 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
         type: ERROR_MESSAGE_CUSTOM_TYPE,
         message: ERROR_MESSAGE_TASK_TITLE,
       });
-
+      showErrorToast(ERROR_MESSAGE_TASK_TITLE);
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
-
       return;
     }
+
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
@@ -68,12 +68,19 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
     resolver: yupResolver(taskSchema),
   });
 
+  const onValidationError = (errors) => {
+    showErrorToast(errors.title.message);
+  };
+
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, [setFocus]);
 
   return (
-    <form onSubmit={handleSubmit(addNewTask)} className={styles.card}>
+    <form
+      onSubmit={handleSubmit(addNewTask, onValidationError)}
+      className={styles.card}
+    >
       <TextArea
         numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
