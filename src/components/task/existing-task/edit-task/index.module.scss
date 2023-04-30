@@ -8,19 +8,16 @@
   line-height: 1.172rem;
   outline: 3px solid $violet-color1;
   padding: 0.25rem 0.5rem;
-  padding: 0.25rem 0.5rem;
-  padding: 0;
   width: calc(100% - 1rem);
   width: calc(100% - 1rem);
 }
 
+.textArea:focus {
+  outline: 3px solid $violet-color1;
+}
+
 .btnContainer {
   margin-top: 1.313rem;
-
-  .textArea:focus {
-    border: none;
-    outline: 3px solid $violet-color1;
-  }
 
   .saveBtn {
     border: 1px solid $white-color1;
