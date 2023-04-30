@@ -1,29 +1,29 @@
 @import "styles/base.scss";
 
 .allBtn {
-  width: 3rem;
-  height: 2.25rem;
-  border: 1px solid $grey-color3;
   border-radius: 0.313rem;
+  border: 1px solid $grey-color3;
   font-size: 1rem;
+  height: 2.25rem;
   line-height: 1.172rem;
+  width: 3rem;
 }
 
 .incompleteBtn {
-  height: 2.25rem;
-  width: 6.938rem;
-  margin: 0 1.188rem;
   border-radius: 0.313rem;
   border: 1px solid $grey-color3;
   font-size: 1rem;
+  height: 2.25rem;
   line-height: 1.172rem;
+  margin: 0 1.188rem;
+  width: 6.938rem;
 }
 
 .completeBtn {
-  height: 2.25rem;
-  width: 6.5rem;
   border-radius: 0.313rem;
   border: 1px solid $grey-color3;
   font-size: 1rem;
+  height: 2.25rem;
   line-height: 1.172rem;
+  width: 6.5rem;
 }
