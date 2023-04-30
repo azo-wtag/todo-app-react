@@ -48,9 +48,14 @@ function TaskCard({
     dispatch(markAsDone(taskId));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   };
-  const taskHeaderClasses = classnames(styles.header, "fw-700", "text-grey1", {
-    "text-line-through text-green1": isCompleted,
-  });
+  const taskHeaderClasses = classnames(
+    styles.header,
+    "fw-700",
+    "text-grey-ship",
+    {
+      "text-line-through text-green-mint": isCompleted,
+    }
+  );
 
   if (isTextAreaVisible) {
     return (
@@ -67,7 +72,7 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
-        <p className={`text-grey2 ${styles.date}`}>
+        <p className={`text-grey-french ${styles.date}`}>
           Created At: {formatDate(createdAt)}
         </p>
         <div className="flex justify-between">
@@ -79,7 +84,7 @@ function TaskCard({
           />
           {isCompleted && (
             <Button
-              className={`bg-violet2 text-white1 ${styles.completedText}`}
+              className={`bg-blue-lavender text-white ${styles.completedText}`}
             >
               Completed in {calculateDateDifference(completedAt, createdAt)}
             </Button>
