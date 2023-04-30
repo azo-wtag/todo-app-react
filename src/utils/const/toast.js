@@ -2,13 +2,15 @@ import Image from "components/base/image";
 import { ALT_CHECK_WHITE_ICON_TAG, PATH_CHECK_WHITE_ICON } from "utils/const";
 
 const TOAST_POSITION = "top-center";
-const AUTO_CLOSE = 5000;
+const AUTO_CLOSE = 2000;
 const HIDE_PROGRESSBAR = false;
 const CLOSE_ONCLICK = true;
 const PAUSE_ONHOVER = true;
 const DRAGGABLE = true;
 const PROGRESS = undefined;
 const THEME = "colored";
+
+export const NUM_OF_CONCURRENT_TOAST = 3;
 
 export const ERROR_TOAST_DEFAULT_OPTIONS = {
   icon: false,

@@ -8,10 +8,14 @@ import styles from "components/task/existing-task/task-card/index.module.scss";
 import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
 import EditTaskForm from "components/task/existing-task/edit-task";
-import { TASK_DATE_FORMAT, SUCCESS_MESSAGE_TASK_DELETED } from "utils/const";
+import {
+  TASK_DATE_FORMAT,
+  SUCCESS_MESSAGE_TASK_DELETED,
+  SUCCESS_MESSAGE_TASK_DONE,
+} from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import { decreaseNumOfVisibleTasks } from "store/actions/filter";
-import { showErrorToast } from "utils/toast";
+import { showSuccessToast } from "utils/toast";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
 
@@ -35,11 +39,15 @@ function TaskCard({
   );
   const handleDeleteClick = () => {
     dispatch(deleteTask(taskId));
-    showErrorToast(SUCCESS_MESSAGE_TASK_DELETED);
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DELETED);
     if (tasks.length === numOfCardVisible)
       dispatch(decreaseNumOfVisibleTasks());
   };
 
+  const handleDoneClick = () => {
+    dispatch(markAsDone(taskId));
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
+  };
   const taskHeaderClasses = classnames(styles.header, "fw-700", "text-grey1", {
     "text-line-through text-green1": isCompleted,
   });
@@ -64,7 +72,7 @@ function TaskCard({
         </p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDone={() => dispatch(markAsDone(taskId))}
+            onDone={handleDoneClick}
             onEdit={() => setIsTextAreaVisible(true)}
             onDelete={handleDeleteClick}
             isTaskCompleted={isCompleted}
