@@ -1,14 +1,13 @@
 @import "styles/base.scss";
 
 .buttonContainer {
-  margin-top: 1rem;
-
   .allBtn {
     border-radius: 0.313rem;
     border: 1px solid $color-blue-hawkes;
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
+    margin-top: 1rem;
     width: 3rem;
   }
 
@@ -18,7 +17,9 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    margin: 0 1.188rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
     width: 6.938rem;
   }
 
@@ -28,6 +29,7 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
+    margin-top: 1rem;
     width: 6.5rem;
   }
 }
