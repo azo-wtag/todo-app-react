@@ -14,7 +14,7 @@ import {
   SUCCESS_MESSAGE_TASK_DONE,
 } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import { decreaseNumOfVisibleTasks } from "store/actions/filter";
+import { decreaseNumOfVisibleTasks, setisLoading } from "store/actions/filter";
 import { showSuccessToast } from "utils/toast";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
@@ -44,8 +44,10 @@ function TaskCard({
       dispatch(decreaseNumOfVisibleTasks());
   };
 
-  const handleDoneClick = () => {
-    dispatch(markAsDone(taskId));
+  const handleDoneClick = async () => {
+    dispatch(setisLoading(true));
+    await dispatch(markAsDone(taskId));
+    dispatch(setisLoading(false));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   };
   const taskHeaderClasses = classnames(

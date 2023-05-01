@@ -53,6 +53,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const updateTask = async (task) => {
     const title = titleSanitizer(task.title);
     if (title === "") return;
+    setIsTaskUpdating(true);
     await dispath(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
