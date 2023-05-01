@@ -1,18 +1,18 @@
 @import "styles/base.scss";
 
 .card {
-  background-color: $white-color1;
+  background-color: $color-white;
   border-radius: 0.313rem;
-  border: 1px solid $grey-color3;
+  border: 1px solid $color-blue-hawkes;
   padding: 0.938rem;
 
   .textArea {
     border-radius: 0.313rem;
     border: none;
-    color: $black-color1;
+    color: $color-grey-ship;
     font-size: 1rem;
     line-height: 1.172rem;
-    outline: 3px solid $violet-color1;
+    outline: 3px solid $color-blue-tropical;
     padding: 0.25rem 0.5rem;
     padding: 0;
     width: calc(100% - 1rem);
@@ -23,8 +23,8 @@
 
     .addTaskBtn {
       border-radius: 0.313rem;
-      border: 1px solid $grey-color3;
-      color: $black-color1;
+      border: 1px solid $color-blue-hawkes;
+      color: $color-grey-ship;
       font-size: 1rem;
       height: 2.25rem;
       line-height: 1.172rem;
