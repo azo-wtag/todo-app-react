@@ -2,13 +2,13 @@
 
 .loadMoreBtn,
 .showLessBtn {
-  margin-top: 3.563rem;
-  margin-bottom: 3.875rem;
-  background-color: $black-color1;
-  color: $white-color1;
-  width: 7.313rem;
-  height: 2.25rem;
+  background-color: $color-grey-ship;
   border-radius: 5px;
+  color: $color-white;
   font-size: 1rem;
+  height: 2.25rem;
   line-height: 1.172rem;
+  margin-bottom: 3.875rem;
+  margin-top: 3.563rem;
+  width: 7.313rem;
 }

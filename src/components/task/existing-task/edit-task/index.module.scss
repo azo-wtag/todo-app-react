@@ -1,31 +1,31 @@
 @import "styles/base.scss";
 
 .textArea {
-  outline: 3px solid $violet-color1;
-  border: none;
-  padding: 0;
   border-radius: 0.313rem;
-  width: calc(100% - 1rem);
-  padding: 0.25rem 0.5rem;
-  color: $black-color1;
-  line-height: 1.172rem;
+  border: none;
+  color: $color-grey-ship;
   font-size: 1rem;
+  line-height: 1.172rem;
+  outline: 3px solid $color-blue-tropical;
+  padding: 0.25rem 0.5rem;
+  width: calc(100% - 1rem);
+  width: calc(100% - 1rem);
+}
+
+.textArea:focus {
+  outline: 3px solid $color-blue-tropical;
 }
 
 .btnContainer {
   margin-top: 1.313rem;
 
-  .textArea:focus {
-    outline: 3px solid $violet-color1;
-    border: none;
-  }
-
   .saveBtn {
-    border: 1px solid $white-color1;
-    padding: 0.563rem 0.813;
-    color: $black-color1;
+    border: 1px solid $color-white;
+    color: $color-grey-ship;
     font-size: 1rem;
     line-height: 1.172rem;
+    padding: 0.563rem 0.813;
+    padding: 0.563rem 0.813;
   }
 
   .doneBtn {

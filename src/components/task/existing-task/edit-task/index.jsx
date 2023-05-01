@@ -14,11 +14,17 @@ import {
   ALT_CHECK_ICON_TAG,
   PATH_DELETE_ICON,
   ALT_DELETE_ICON_TAG,
+  TASK_SANITIZE_REGEX_PATTERN,
+  ERROR_MESSAGE_CUSTOM_TYPE,
+  ERROR_MESSAGE_TASK_TITLE,
+  SUCCESS_MESSAGE_TASK_UPDATED,
+  SUCCESS_MESSAGE_EDITED_TASK_DONE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
 import Loader from "components/base/loader";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispath = useDispatch();
@@ -28,21 +34,46 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   );
 
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
+
+  const titleSanitizer = (title) => {
+    const sanitizedTitle = title
+      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
+      .trim();
+    if (sanitizedTitle === "") {
+      setError(TITLE_FIELD_NAME_ATTRIBUTE, {
+        type: ERROR_MESSAGE_CUSTOM_TYPE,
+        message: ERROR_MESSAGE_TASK_TITLE,
+      });
+      setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
+    }
+
+    return sanitizedTitle;
+  };
+
   const updateTask = async (task) => {
-    setIsTaskUpdating(true);
-    await dispath(editTask({ taskId, title: task.title }));
+    const title = titleSanitizer(task.title);
+    if (title === "") return;
+    await dispath(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
     onTaskEdit();
     setIsTaskUpdating(false);
   };
 
   const saveAsDone = async (task) => {
+    const title = titleSanitizer(task.title);
+    if (title === "") return;
     setIsTaskUpdating(true);
-    await dispath(editTask({ taskId, title: task.title }));
+    await dispath(editTask({ taskId, title: title }));
     await dispath(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
     setIsTaskUpdating(false);
+  };
+
+  const onValidationError = (errors) => {
+    showErrorToast(errors.title.message);
   };
 
   const {
@@ -50,6 +81,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     handleSubmit,
     setValue,
     setFocus,
+    setError,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -78,13 +110,13 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
       <div className={`flex items-center ${styles.btnContainer}`}>
         <Button
-          onClick={handleSubmit(updateTask)}
+          onClick={handleSubmit(updateTask, onValidationError)}
           className={`bg-white ${styles.saveBtn}`}
         >
           Save
         </Button>
         <Button
-          onClick={handleSubmit(saveAsDone)}
+          onClick={handleSubmit(saveAsDone, onValidationError)}
           className={`bg-white ${styles.doneBtn}`}
         >
           <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
