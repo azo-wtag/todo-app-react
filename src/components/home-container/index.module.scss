@@ -27,5 +27,9 @@
         margin-left: 0.313rem;
       }
     }
+
+    .createTaskBtn:disabled {
+      opacity: 0.5;
+    }
   }
 }
