@@ -1,11 +1,9 @@
 @import "styles/base.scss";
 
 .buttonContainer {
-  margin-top: 1rem;
-
   .allBtn {
     border-radius: 0.313rem;
-    border: 1px solid $grey-color3;
+    border: 1px solid $color-blue-hawkes;
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
@@ -14,7 +12,7 @@
 
   .incompleteBtn {
     border-radius: 0.313rem;
-    border: 1px solid $grey-color3;
+    border: 1px solid $color-blue-hawkes;
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
@@ -24,7 +22,7 @@
 
   .completeBtn {
     border-radius: 0.313rem;
-    border: 1px solid $grey-color3;
+    border: 1px solid $color-blue-hawkes;
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;

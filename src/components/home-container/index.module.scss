@@ -1,26 +1,27 @@
 @import "styles/base.scss";
 
 .homeWrapper {
-  background-color: $violet-color3;
-  margin-top: 4rem;
+  background-color: $color-white-ghost;
+  padding-top: 4rem;
 
   .heading {
-    color: $black-color1;
+    color: $color-grey-ship;
     font-size: 1.875rem;
     line-height: 2.197rem;
   }
 
   .actionBarContainer {
     margin-bottom: 2.125rem;
-    margin-top: 1.75rem;
 
     .createTaskBtn {
-      background-color: $violet-color2;
+      background-color: $color-blue-lavender;
       border-radius: 0.313rem;
-      color: $white-color1;
+      color: $color-white;
       font-size: 1rem;
       height: 2.25rem;
       line-height: 1.172rem;
+      margin-top: 1.75rem;
+      padding: 0.5rem;
       width: 6.45rem;
 
       .createTxt {
