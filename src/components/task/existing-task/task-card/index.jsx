@@ -59,7 +59,7 @@ function TaskCard({
 
   if (isTextAreaVisible) {
     return (
-      <div className={styles.card}>
+      <div className={`bg-white ${styles.card}`}>
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
