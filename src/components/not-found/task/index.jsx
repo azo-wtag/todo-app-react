@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "components/base/image";
-
 import styles from "components/not-found/task/index.module.scss";
 import { ALT_NO_TASK_FOUND_ICON_TAG, ICON_NO_TASK_FOUND } from "utils/const";
 
