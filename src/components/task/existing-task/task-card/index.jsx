@@ -23,7 +23,6 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
       )}
 
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
-
       <div className="flex justify-between">
         <ButtonContainer onEditButtonClick={handleEditClick} />
         {isCompleted && <Button>Completed in days</Button>}
