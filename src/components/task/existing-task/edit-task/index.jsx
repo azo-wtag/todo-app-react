@@ -22,7 +22,7 @@ import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   useEffect(
     () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
     [existingTitle]
@@ -46,7 +46,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const updateTask = (task) => {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispath(editTask({ taskId, title: title }));
+    dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
@@ -54,8 +54,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const saveAsDone = (task) => {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispath(editTask({ taskId, title: title }));
-    dispath(markAsDone(taskId));
+    dispatch(editTask({ taskId, title: title }));
+    dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
   };
