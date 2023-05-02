@@ -33,9 +33,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
         type: CUSTOM_ERROR_MESSAGE_TYPE,
         message: TASK_TITLE_ERROR_MESSAGE,
       });
-
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
-
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
