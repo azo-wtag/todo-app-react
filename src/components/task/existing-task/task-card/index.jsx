@@ -8,7 +8,7 @@ import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-task/button-container";
 
-function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
+function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, title }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
   const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
