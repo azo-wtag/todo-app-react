@@ -58,7 +58,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
-  }, [setFocus]);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
