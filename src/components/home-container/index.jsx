@@ -36,7 +36,6 @@ function HomeContainer() {
             onDeleteBtnClick={() => setIsNewTaskRequested(false)}
           />
         )}
-
         {isTaskAvailable &&
           tasks.map((task) => (
             <TaskCard
