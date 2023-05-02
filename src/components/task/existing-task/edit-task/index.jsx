@@ -74,7 +74,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
-  }, [setFocus]);
+  }, []);
 
   return (
     <form>
