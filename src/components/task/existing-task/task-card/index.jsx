@@ -10,13 +10,12 @@ import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTask } from "store/actions/todo";
 
-function TaskCard({ taskId, title, createdAt, isCompleted, isTaskOnEditMode }) {
+function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
   const dispatch = useDispatch();
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
   const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
-
   const handleEditClick = () => setIsTextAreaVisible(true);
   const handleDeleteClick = () => dispatch(deleteTask(taskId));
 
