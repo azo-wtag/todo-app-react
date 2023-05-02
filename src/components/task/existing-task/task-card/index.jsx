@@ -17,7 +17,6 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   return (
     <div className={styles.card}>
       {isTextAreaVisible ? <TextArea /> : <h3>{title}</h3>}
-
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
         <ButtonContainer onEditButtonClick={handleEditClick} />
