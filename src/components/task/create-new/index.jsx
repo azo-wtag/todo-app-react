@@ -9,7 +9,6 @@ import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import { addTaskToTodo } from "store/actions/todo";
 import {
-  TASK_TEXTAREA_NUM_OF_ROW,
   ALT_DELETE_ICON_TAG,
   ICON_DELETE,
   TITLE_FIELD_NAME_ATTRIBUTE,
@@ -63,7 +62,6 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
       />
