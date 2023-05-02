@@ -26,6 +26,7 @@ function TaskCard({
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
   const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
+  const handleDoneClick = () => dispatch(markAsDone(taskId));
   const handleEditClick = () => setIsTextAreaVisible(true);
   const handleDeleteClick = () => dispatch(deleteTask(taskId));
 
@@ -41,7 +42,7 @@ function TaskCard({
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
         <ButtonContainer
-          onDoneButtonClick={() => dispatch(markAsDone(taskId))}
+          onDoneButtonClick={handleDoneClick}
           onEditButtonClick={handleEditClick}
           onDeleteButtonClick={handleDeleteClick}
           isTaskCompleted={isCompleted}
