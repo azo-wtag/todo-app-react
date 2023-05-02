@@ -11,8 +11,8 @@ import ButtonContainer from "components/task/existing-task/button-container";
 function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
-  const formatDate = (date) =>
-    dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
+  const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
+  const handleEditClick = () => setIsTextAreaVisible(true);
 
   return (
     <div className={styles.card}>
@@ -25,7 +25,7 @@ function TaskCard({ title, createdAt, isCompleted, isTaskOnEditMode }) {
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
 
       <div className="flex justify-between">
-        <ButtonContainer onEditButtonClick={() => setIsTextAreaVisible(true)} />
+        <ButtonContainer onEditButtonClick={handleEditClick} />
         {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>
