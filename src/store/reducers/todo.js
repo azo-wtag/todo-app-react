@@ -28,11 +28,13 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case MARK_TASK_DONE: {
+      const selectedTaskId = findTaskIndexById(action.payload, state.tasks);
       const existingTasks = [...state.tasks];
-      const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
-      existingTasks[selectedTaskId].isCompleted = true;
-      existingTasks[selectedTaskId].completedAt =
-        dayjs().format(TASK_DATE_FORMAT);
+      existingTasks[selectedTaskId] = {
+        ...existingTasks[selectedTaskId],
+        isCompleted: true,
+        completedAt: dayjs().format(TASK_DATE_FORMAT),
+      };
       return { ...state, tasks: existingTasks };
     }
 
