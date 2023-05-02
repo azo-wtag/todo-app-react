@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
 
-function TextArea({ numOfRows, register, error }) {
+function TextArea({ error, numOfRows, register }) {
   return (
     <>
       <textarea

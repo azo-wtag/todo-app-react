@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
-function Button({ children, onClick, className, buttonType }) {
+function Button({ buttonType, children, className, onClick }) {
   const buttonClass = classNames(styles.button, className);
   return (
     <button className={buttonClass} onClick={onClick} type={buttonType}>
