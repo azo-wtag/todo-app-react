@@ -11,7 +11,7 @@ import { addTaskToTodo } from "store/actions/todo";
 import {
   TASK_TEXTAREA_NUM_OF_ROW,
   ALT_DELETE_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
@@ -71,7 +71,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType={TYPE_BUTTON}>
-          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
