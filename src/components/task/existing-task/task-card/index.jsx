@@ -18,6 +18,9 @@ function TaskCard({ taskId, title, createdAt, isCompleted, isTaskOnEditMode }) {
   const formatDate = (date) =>
     dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
 
+  const handleEditClick = () => setIsTextAreaVisible(true);
+  const handleDeleteClick = () => dispatch(deleteTask(taskId));
+
   return (
     <div className={styles.card}>
       {isTextAreaVisible ? (
@@ -30,8 +33,8 @@ function TaskCard({ taskId, title, createdAt, isCompleted, isTaskOnEditMode }) {
 
       <div className="flex justify-between">
         <ButtonContainer
-          onEditButtonClick={() => setIsTextAreaVisible(true)}
-          onDeleteButtonClick={() => dispatch(deleteTask(taskId))}
+          onEditButtonClick={handleEditClick}
+          onDeleteButtonClick={handleDeleteClick}
         />
         {isCompleted && <Button>Completed in days</Button>}
       </div>
