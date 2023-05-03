@@ -25,10 +25,21 @@ function TaskCard({
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
-  const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
-  const handleDoneClick = () => dispatch(markAsDone(taskId));
-  const handleEditClick = () => setIsTextAreaVisible(true);
-  const handleDeleteClick = () => dispatch(deleteTask(taskId));
+  function formatDate(date) {
+    dayjs(date).format(TASK_DATE_FORMAT);
+  }
+
+  function handleEditClick() {
+    setIsTextAreaVisible(true);
+  }
+
+  function handleDeleteClick() {
+    dispatch(deleteTask(taskId));
+  }
+
+  function handleDoneClick() {
+    dispatch(markAsDone(taskId));
+  }
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
