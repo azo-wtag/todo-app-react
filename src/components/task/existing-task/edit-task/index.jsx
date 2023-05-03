@@ -22,10 +22,6 @@ import { editTask, markAsDone } from "store/actions/todo";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
-  useEffect(
-    () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
-    [existingTitle]
-  );
 
   function titleSanitizer(title) {
     const sanitizedTitle = DOMPurify.sanitize(title);
@@ -71,6 +67,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
   }, []);
 
   return (
@@ -81,8 +78,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       />
 
       <div className="flex items-center">
-        <Button onClick={handleSubmit(updateTask)}>Save</Button>
-        <Button onClick={handleSubmit(saveAsDone)}>
+        <Button onClick={(e) => handleSubmit(updateTask)(e)}>Save</Button>
+        <Button onClick={(e) => handleSubmit(saveAsDone)(e)}>
           <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
