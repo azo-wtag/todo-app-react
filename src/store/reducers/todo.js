@@ -44,13 +44,17 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case EDIT_TASK: {
-      const existingTasks = [...state.tasks];
-      const selectedTaskId = findTaskIndexById(
-        action.payload.taskId,
-        existingTasks
-      );
-      existingTasks[selectedTaskId].title = action.payload.title;
-      return { ...state, tasks: existingTasks };
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === action.payload.taskId) {
+          return {
+            ...task,
+            title: action.payload.title,
+          };
+        }
+
+        return { ...task };
+      });
+      return { ...state, tasks: updatedTasks };
     }
 
     default:
