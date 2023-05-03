@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
 
-function TextArea({ numOfRows, register, error }) {
+function TextArea({ error, numOfRows, register }) {
   return (
     <>
       <textarea
@@ -16,13 +16,13 @@ function TextArea({ numOfRows, register, error }) {
 }
 
 TextArea.propTypes = {
-  noOfRows: propTypes.number,
+  numOfRows: propTypes.number,
   register: propTypes.object.isRequired,
   error: propTypes.object,
 };
 
 TextArea.defaultProps = {
-  noOfRows: TEXTAREA_DEFAULT_ROW,
+  numOfRows: TEXTAREA_DEFAULT_ROW,
 };
 
 export default TextArea;

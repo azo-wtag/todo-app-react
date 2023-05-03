@@ -13,18 +13,28 @@ import EditTaskForm from "components/task/existing-task/edit-task";
 import { calculateDateDifference } from "utils/helper";
 
 function TaskCard({
-  taskId,
-  title,
   createdAt,
+  completedAt,
   isCompleted,
   isTaskOnEditMode,
-  completedAt,
+  taskId,
+  title,
 }) {
   const dispatch = useDispatch();
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
-  const formatDate = (date) =>
-    dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
+
+  function formatDate(date) {
+    return dayjs(date).format(TASK_DATE_FORMAT);
+  }
+
+  function handleDeleteClick() {
+    dispatch(deleteTask(taskId));
+  }
+
+  function handleDoneClick() {
+    dispatch(markAsDone(taskId));
+  }
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
@@ -46,9 +56,9 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDone={() => dispatch(markAsDone(taskId))}
-            onEdit={() => setIsTextAreaVisible(true)}
-            onDelete={() => dispatch(deleteTask(taskId))}
+            onDoneClick={handleDoneClick}
+            onEditClick={() => setIsTextAreaVisible(true)}
+            onDeleteClick={handleDeleteClick}
             isTaskCompleted={isCompleted}
           />
           {isCompleted && (
