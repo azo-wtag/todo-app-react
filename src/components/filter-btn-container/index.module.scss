@@ -36,6 +36,11 @@
     margin-top: 1rem;
     padding: 0.5rem 0.813rem;
   }
+
+  .selectedBtn {
+    background-color: $color-blue-lavender;
+    color: $color-white;
+  }
 }
 
 @media only screen and (min-width: $breakpoint-sm) {
