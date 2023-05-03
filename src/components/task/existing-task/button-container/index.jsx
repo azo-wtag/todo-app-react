@@ -15,7 +15,7 @@ import {
 function ButtonContainer({
   isTaskCompleted,
   onDoneButtonClick,
-  onDeleteButtonClick,
+  onDeleteClick,
 }) {
   return (
     <div className="flex items-center">
@@ -29,7 +29,7 @@ function ButtonContainer({
           </Button>
         </>
       )}
-      <Button className={styles.deleteBtn} onClick={onDeleteButtonClick}>
+      <Button className={styles.deleteBtn} onClick={onDeleteClick}>
         <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
       </Button>
     </div>
@@ -38,7 +38,7 @@ function ButtonContainer({
 
 ButtonContainer.propTypes = {
   onDoneButtonClick: propTypes.func.isRequired,
-  onDeleteButtonClick: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
   isTaskCompleted: propTypes.bool.isRequired,
 };
 
