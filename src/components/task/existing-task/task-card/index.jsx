@@ -34,7 +34,7 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
       <div className="flex justify-between">
         <ButtonContainer
           onEditButtonClick={handleEditClick}
-          onDeleteButtonClick={handleDeleteClick}
+          onDeleteClick={handleDeleteClick}
         />
         {isCompleted && <Button>Completed in days</Button>}
       </div>

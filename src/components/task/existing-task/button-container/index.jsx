@@ -12,7 +12,7 @@ import {
   ICON_EDIT,
 } from "utils/const";
 
-function ButtonContainer({ onDeleteButtonClick }) {
+function ButtonContainer({ onDeleteClick }) {
   return (
     <div className="flex items-center">
       <Button className={styles.doneBtn}>
@@ -21,7 +21,7 @@ function ButtonContainer({ onDeleteButtonClick }) {
       <Button className={styles.editBtn}>
         <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
       </Button>
-      <Button className={styles.deleteBtn} onClick={onDeleteButtonClick}>
+      <Button className={styles.deleteBtn} onClick={onDeleteClick}>
         <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
       </Button>
     </div>
@@ -29,7 +29,7 @@ function ButtonContainer({ onDeleteButtonClick }) {
 }
 
 ButtonContainer.propTypes = {
-  onDeleteButtonClick: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
 };
 
 export default ButtonContainer;
