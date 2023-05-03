@@ -27,7 +27,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     [existingTitle]
   );
 
-  const titleSanitizer = (title) => {
+  function titleSanitizer(title) {
     const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
@@ -38,24 +38,24 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     }
 
     return sanitizedTitle;
-  };
+  }
 
-  const updateTask = (task) => {
+  function updateTask(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
     dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
-  };
+  }
 
-  const saveAsDone = (task) => {
+  function saveAsDone(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
     dispatch(editTask({ taskId, title: title }));
     dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onTaskEdit();
-  };
+  }
 
   const {
     register,
