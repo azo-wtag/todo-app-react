@@ -10,13 +10,13 @@ function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
-  const handleCreateClick = () => {
+  function handleCreateClick() {
     setIsNewTaskRequested(true);
-  };
+  }
 
-  const handleNewTaskEntry = () => {
+  function handleNewTaskEntry() {
     setIsNewTaskRequested(false);
-  };
+  }
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>

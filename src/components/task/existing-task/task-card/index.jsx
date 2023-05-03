@@ -11,8 +11,13 @@ import ButtonContainer from "components/task/existing-task/button-container";
 function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, title }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
-  const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
-  const handleEditClick = () => setIsTextAreaVisible(true);
+  function formatDate(date) {
+    dayjs(date).format(TASK_DATE_FORMAT);
+  }
+
+  function handleEditClick() {
+    setIsTextAreaVisible(true);
+  }
 
   return (
     <div className={styles.card}>
