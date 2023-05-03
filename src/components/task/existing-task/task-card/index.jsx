@@ -16,7 +16,7 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
   function formatDate(date) {
-    dayjs(date).format(TASK_DATE_FORMAT);
+    return dayjs(date).format(TASK_DATE_FORMAT);
   }
 
   function handleEditClick() {
