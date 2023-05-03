@@ -24,7 +24,7 @@ import { generateTaskObject } from "utils/helper";
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
 
-  const addNewTask = (task) => {
+  function addNewTask(task) {
     const sanitizedTitle = DOMPurify.sanitize(task.title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
@@ -37,7 +37,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onSuccessfullTaskEntry();
-  };
+  }
 
   const {
     register,
