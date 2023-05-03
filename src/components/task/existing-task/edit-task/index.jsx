@@ -3,18 +3,17 @@ import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  TASK_TEXTAREA_NUM_OF_ROW,
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
-  PATH_CHECK_ICON,
+  ICON_CHECK,
   ALT_CHECK_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   ALT_DELETE_ICON_TAG,
-  TASK_SANITIZE_REGEX_PATTERN,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
 } from "utils/const";
@@ -29,9 +28,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   );
 
   const titleSanitizer = (title) => {
-    const sanitizedTitle = title
-      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
-      .trim();
+    const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
         type: CUSTOM_ERROR_MESSAGE_TYPE,
@@ -79,7 +76,6 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   return (
     <form>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
       />
@@ -87,10 +83,10 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       <div className="flex items-center">
         <Button onClick={handleSubmit(updateTask)}>Save</Button>
         <Button onClick={handleSubmit(saveAsDone)}>
-          <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
+          <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
-          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
