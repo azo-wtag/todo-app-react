@@ -54,7 +54,7 @@ function TaskCard({
       <div className="flex justify-between">
         <ButtonContainer
           isTaskCompleted={isCompleted}
-          onDoneButtonClick={handleDoneClick}
+          onDoneClick={handleDoneClick}
           onEditButtonClick={handleEditClick}
           onDeleteClick={handleDeleteClick}
         />
