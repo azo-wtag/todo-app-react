@@ -6,7 +6,7 @@ import {
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
 import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
-import { findTaskIndexById, generateTaskObject } from "utils/helper";
+import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
   tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
@@ -33,22 +33,32 @@ export const todoReducer = (state = initialTodoState, action) => {
     }
 
     case MARK_TASK_DONE: {
-      const existingTasks = [...state.tasks];
-      const selectedTaskId = findTaskIndexById(action.payload, existingTasks);
-      existingTasks[selectedTaskId].isCompleted = true;
-      existingTasks[selectedTaskId].completedAt =
-        dayjs().format(TASK_DATE_FORMAT);
-      return { ...state, tasks: existingTasks };
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            isCompleted: true,
+            completedAt: dayjs().format(TASK_DATE_FORMAT),
+          };
+        }
+
+        return { ...task };
+      });
+      return { ...state, tasks: updatedTasks };
     }
 
     case EDIT_TASK: {
-      const existingTasks = [...state.tasks];
-      const selectedTaskId = findTaskIndexById(
-        action.payload.taskId,
-        existingTasks
-      );
-      existingTasks[selectedTaskId].title = action.payload.title;
-      return { ...state, tasks: existingTasks };
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === action.payload.taskId) {
+          return {
+            ...task,
+            title: action.payload.title,
+          };
+        }
+
+        return { ...task };
+      });
+      return { ...state, tasks: updatedTasks };
     }
 
     default:

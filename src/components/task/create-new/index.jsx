@@ -3,46 +3,41 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import {
-  TASK_TEXTAREA_NUM_OF_ROW,
   ALT_DELETE_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   TITLE_FIELD_NAME_ATTRIBUTE,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
-  TASK_SANITIZE_REGEX_PATTERN,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/actions/todo";
 
-function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
+function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
 
-  const addNewTask = (task) => {
-    const sanitizedTitle = task.title
-      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
-      .trim();
+  function addNewTask(task) {
+    const sanitizedTitle = DOMPurify.sanitize(task.title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
         type: CUSTOM_ERROR_MESSAGE_TYPE,
         message: TASK_TITLE_ERROR_MESSAGE,
       });
-
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
-
       return;
     }
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onSuccessfullTaskEntry();
-  };
+  }
 
   const {
     register,
@@ -58,20 +53,19 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
-  }, [setFocus]);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(addNewTask)}>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
       />
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
-          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+        <Button buttonType={TYPE_BUTTON} onClick={onDeleteClick}>
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
@@ -80,7 +74,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDelete }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
-  onDelete: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
 };
 
 export default CreateTask;
