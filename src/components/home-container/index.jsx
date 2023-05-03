@@ -11,13 +11,13 @@ function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
-  const handleCreateClick = () => {
+  function handleCreateClick() {
     setIsNewTaskRequested(true);
-  };
+  }
 
-  const handleNewTaskEntry = () => {
+  function handleNewTaskEntry() {
     setIsNewTaskRequested(false);
-  };
+  }
 
   const isTaskAvailable = tasks.length > 0;
 

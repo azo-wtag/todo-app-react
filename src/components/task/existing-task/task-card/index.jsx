@@ -15,9 +15,17 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
 
-  const formatDate = (date) => dayjs(date).format(TASK_DATE_FORMAT);
-  const handleEditClick = () => setIsTextAreaVisible(true);
-  const handleDeleteClick = () => dispatch(deleteTask(taskId));
+  function formatDate(date) {
+    dayjs(date).format(TASK_DATE_FORMAT);
+  }
+
+  function handleEditClick() {
+    setIsTextAreaVisible(true);
+  }
+
+  function handleDeleteClick() {
+    dispatch(deleteTask(taskId));
+  }
 
   return (
     <div className={styles.card}>
