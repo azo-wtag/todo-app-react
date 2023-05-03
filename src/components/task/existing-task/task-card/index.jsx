@@ -53,10 +53,10 @@ function TaskCard({
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
         <ButtonContainer
+          isTaskCompleted={isCompleted}
           onDoneButtonClick={handleDoneClick}
           onEditButtonClick={handleEditClick}
           onDeleteButtonClick={handleDeleteClick}
-          isTaskCompleted={isCompleted}
         />
         {isCompleted && (
           <Button>
