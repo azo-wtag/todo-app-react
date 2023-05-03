@@ -19,6 +19,10 @@ function HomeContainer() {
     setIsNewTaskRequested(false);
   }
 
+  function handleDeleteClick() {
+    setIsNewTaskRequested(false);
+  }
+
   const isTaskAvailable = tasks.length > 0;
 
   return (
@@ -33,7 +37,7 @@ function HomeContainer() {
         {isNewTaskRequested && (
           <CreateTask
             onSuccessfullTaskEntry={handleNewTaskEntry}
-            onDeleteBtnClick={() => setIsNewTaskRequested(false)}
+            onDeleteBtnClick={handleDeleteClick}
           />
         )}
         {isTaskAvailable &&
