@@ -13,9 +13,9 @@ import {
 } from "utils/const";
 
 function ButtonContainer({
+  isTaskCompleted,
   onDoneButtonClick,
   onDeleteButtonClick,
-  isTaskCompleted,
 }) {
   return (
     <div className="flex items-center">
