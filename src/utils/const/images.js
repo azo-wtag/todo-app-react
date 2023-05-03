@@ -6,6 +6,7 @@ import checkIcon from "assets/images/check.png";
 import checkIconBgWhite from "assets/images/check-white.png";
 import noTaskFoundIcon from "assets/images/no-task-found.png";
 import plusIcon from "assets/images/plus.png";
+import loader from "assets/images/loader.png";
 
 export const ALT_LOGO_TAG = "todo app logo";
 export const ALT_SEARCH_ICON_TAG = "task search icon";
@@ -15,6 +16,7 @@ export const ALT_CHECK_ICON_TAG = "complete task button icon";
 export const ALT_CHECK_WHITE_ICON_TAG = "Success toast white icon";
 export const ALT_NO_TASK_FOUND_ICON_TAG = "no task found icon";
 export const ALT_PLUS_ICON_TAG = "Create new task";
+export const ALT_LOADER_TAG = "loader";
 
 export const PATH_LOGO_ICON = logoImage;
 export const PATH_SEARCH_ICON = searchIcon;
@@ -24,3 +26,4 @@ export const PATH_CHECK_ICON = checkIcon;
 export const PATH_CHECK_WHITE_ICON = checkIconBgWhite;
 export const PATH_NO_TASK_FOUND_ICON = noTaskFoundIcon;
 export const PATH_PLUS_ICON = plusIcon;
+export const PATH_LOADER_ICON = loader;

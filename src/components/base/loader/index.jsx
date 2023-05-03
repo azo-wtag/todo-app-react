@@ -20,7 +20,7 @@ function Loader({ imageClassName, isLoading }) {
 }
 
 const mapStateToProps = (state) => ({
-  isDisabled: state.filter.isFiltering,
+  isLoading: state.filter.isFiltering,
 });
 
 Loader.propTypes = {
