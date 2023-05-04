@@ -69,7 +69,7 @@ function FilterBtnContainer() {
       </div>
       <div className={styles.selectBoxContainer}>
         <Select
-          defaultValue="chocolate"
+          value={FILTER_OPTIONS[filterState - 1]}
           options={FILTER_OPTIONS}
           onChange={handleOptionChange}
         />
