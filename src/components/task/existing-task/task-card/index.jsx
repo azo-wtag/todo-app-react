@@ -49,7 +49,7 @@ function TaskCard({
         />
       </div>
     );
-  } else
+  } else {
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
@@ -69,6 +69,7 @@ function TaskCard({
         </div>
       </div>
     );
+  }
 }
 
 TaskCard.propTypes = {
