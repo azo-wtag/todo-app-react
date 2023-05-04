@@ -85,7 +85,7 @@ function HomeContainer() {
           {isNewTaskRequested && (
             <CreateTask
               onSuccessfullTaskEntry={handleNewTaskEntry}
-              onDelete={handleDeleteClick}
+              onDeleteClick={handleDeleteClick}
             />
           )}
 
