@@ -18,12 +18,16 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
     (state) => state.filter.visibleCardCount
   );
 
-  const handleLoadMoreClick = () => {
+  function handleLoadMoreClick() {
     const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
     if (numOfRemainingCard >= CARD_PER_PAGE)
       dispatch(loadMoreTask(CARD_PER_PAGE));
     else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
-  };
+  }
+
+  function handleShowLessClick() {
+    dispatch(showLessTasks());
+  }
 
   useEffect(() => {
     if (numOfTotalTask < numOfVisibleTask)
@@ -45,10 +49,7 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
         Load More
       </Button>
 
-      <Button
-        className={showLessButtonClasses}
-        onClick={() => dispatch(showLessTasks())}
-      >
+      <Button className={showLessButtonClasses} onClick={handleShowLessClick}>
         Show Less
       </Button>
     </div>

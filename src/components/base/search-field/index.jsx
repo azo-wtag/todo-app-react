@@ -7,7 +7,7 @@ import Image from "components/base/image";
 import {
   ALT_SEARCH_ICON_TAG,
   FORM_VALIDATION_MODE_ONCHANGE,
-  PATH_SEARCH_ICON,
+  ICON_SEARCH,
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
@@ -58,7 +58,7 @@ function SearchField() {
         register={register(TITLE_FIELD_NAME_ATTRIBUTE)}
         error={errors.title}
       />
-      <Image src={PATH_SEARCH_ICON} alt={ALT_SEARCH_ICON_TAG} />
+      <Image src={ICON_SEARCH} alt={ALT_SEARCH_ICON_TAG} />
     </form>
   );
 }
