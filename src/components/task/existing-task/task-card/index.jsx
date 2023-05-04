@@ -28,6 +28,14 @@ function TaskCard({
     return dayjs(date).format(TASK_DATE_FORMAT);
   }
 
+  function showEditTaskForm() {
+    setIsTextAreaVisible(true);
+  }
+
+  function hideEditTaskFrom() {
+    setIsTextAreaVisible(true);
+  }
+
   function handleDeleteClick() {
     dispatch(deleteTask(taskId));
   }
@@ -44,8 +52,8 @@ function TaskCard({
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
-          onDelete={() => setIsTextAreaVisible(false)}
-          onTaskEdit={() => setIsTextAreaVisible(false)}
+          onDelete={hideEditTaskFrom}
+          onTaskEdit={hideEditTaskFrom}
         />
       </div>
     );
@@ -57,7 +65,7 @@ function TaskCard({
         <div className="flex justify-between">
           <ButtonContainer
             onDoneClick={handleDoneClick}
-            onEditClick={() => setIsTextAreaVisible(true)}
+            onEditClick={showEditTaskForm}
             onDeleteClick={handleDeleteClick}
             isTaskCompleted={isCompleted}
           />
