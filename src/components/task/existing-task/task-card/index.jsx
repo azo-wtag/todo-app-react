@@ -33,7 +33,7 @@ function TaskCard({
   }
 
   function hideEditTaskFrom() {
-    setIsTextAreaVisible(true);
+    setIsTextAreaVisible(false);
   }
 
   function handleDeleteClick() {
