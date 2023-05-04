@@ -14,12 +14,16 @@ function LoadMoreBtnContainer() {
     (state) => state.filter.visibleCardCount
   );
 
-  const handleLoadMoreClick = () => {
+  function handleLoadMoreClick() {
     const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
     if (numOfRemainingCard >= CARD_PER_PAGE)
       dispatch(loadMoreTask(CARD_PER_PAGE));
     else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
-  };
+  }
+
+  function handleShowLessClick() {
+    dispatch(showLessTasks());
+  }
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
     "d-none": numOfTotalTask === numOfVisibleTask,
@@ -36,10 +40,7 @@ function LoadMoreBtnContainer() {
         Load More
       </Button>
 
-      <Button
-        className={showLessButtonClasses}
-        onClick={() => dispatch(showLessTasks())}
-      >
+      <Button className={showLessButtonClasses} onClick={handleShowLessClick}>
         Show Less
       </Button>
     </div>
