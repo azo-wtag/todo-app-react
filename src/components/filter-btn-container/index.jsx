@@ -14,6 +14,18 @@ function FilterBtnContainer() {
   const dispatch = useDispatch();
   const filterState = useSelector((state) => state.filter.filteredCardState);
 
+  function handleAllClick() {
+    dispatch(filterTask(TASK_FILTER_ALL));
+  }
+
+  function handleInCompleteClick() {
+    dispatch(filterTask(TASK_FILTER_INCOMPLETED));
+  }
+
+  function handleCompleteClick() {
+    dispatch(filterTask(TASK_FILTER_COMPLETED));
+  }
+
   const allBtnClassNames = classnames(
     "bg-white",
     "text-grey-ship",
@@ -37,22 +49,16 @@ function FilterBtnContainer() {
 
   return (
     <div className={styles.buttonContainer}>
-      <Button
-        onClick={() => dispatch(filterTask(TASK_FILTER_ALL))}
-        className={allBtnClassNames}
-      >
+      <Button onClick={handleAllClick} className={allBtnClassNames}>
         All
       </Button>
       <Button
-        onClick={() => dispatch(filterTask(TASK_FILTER_INCOMPLETED))}
+        onClick={handleInCompleteClick}
         className={incompleteBtnClassNames}
       >
         Incomplete
       </Button>
-      <Button
-        onClick={() => dispatch(filterTask(TASK_FILTER_COMPLETED))}
-        className={completeBtnClassNames}
-      >
+      <Button onClick={handleCompleteClick} className={completeBtnClassNames}>
         Complete
       </Button>
     </div>

@@ -10,7 +10,7 @@ import ExistingTaskCardContaienr from "components/task/existing-task/container";
 import Image from "components/base/image";
 import {
   ALT_PLUS_ICON_TAG,
-  PATH_PLUS_ICON,
+  ICON_PLUS,
   TASK_FILTER_COMPLETED,
   TASK_FILTER_INCOMPLETED,
 } from "utils/const";
@@ -53,7 +53,20 @@ function HomeContainer() {
     dispatch(resetVisibleTaskCount());
   }, [filteredState]);
 
+  function handleCreateClick() {
+    setIsNewTaskRequested(true);
+  }
+
+  function handleNewTaskEntry() {
+    setIsNewTaskRequested(false);
+  }
+
+  function handleDeleteClick() {
+    setIsNewTaskRequested(false);
+  }
+
   const isTaskEmpty = filteredTasks.length <= 0;
+
   return (
     <div className={`${styles.homeWrapper}`}>
       <div className={`home-container mx-auto`}>
@@ -62,10 +75,10 @@ function HomeContainer() {
           className={`flex flex-col flex-md-row justify-between ${styles.actionBarContainer}`}
         >
           <Button
-            onClick={() => setIsNewTaskRequested(true)}
+            onClick={handleCreateClick}
             className={`fw-500 flex items-center justify-center ${styles.createTaskBtn}`}
           >
-            <Image src={PATH_PLUS_ICON} alt={ALT_PLUS_ICON_TAG} />
+            <Image src={ICON_PLUS} alt={ALT_PLUS_ICON_TAG} />
             <span className={styles.createTxt}>Create</span>
           </Button>
           <FilterBtnContainer />
@@ -73,8 +86,8 @@ function HomeContainer() {
         <div className="grid grid-cols-3 grid-cols-md-2 grid-cols-lg-3 card-gap">
           {isNewTaskRequested && (
             <CreateTask
-              onSuccessfullTaskEntry={() => setIsNewTaskRequested(false)}
-              onDelete={() => setIsNewTaskRequested(false)}
+              onSuccessfullTaskEntry={handleNewTaskEntry}
+              onDeleteClick={handleDeleteClick}
             />
           )}
 
