@@ -12,14 +12,6 @@ export const generateTaskObject = (title) => {
   };
 };
 
-export const findTaskById = (taskId, tasks) => {
-  return tasks.find((task) => task.id === taskId);
-};
-
-export const findTaskIndexById = (taskId, tasks) => {
-  return tasks.findIndex((task) => task.id === taskId);
-};
-
 export const filterCompletedTask = (tasks) => {
   return tasks.filter((task) => task.isCompleted);
 };

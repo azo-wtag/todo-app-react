@@ -3,7 +3,6 @@ import propTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
-
 import styles from "components/task/existing-task/task-card/index.module.scss";
 import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
@@ -15,28 +14,35 @@ import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
 
 function TaskCard({
-  taskId,
-  title,
   createdAt,
+  completedAt,
   isCompleted,
   isTaskOnEditMode,
-  completedAt,
+  taskId,
+  title,
 }) {
   const dispatch = useDispatch();
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
-  const formatDate = (date) =>
-    dayjs(date, TASK_DATE_FORMAT).format(TASK_DATE_FORMAT);
+
+  function formatDate(date) {
+    return dayjs(date).format(TASK_DATE_FORMAT);
+  }
+
+  function handleDeleteClick() {
+    dispatch(deleteTask(taskId));
+    if (tasks.length === numOfCardVisible)
+      dispatch(decreaseNumOfVisibleTasks());
+  }
+
+  function handleDoneClick() {
+    dispatch(markAsDone(taskId));
+  }
 
   const tasks = useSelector((state) => state.todo.tasks);
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-  const handleDeleteClick = () => {
-    dispatch(deleteTask(taskId));
-    if (tasks.length === numOfCardVisible)
-      dispatch(decreaseNumOfVisibleTasks());
-  };
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
@@ -58,10 +64,10 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
-            onDone={() => dispatch(markAsDone(taskId))}
-            onEdit={() => setIsTextAreaVisible(true)}
-            onDelete={handleDeleteClick}
             isTaskCompleted={isCompleted}
+            onDoneClick={handleDoneClick}
+            onEditClick={() => setIsTextAreaVisible(true)}
+            onDeleteClick={handleDeleteClick}
           />
           {isCompleted && (
             <Button>
