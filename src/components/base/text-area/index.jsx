@@ -18,7 +18,7 @@ function TextArea({ numOfRows, register, error, isDisabled }) {
 }
 
 TextArea.propTypes = {
-  noOfRows: propTypes.number,
+  numOfRows: propTypes.number,
   register: propTypes.object.isRequired,
   error: propTypes.object,
   isDisabled: propTypes.bool,
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 });
 
 TextArea.defaultProps = {
-  noOfRows: TEXTAREA_DEFAULT_ROW,
+  numOfRows: TEXTAREA_DEFAULT_ROW,
 };
 
 export default connect(mapStateToProps)(TextArea);
