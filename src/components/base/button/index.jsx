@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
-function Button({ children, onClick, className, buttonType, isDisabled }) {
+function Button({ children, className, buttonType, isDisabled, onClick }) {
   const buttonClass = classNames(styles.button, className);
 
   return (
