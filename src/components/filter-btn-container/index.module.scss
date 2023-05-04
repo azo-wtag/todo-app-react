@@ -1,7 +1,7 @@
 @import "styles/base.scss";
 
 .buttonContainer {
-  display: flex;
+  display: none;
   overflow-x: auto;
   padding-bottom: 0.5rem;
 
@@ -43,9 +43,19 @@
   }
 }
 
+.selectBoxContainer {
+  display: block;
+  margin-top: 1rem;
+}
+
 @media only screen and (min-width: $breakpoint-sm) {
   .buttonContainer {
+    display: flex;
     margin-top: 1.75rem;
     padding-bottom: 0;
+  }
+
+  .selectBoxContainer {
+    display: none;
   }
 }

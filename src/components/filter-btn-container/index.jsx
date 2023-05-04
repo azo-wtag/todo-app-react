@@ -2,9 +2,11 @@ import React from "react";
 import Button from "components/base/button";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
+import Select from "react-select";
 import styles from "components/filter-btn-container/index.module.scss";
 import { filterTask } from "store/actions/filter";
 import {
+  FILTER_OPTIONS,
   TASK_FILTER_ALL,
   TASK_FILTER_COMPLETED,
   TASK_FILTER_INCOMPLETED,
@@ -16,6 +18,10 @@ function FilterBtnContainer() {
 
   function handleFilterClick(filterState) {
     dispatch(filterTask(filterState));
+  }
+
+  function handleOptionChange(selectedFilterState) {
+    dispatch(filterTask(selectedFilterState.value));
   }
 
   const allBtnClassNames = classnames(
@@ -40,26 +46,35 @@ function FilterBtnContainer() {
   );
 
   return (
-    <div className={styles.buttonContainer}>
-      <Button
-        onClick={() => handleFilterClick(TASK_FILTER_ALL)}
-        className={allBtnClassNames}
-      >
-        All
-      </Button>
-      <Button
-        onClick={() => handleFilterClick(TASK_FILTER_INCOMPLETED)}
-        className={incompleteBtnClassNames}
-      >
-        Incomplete
-      </Button>
-      <Button
-        onClick={() => handleFilterClick(TASK_FILTER_COMPLETED)}
-        className={completeBtnClassNames}
-      >
-        Complete
-      </Button>
-    </div>
+    <>
+      <div className={styles.buttonContainer}>
+        <Button
+          onClick={() => handleFilterClick(TASK_FILTER_ALL)}
+          className={allBtnClassNames}
+        >
+          All
+        </Button>
+        <Button
+          onClick={() => handleFilterClick(TASK_FILTER_INCOMPLETED)}
+          className={incompleteBtnClassNames}
+        >
+          Incomplete
+        </Button>
+        <Button
+          onClick={() => handleFilterClick(TASK_FILTER_COMPLETED)}
+          className={completeBtnClassNames}
+        >
+          Complete
+        </Button>
+      </div>
+      <div className={styles.selectBoxContainer}>
+        <Select
+          defaultValue="chocolate"
+          options={FILTER_OPTIONS}
+          onChange={handleOptionChange}
+        />
+      </div>
+    </>
   );
 }
 
