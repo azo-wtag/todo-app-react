@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 });
 
 TextArea.defaultProps = {
-  noOfRows: TEXTAREA_DEFAULT_ROW,
+  numOfRows: TEXTAREA_DEFAULT_ROW,
   className: "",
 };
 
