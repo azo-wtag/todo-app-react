@@ -12,31 +12,26 @@ import {
 function FilterBtnContainer() {
   const dispatch = useDispatch();
 
-  function handleAllClick() {
-    dispatch(filterTask(TASK_FILTER_ALL));
-  }
-
-  function handleInCompleteClick() {
-    dispatch(filterTask(TASK_FILTER_INCOMPLETED));
-  }
-
-  function handleCompleteClick() {
-    dispatch(filterTask(TASK_FILTER_COMPLETED));
+  function handleFilterClick(filterState) {
+    dispatch(filterTask(filterState));
   }
 
   return (
     <div>
-      <Button onClick={handleAllClick} className={`bg-white ${styles.allBtn}`}>
+      <Button
+        onClick={() => handleFilterClick(TASK_FILTER_ALL)}
+        className={`bg-white ${styles.allBtn}`}
+      >
         All
       </Button>
       <Button
-        onClick={handleInCompleteClick}
+        onClick={() => handleFilterClick(TASK_FILTER_INCOMPLETED)}
         className={`bg-white ${styles.incompleteBtn}`}
       >
         Incomplete
       </Button>
       <Button
-        onClick={handleCompleteClick}
+        onClick={() => handleFilterClick(TASK_FILTER_COMPLETED)}
         className={`bg-white ${styles.completeBtn}`}
       >
         Complete
