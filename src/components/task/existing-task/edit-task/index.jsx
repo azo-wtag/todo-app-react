@@ -3,18 +3,17 @@ import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  TASK_TEXTAREA_NUM_OF_ROW,
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
-  PATH_CHECK_ICON,
+  ICON_CHECK,
   ALT_CHECK_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   ALT_DELETE_ICON_TAG,
-  TASK_SANITIZE_REGEX_PATTERN,
   ERROR_MESSAGE_CUSTOM_TYPE,
   ERROR_MESSAGE_TASK_TITLE,
   SUCCESS_MESSAGE_TASK_UPDATED,
@@ -26,16 +25,10 @@ import styles from "components/task/existing-task/edit-task/index.module.scss";
 import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
-  const dispath = useDispatch();
-  useEffect(
-    () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
-    [existingTitle]
-  );
+  const dispatch = useDispatch();
 
-  const titleSanitizer = (title) => {
-    const sanitizedTitle = title
-      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
-      .trim();
+  function titleSanitizer(title) {
+    const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
         type: ERROR_MESSAGE_CUSTOM_TYPE,
@@ -45,26 +38,26 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     }
 
     return sanitizedTitle;
-  };
+  }
 
-  const updateTask = (task) => {
+  function updateTask(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispath(editTask({ taskId, title: title }));
+    dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
     onTaskEdit();
-  };
+  }
 
-  const saveAsDone = (task) => {
+  function saveAsDone(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispath(editTask({ taskId, title: title }));
-    dispath(markAsDone(taskId));
+    dispatch(editTask({ taskId, title: title }));
+    dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
-  };
+  }
 
   const onValidationError = (errors) => {
     showErrorToast(errors.title.message);
@@ -84,12 +77,12 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
-  }, [setFocus]);
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
+  }, []);
 
   return (
     <form>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
         className={`fw-500 ${styles.textArea}`}
@@ -97,23 +90,23 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
       <div className={`flex items-center ${styles.btnContainer}`}>
         <Button
-          onClick={handleSubmit(updateTask, onValidationError)}
+          onClick={(e) => handleSubmit(updateTask, onValidationError)(e)}
           className={`bg-white fw-500 ${styles.saveBtn}`}
         >
           Save
         </Button>
         <Button
-          onClick={handleSubmit(saveAsDone, onValidationError)}
+          onClick={(e) => handleSubmit(saveAsDone, onValidationError)(e)}
           className={`bg-white ${styles.doneBtn}`}
         >
-          <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
+          <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button
           buttonType={TYPE_BUTTON}
           onClick={onDelete}
           className="bg-white"
         >
-          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>

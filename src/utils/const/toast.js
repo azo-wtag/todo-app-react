@@ -1,5 +1,5 @@
 import Image from "components/base/image";
-import { ALT_CHECK_WHITE_ICON_TAG, PATH_CHECK_WHITE_ICON } from "utils/const";
+import { ALT_CHECK_WHITE_ICON_TAG, ICON_CHECK_BG_WHITE } from "utils/const";
 
 const TOAST_POSITION = "top-center";
 const AUTO_CLOSE = 2000;
@@ -29,7 +29,7 @@ export const ERROR_TOAST_DEFAULT_OPTIONS = {
 
 export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
   icon: () => (
-    <Image src={PATH_CHECK_WHITE_ICON} alt={ALT_CHECK_WHITE_ICON_TAG} />
+    <Image src={ICON_CHECK_BG_WHITE} alt={ALT_CHECK_WHITE_ICON_TAG} />
   ),
   position: TOAST_POSITION,
   autoClose: AUTO_CLOSE,
