@@ -19,7 +19,7 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
     return dayjs(date).format(TASK_DATE_FORMAT);
   }
 
-  function handleEditClick() {
+  function showEditTaskForm() {
     setIsTextAreaVisible(true);
   }
 
@@ -33,7 +33,7 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
         <ButtonContainer
-          onEditButtonClick={handleEditClick}
+          onEditButtonClick={showEditTaskForm}
           onDeleteClick={handleDeleteClick}
         />
         {isCompleted && <Button>Completed in days</Button>}
