@@ -23,11 +23,13 @@ function HomeContainer() {
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
-      if (filteredState === TASK_FILTER_COMPLETED)
+      if (filteredState === TASK_FILTER_COMPLETED) {
         setFilteredTasks(filterCompletedTask(tasks));
-      else if (filteredState === TASK_FILTER_INCOMPLETED)
+      } else if (filteredState === TASK_FILTER_INCOMPLETED) {
         setFilteredTasks(filterInCompletedTask(tasks));
-      else setFilteredTasks(tasks);
+      } else {
+        setFilteredTasks(tasks);
+      }
     }
 
     filterTasks();
@@ -45,8 +47,8 @@ function HomeContainer() {
     setIsNewTaskRequested(false);
   }
 
-  const isTaskEmpty = tasks.length <= 0;
-  const paginatedTasks = tasks.slice(0, numOfCardVisible);
+  const isTaskEmpty = filteredTasks.length <= 0;
+  const paginatedTasks = filteredTasks.slice(0, numOfCardVisible);
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>

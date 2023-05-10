@@ -32,8 +32,9 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
   }
 
   useEffect(() => {
-    if (numOfTotalTask < numOfVisibleTask)
+    if (numOfTotalTask < numOfVisibleTask) {
       dispatch(resetVisibleTaskCount(numOfTotalTask));
+    }
   }, []);
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
