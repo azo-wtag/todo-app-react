@@ -6,7 +6,7 @@ import CreateTask from "components/task/create-new";
 import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
-import ExistingTaskCardContaienr from "components/task/existing-task/container";
+import TaskCardContainer from "components/task/existing-task/container";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
@@ -24,6 +24,7 @@ function HomeContainer() {
   }
 
   const isTaskEmpty = tasks.length <= 0;
+  const paginatedTasks = tasks.slice(0, numOfCardVisible);
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
@@ -41,7 +42,7 @@ function HomeContainer() {
           />
         )}
 
-        <ExistingTaskCardContaienr tasks={tasks.slice(0, numOfCardVisible)} />
+        <TaskCardContainer tasks={paginatedTasks} />
       </div>
 
       {isTaskEmpty ? <NoTaskFound /> : <LoadMoreBtnContainer />}

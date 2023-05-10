@@ -39,8 +39,9 @@ function TaskCard({
 
   function handleDeleteClick() {
     dispatch(deleteTask(taskId));
-    if (tasks.length === numOfCardVisible)
+    if (tasks.length === numOfCardVisible) {
       dispatch(decreaseNumOfVisibleTasks());
+    }
   }
 
   function handleDoneClick() {
