@@ -12,12 +12,7 @@ import {
   ICON_EDIT,
 } from "utils/const";
 
-function ButtonContainer({
-  isTaskCompleted,
-  onDoneClick,
-  onDeleteClick,
-  onEditClick,
-}) {
+function ButtonContainer({ isTaskCompleted, onDoneClick, onDeleteClick }) {
   return (
     <div className="flex items-center">
       {!isTaskCompleted && (
@@ -25,7 +20,7 @@ function ButtonContainer({
           <Button className={styles.doneBtn} onClick={onDoneClick}>
             <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
           </Button>
-          <Button className={styles.editBtn} onClick={onEditClick}>
+          <Button className={styles.editBtn}>
             <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
           </Button>
         </>
