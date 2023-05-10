@@ -48,6 +48,7 @@ function HomeContainer() {
   }
 
   const isTaskEmpty = filteredTasks.length <= 0;
+  const filteredTaskLength = filteredTasks.length;
   const paginatedTasks = filteredTasks.slice(0, numOfCardVisible);
 
   return (
@@ -72,7 +73,7 @@ function HomeContainer() {
       {isTaskEmpty ? (
         <NoTaskFound />
       ) : (
-        <LoadMoreBtnContainer numOfTotalTask={filteredTasks.length} />
+        <LoadMoreBtnContainer numOfTotalTask={filteredTaskLength} />
       )}
     </div>
   );
