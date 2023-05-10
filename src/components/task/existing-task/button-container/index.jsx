@@ -12,15 +12,19 @@ import {
   ICON_EDIT,
 } from "utils/const";
 
-function ButtonContainer({ onDeleteClick }) {
+function ButtonContainer({ isTaskCompleted, onDoneClick, onDeleteClick }) {
   return (
     <div className="flex items-center">
-      <Button className={styles.doneBtn}>
-        <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
-      </Button>
-      <Button className={styles.editBtn}>
-        <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
-      </Button>
+      {!isTaskCompleted && (
+        <>
+          <Button className={styles.doneBtn} onClick={onDoneClick}>
+            <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
+          </Button>
+          <Button className={styles.editBtn}>
+            <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
+          </Button>
+        </>
+      )}
       <Button className={styles.deleteBtn} onClick={onDeleteClick}>
         <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
       </Button>
@@ -29,7 +33,10 @@ function ButtonContainer({ onDeleteClick }) {
 }
 
 ButtonContainer.propTypes = {
+  onDoneClick: propTypes.func.isRequired,
   onDeleteClick: propTypes.func.isRequired,
+  onEditClick: propTypes.func.isRequired,
+  isTaskCompleted: propTypes.bool.isRequired,
 };
 
 export default ButtonContainer;

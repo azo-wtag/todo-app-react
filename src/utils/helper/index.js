@@ -11,3 +11,10 @@ export const generateTaskObject = (title) => {
     completedAt: null,
   };
 };
+
+export const calculateDateDifference = (completedAt, createdAt) => {
+  const dateDifference = dayjs(completedAt).diff(createdAt, "day");
+  return dateDifference === 0
+    ? `1 day`
+    : `${Math.abs(dateDifference) + 1} days`;
+};

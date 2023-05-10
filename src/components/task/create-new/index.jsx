@@ -8,7 +8,6 @@ import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
-import { addTask } from "store/actions/todo";
 import {
   ALT_DELETE_ICON_TAG,
   ICON_DELETE,
@@ -18,8 +17,9 @@ import {
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
-import { addNewTaskSchema } from "utils/schema";
+import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
+import { addTask } from "store/actions/todo";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
       return;
     }
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onSuccessfullTaskEntry();
   }
 
@@ -48,7 +48,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     formState: { errors },
   } = useForm({
     mode: FORM_VALIDATION_MODE_ONCHANGE,
-    resolver: yupResolver(addNewTaskSchema),
+    resolver: yupResolver(taskSchema),
   });
 
   useEffect(() => {
