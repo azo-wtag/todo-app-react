@@ -10,8 +10,16 @@ import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import ButtonContainer from "components/task/existing-task/button-container";
 import { deleteTask, markAsDone } from "store/actions/todo";
+import { calculateDateDifference } from "utils/helper";
 
-function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
+function TaskCard({
+  createdAt,
+  isCompleted,
+  completedAt,
+  isTaskOnEditMode,
+  taskId,
+  title,
+}) {
   const dispatch = useDispatch();
 
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -49,7 +57,11 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, taskId, title }) {
           onDeleteClick={handleDeleteClick}
           onDoneClick={handleDoneClick}
         />
-        {isCompleted && <Button>Completed in days</Button>}
+        {isCompleted && (
+          <Button>
+            Completed in days {calculateDateDifference(completedAt, createdAt)}
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -60,6 +72,7 @@ TaskCard.propTypes = {
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
+  completedAt: validateDayjsDate,
   isTaskOnEditMode: propTypes.bool,
 };
 
