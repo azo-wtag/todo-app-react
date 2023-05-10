@@ -95,6 +95,7 @@ TaskCard.propTypes = {
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
+  completedAt: validateDayjsDate,
   isTaskOnEditMode: propTypes.bool,
 };
 

@@ -93,6 +93,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
 EditTaskForm.propTypes = {
   taskId: propTypes.string.isRequired,
+  existingTitle: propTypes.string.isRequired,
   onDelete: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };
