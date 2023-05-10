@@ -16,6 +16,7 @@ import {
   ALT_DELETE_ICON_TAG,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
@@ -61,7 +62,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(taskSchema),
   });
 

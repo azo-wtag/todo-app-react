@@ -15,15 +15,11 @@ function HomeContainer() {
   );
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
-  function handleCreateClick() {
+  function showNewTaskCard() {
     setIsNewTaskRequested(true);
   }
 
-  function handleNewTaskEntry() {
-    setIsNewTaskRequested(false);
-  }
-
-  function handleDeleteClick() {
+  function hideNewTaskCard() {
     setIsNewTaskRequested(false);
   }
 
@@ -33,15 +29,15 @@ function HomeContainer() {
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
       <div className={`flex justify-between ${styles.actionBarContainer}`}>
-        <Button onClick={handleCreateClick}>Create</Button>
+        <Button onClick={showNewTaskCard}>Create</Button>
         <FilterBtnContainer />
       </div>
 
       <div className="grid grid-cols-3 card-gap">
         {isNewTaskRequested && (
           <CreateTask
-            onSuccessfullTaskEntry={handleNewTaskEntry}
-            onDeleteClick={handleDeleteClick}
+            onSuccessfullTaskEntry={hideNewTaskCard}
+            onDeleteClick={hideNewTaskCard}
           />
         )}
 
