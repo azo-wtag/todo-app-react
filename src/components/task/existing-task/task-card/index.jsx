@@ -55,7 +55,6 @@ function TaskCard({
           onDelete={hideEditTaskFrom}
           onTaskEdit={hideEditTaskFrom}
         />
-        {isCompleted && <Button>Completed in days</Button>}
       </div>
     );
   } else {
@@ -86,6 +85,7 @@ TaskCard.propTypes = {
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
+  completedAt: validateDayjsDate,
   isTaskOnEditMode: propTypes.bool,
 };
 
