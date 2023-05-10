@@ -20,9 +20,11 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
 
   function handleLoadMoreClick() {
     const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
-    if (numOfRemainingCard >= CARD_PER_PAGE)
+    if (numOfRemainingCard >= CARD_PER_PAGE) {
       dispatch(loadMoreTask(CARD_PER_PAGE));
-    else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
+    } else {
+      dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
+    }
   }
 
   function handleShowLessClick() {
@@ -41,7 +43,9 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
     "d-none": numOfVisibleTask < numOfTotalTask,
   });
 
-  if (numOfTotalTask <= CARD_PER_PAGE) return null;
+  if (numOfTotalTask <= CARD_PER_PAGE) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center">

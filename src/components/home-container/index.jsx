@@ -6,7 +6,7 @@ import CreateTask from "components/task/create-new";
 import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
-import ExistingTaskCardContaienr from "components/task/existing-task/container";
+import TaskCardContainer from "components/task/existing-task/container";
 import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
 import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
 import { resetVisibleTaskCount } from "store/actions/filter";
@@ -37,41 +37,34 @@ function HomeContainer() {
     dispatch(resetVisibleTaskCount());
   }, [filteredState]);
 
-  function handleCreateClick() {
+  function showNewTaskCard() {
     setIsNewTaskRequested(true);
   }
 
-  function handleNewTaskEntry() {
+  function hideNewTaskCard() {
     setIsNewTaskRequested(false);
   }
 
-  function handleDeleteClick() {
-    setIsNewTaskRequested(false);
-  }
-
-  const isTaskEmpty = filteredTasks.length <= 0;
+  const isTaskEmpty = tasks.length <= 0;
+  const paginatedTasks = tasks.slice(0, numOfCardVisible);
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
       <h1>Add Tasks</h1>
       <div className={`flex justify-between ${styles.actionBarContainer}`}>
-        <Button onClick={handleCreateClick}>Create</Button>
+        <Button onClick={showNewTaskCard}>Create</Button>
         <FilterBtnContainer />
       </div>
 
       <div className="grid grid-cols-3 card-gap">
         {isNewTaskRequested && (
           <CreateTask
-            onSuccessfullTaskEntry={handleNewTaskEntry}
-            onDeleteClick={handleDeleteClick}
+            onSuccessfullTaskEntry={hideNewTaskCard}
+            onDeleteClick={hideNewTaskCard}
           />
         )}
 
-        {!isTaskEmpty && (
-          <ExistingTaskCardContaienr
-            tasks={filteredTasks.slice(0, numOfCardVisible)}
-          />
-        )}
+        {!isTaskEmpty && <TaskCardContainer tasks={paginatedTasks} />}
       </div>
 
       {isTaskEmpty ? (
