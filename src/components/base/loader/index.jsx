@@ -27,6 +27,7 @@ const mapStateToProps = (state) => ({
 
 Loader.propTypes = {
   imageClassName: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 Loader.defaultProps = {
