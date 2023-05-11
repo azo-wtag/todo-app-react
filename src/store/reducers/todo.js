@@ -11,7 +11,7 @@ import { generateTaskObject } from "utils/helper";
 const initialTodoState = {
   tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
     return generateTaskObject(
-      `Complete Initial setup of the Todo App  ${i + 1}`
+      `Complete Initial setup of the Todo App ${i + 1}`
     );
   }),
 };
