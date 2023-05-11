@@ -4,24 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
 import styles from "components/task/existing-task/task-card/index.module.scss";
-import ButtonContainer from "components/task/existing-task/button-container";
 import Button from "components/base/button";
 import EditTaskForm from "components/task/existing-task/edit-task";
+import ButtonContainer from "components/task/existing-task/button-container";
 import {
   TASK_DATE_FORMAT,
   SUCCESS_MESSAGE_TASK_DELETED,
   SUCCESS_MESSAGE_TASK_DONE,
 } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import { decreaseNumOfVisibleTasks } from "store/actions/filter";
 import { showSuccessToast } from "utils/toast";
-import { deleteTask, markAsDone } from "store/actions/todo";
 import { calculateDateDifference } from "utils/helper";
+import { deleteTask, markAsDone } from "store/actions/todo";
+import { decreaseNumOfVisibleTasks } from "store/actions/filter";
 
 function TaskCard({
   createdAt,
-  completedAt,
   isCompleted,
+  completedAt,
   isTaskOnEditMode,
   taskId,
   title,
@@ -34,11 +34,20 @@ function TaskCard({
     return dayjs(date).format(TASK_DATE_FORMAT);
   }
 
+  function showEditTaskForm() {
+    setIsTextAreaVisible(true);
+  }
+
+  function hideEditTaskFrom() {
+    setIsTextAreaVisible(false);
+  }
+
   function handleDeleteClick() {
     dispatch(deleteTask(taskId));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DELETED);
-    if (tasks.length === numOfCardVisible)
+    if (tasks.length === numOfCardVisible) {
       dispatch(decreaseNumOfVisibleTasks());
+    }
   }
 
   function handleDoneClick() {
@@ -59,12 +68,13 @@ function TaskCard({
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
-          onDelete={() => setIsTextAreaVisible(false)}
-          onTaskEdit={() => setIsTextAreaVisible(false)}
+          onDelete={hideEditTaskFrom}
+          onTaskEdit={hideEditTaskFrom}
         />
+        {isCompleted && <Button>Completed in days</Button>}
       </div>
     );
-  } else
+  } else {
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
@@ -73,7 +83,7 @@ function TaskCard({
           <ButtonContainer
             isTaskCompleted={isCompleted}
             onDoneClick={handleDoneClick}
-            onEditClick={() => setIsTextAreaVisible(true)}
+            onEditClick={showEditTaskForm}
             onDeleteClick={handleDeleteClick}
           />
           {isCompleted && (
@@ -84,6 +94,7 @@ function TaskCard({
         </div>
       </div>
     );
+  }
 }
 
 TaskCard.propTypes = {
@@ -91,8 +102,8 @@ TaskCard.propTypes = {
   title: propTypes.string.isRequired,
   createdAt: validateDayjsDate,
   isCompleted: propTypes.bool.isRequired,
-  isTaskOnEditMode: propTypes.bool,
   completedAt: validateDayjsDate,
+  isTaskOnEditMode: propTypes.bool,
 };
 
 TaskCard.defaultProps = {
