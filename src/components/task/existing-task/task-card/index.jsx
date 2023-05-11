@@ -84,10 +84,12 @@ function TaskCard({
   } else {
     return (
       <div className={`bg-white ${styles.card}`}>
-        <h3 className={taskHeaderClasses}>{title}</h3>
-        <p className={`text-grey-french ${styles.date}`}>
-          Created At: {formatDate(createdAt)}
-        </p>
+        <div>
+          <h3 className={taskHeaderClasses}>{title}</h3>
+          <p className={`text-grey-french ${styles.date}`}>
+            Created At: {formatDate(createdAt)}
+          </p>
+        </div>
         <div className="flex justify-between">
           <ButtonContainer
             isTaskCompleted={isCompleted}
