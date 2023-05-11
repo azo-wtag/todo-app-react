@@ -16,6 +16,7 @@ import {
   ALT_DELETE_ICON_TAG,
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
@@ -61,9 +62,17 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(taskSchema),
   });
+
+  function handleEditTask(e) {
+    handleSubmit(updateTask)(e);
+  }
+
+  function handleSaveTask(e) {
+    handleSubmit(saveAsDone)(e);
+  }
 
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
@@ -78,8 +87,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       />
 
       <div className="flex items-center">
-        <Button onClick={(e) => handleSubmit(updateTask)(e)}>Save</Button>
-        <Button onClick={(e) => handleSubmit(saveAsDone)(e)}>
+        <Button onClick={handleEditTask}>Save</Button>
+        <Button onClick={handleSaveTask}>
           <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
@@ -92,6 +101,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
 EditTaskForm.propTypes = {
   taskId: propTypes.string.isRequired,
+  existingTitle: propTypes.string.isRequired,
   onDelete: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };

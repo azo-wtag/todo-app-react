@@ -12,16 +12,18 @@ function FilterBtnContainer() {
   const dispatch = useDispatch();
 
   function handleFilterClick(filterState) {
-    dispatch(filterTask(filterState));
+    return function () {
+      dispatch(filterTask(filterState));
+    };
   }
 
   return (
     <div>
-      <Button onClick={() => handleFilterClick(TASK_FILTER_ALL)}>All</Button>
-      <Button onClick={() => handleFilterClick(TASK_FILTER_INCOMPLETED)}>
+      <Button onClick={handleFilterClick(TASK_FILTER_ALL)}>All</Button>
+      <Button onClick={handleFilterClick(TASK_FILTER_INCOMPLETED)}>
         Incomplete
       </Button>
-      <Button onClick={() => handleFilterClick(TASK_FILTER_COMPLETED)}>
+      <Button onClick={handleFilterClick(TASK_FILTER_COMPLETED)}>
         Complete
       </Button>
     </div>
