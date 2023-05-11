@@ -11,7 +11,6 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    margin-top: 1rem;
     padding: 0.5rem 0.813rem;
   }
 
@@ -23,7 +22,6 @@
     line-height: 1.172rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-top: 1rem;
     padding: 0.5rem 0.813rem;
   }
 
@@ -33,7 +31,6 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    margin-top: 1rem;
     padding: 0.5rem 0.813rem;
   }
 
@@ -51,7 +48,6 @@
 @media only screen and (min-width: $breakpoint-sm) {
   .buttonContainer {
     display: flex;
-    margin-top: 1.75rem;
     padding-bottom: 0;
   }
 

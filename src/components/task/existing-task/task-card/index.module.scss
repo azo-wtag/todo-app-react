@@ -3,8 +3,11 @@
 .card {
   border-radius: 0.313rem;
   border: 1px solid $color-blue-hawkes;
-  padding: 0.938rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 8rem;
+  padding: 0.938rem;
 
   .header {
     font-size: 1.5rem;
