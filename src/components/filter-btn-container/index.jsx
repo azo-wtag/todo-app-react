@@ -48,14 +48,14 @@ function FilterBtnContainer() {
   );
 
   const filterStates = [
-    { idState: TASK_FILTER_ALL, label: "All", styleClass: allBtnClassNames },
+    { id: TASK_FILTER_ALL, label: "All", styleClass: allBtnClassNames },
     {
-      idState: TASK_FILTER_INCOMPLETED,
+      id: TASK_FILTER_INCOMPLETED,
       label: "Incomplete",
       styleClass: incompleteBtnClassNames,
     },
     {
-      idState: TASK_FILTER_COMPLETED,
+      id: TASK_FILTER_COMPLETED,
       label: "Complete",
       styleClass: completeBtnClassNames,
     },
@@ -66,8 +66,8 @@ function FilterBtnContainer() {
       <div className={styles.buttonContainer}>
         {filterStates.map((filterState) => (
           <Button
-            key={filterState.label}
-            onClick={handleFilterClick(filterState.idState)}
+            key={filterState.id}
+            onClick={handleFilterClick(filterState.id)}
             className={filterState.styleClass}
           >
             {filterState.label}
