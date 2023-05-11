@@ -22,7 +22,7 @@
       height: 2.25rem;
       line-height: 1.172rem;
       padding: 0.5rem;
-      width: 6.45rem;
+      width: 100%;
 
       .createTxt {
         margin-left: 0.313rem;
@@ -31,6 +31,16 @@
 
     .createTaskBtn:disabled {
       opacity: 0.5;
+    }
+  }
+}
+
+@media only screen and (min-width: $breakpoint-sm) {
+  .homeWrapper {
+    .actionBarContainer {
+      .createTaskBtn {
+        width: 6.45rem;
+      }
     }
   }
 }
