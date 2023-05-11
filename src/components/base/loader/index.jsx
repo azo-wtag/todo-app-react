@@ -6,7 +6,9 @@ import { ALT_LOADER_TAG, ICON_LOADER } from "utils/const";
 import styles from "components/base/loader/index.module.scss";
 
 function Loader({ imageClassName, isLoading }) {
-  if (!isLoading) return null;
+  if (!isLoading) {
+    return null;
+  }
 
   return (
     <div className={styles.loader}>

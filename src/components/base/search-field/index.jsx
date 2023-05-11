@@ -45,22 +45,31 @@ function SearchField() {
 
   const searchKey = useSelector((state) => state.filter.searchKey);
   useEffect(() => {
-    if (searchKey === "") setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    if (searchKey === "") {
+      setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    }
   }, [searchKey]);
 
   useEffect(() => {
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     const subscription = watch(handleSubmit(searchTaskByTitle));
-    return () => subscription.unsubscribe();
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const handleSearchButtonClick = () => {
-    if (isSearchFieldVisible) dispatch(setSearchKey(""));
+    if (isSearchFieldVisible) {
+      dispatch(setSearchKey(""));
+    }
     setIsSearchFieldVisible(!isSearchFieldVisible);
   };
 
   useEffect(() => {
-    if (isSearchFieldVisible) setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+    if (isSearchFieldVisible) {
+      setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+    }
   }, [isSearchFieldVisible]);
 
   const searchBoxClassNames = classnames(styles.searchField, "fw-500", {
