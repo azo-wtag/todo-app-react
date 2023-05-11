@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import TaskCard from "components/task/existing-task/task-card";
 
-function ExistingTaskCardContaienr({ tasks }) {
+function TaskCardContainer({ tasks }) {
   return (
     <>
       {tasks.map((task) => (
@@ -19,8 +19,8 @@ function ExistingTaskCardContaienr({ tasks }) {
   );
 }
 
-ExistingTaskCardContaienr.propTypes = {
+TaskCardContainer.propTypes = {
   tasks: propTypes.array.isRequired,
 };
 
-export default ExistingTaskCardContaienr;
+export default TaskCardContainer;
