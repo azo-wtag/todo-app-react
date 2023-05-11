@@ -66,6 +66,14 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     resolver: yupResolver(taskSchema),
   });
 
+  function handleEditTask(e) {
+    handleSubmit(updateTask)(e);
+  }
+
+  function handleSaveTask(e) {
+    handleSubmit(saveAsDone)(e);
+  }
+
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
@@ -79,8 +87,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       />
 
       <div className="flex items-center">
-        <Button onClick={(e) => handleSubmit(updateTask)(e)}>Save</Button>
-        <Button onClick={(e) => handleSubmit(saveAsDone)(e)}>
+        <Button onClick={handleEditTask}>Save</Button>
+        <Button onClick={handleSaveTask}>
           <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
