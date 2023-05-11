@@ -22,10 +22,10 @@ function SearchField() {
     dispatch(toggleIsFiltering(false));
   }, 800);
 
-  const searchTaskByTitle = (task) => {
+  function searchTaskByTitle(task) {
     dispatch(toggleIsFiltering(true));
     debouncedSearchTask(task.title);
-  };
+  }
 
   const {
     register,
