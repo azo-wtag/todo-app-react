@@ -60,9 +60,9 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     onTaskEdit();
   }
 
-  const onValidationError = (errors) => {
+  function onValidationError(errors) {
     showErrorToast(errors.title.message);
-  };
+  }
 
   const {
     register,
