@@ -1,6 +1,7 @@
 import {
   ADD_TASK,
   DELETE_TASK,
+  EDIT_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
 
@@ -22,5 +23,12 @@ export const markAsDone = (taskId) => {
   return {
     type: MARK_TASK_DONE,
     payload: taskId,
+  };
+};
+
+export const editTask = (payload) => {
+  return {
+    type: EDIT_TASK,
+    payload,
   };
 };

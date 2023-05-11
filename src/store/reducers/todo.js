@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import {
   ADD_TASK,
   DELETE_TASK,
+  EDIT_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
 import { TASK_DATE_FORMAT } from "utils/const";
@@ -34,6 +35,20 @@ export const todoReducer = (state = initialTodoState, action) => {
             ...task,
             isCompleted: true,
             completedAt: dayjs().format(TASK_DATE_FORMAT),
+          };
+        }
+
+        return { ...task };
+      });
+      return { ...state, tasks: updatedTasks };
+    }
+
+    case EDIT_TASK: {
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === action.payload.taskId) {
+          return {
+            ...task,
+            title: action.payload.title,
           };
         }
 
