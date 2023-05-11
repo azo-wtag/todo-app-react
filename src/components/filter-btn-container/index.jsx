@@ -47,27 +47,32 @@ function FilterBtnContainer() {
     { [styles.selectedBtn]: filterState == TASK_FILTER_COMPLETED }
   );
 
+  const filterStates = [
+    { idState: TASK_FILTER_ALL, label: "All", styleClass: allBtnClassNames },
+    {
+      idState: TASK_FILTER_INCOMPLETED,
+      label: "Incomplete",
+      styleClass: incompleteBtnClassNames,
+    },
+    {
+      idState: TASK_FILTER_COMPLETED,
+      label: "Complete",
+      styleClass: completeBtnClassNames,
+    },
+  ];
+
   return (
     <>
       <div className={styles.buttonContainer}>
-        <Button
-          onClick={handleFilterClick(TASK_FILTER_ALL)}
-          className={allBtnClassNames}
-        >
-          All
-        </Button>
-        <Button
-          onClick={handleFilterClick(TASK_FILTER_INCOMPLETED)}
-          className={incompleteBtnClassNames}
-        >
-          Incomplete
-        </Button>
-        <Button
-          onClick={handleFilterClick(TASK_FILTER_COMPLETED)}
-          className={completeBtnClassNames}
-        >
-          Complete
-        </Button>
+        {filterStates.map((filterState) => (
+          <Button
+            key={filterState.label}
+            onClick={handleFilterClick(filterState.idState)}
+            className={filterState.styleClass}
+          >
+            {filterState.label}
+          </Button>
+        ))}
       </div>
       <div className={styles.selectBoxContainer}>
         <Select
