@@ -59,12 +59,12 @@ function SearchField() {
     };
   }, []);
 
-  const handleSearchButtonClick = () => {
+  function handleSearchButtonClick() {
     if (isSearchFieldVisible) {
       dispatch(setSearchKey(""));
     }
     setIsSearchFieldVisible(!isSearchFieldVisible);
-  };
+  }
 
   useEffect(() => {
     if (isSearchFieldVisible) {
