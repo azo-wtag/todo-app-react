@@ -11,8 +11,6 @@ import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import { calculateDateDifference } from "utils/helper";
 import { deleteTask, markAsDone } from "store/actions/todo";
-import EditTaskForm from "../edit-task";
-import { calculateDateDifference } from "utils/helper";
 
 function TaskCard({
   createdAt,
