@@ -95,12 +95,16 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
   }, []);
 
-  if (isTaskUpdating)
+  if (isTaskUpdating) {
     return (
       <div className="relative width-full height-full">
-        <Loader imageClassName={styles.loaderImage} />
+        <Loader
+          imageClassName={styles.loaderImage}
+          isLoading={isTaskUpdating}
+        />
       </div>
     );
+  }
 
   return (
     <form>
