@@ -43,7 +43,6 @@ export const deleteTask = (taskId) => {
 export const markAsDone = (taskId) => {
   return async (dispatch) => {
     try {
-      dispatch(setisLoading(true));
       await supabase
         .from("tasks")
         .update({
@@ -58,7 +57,6 @@ export const markAsDone = (taskId) => {
     } catch (error) {
       showErrorToast(error.message);
     }
-    dispatch(setisLoading(false));
   };
 };
 

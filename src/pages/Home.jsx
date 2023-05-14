@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
 import HomeContainer from "components/home-container";
 import Layout from "components/layout";
-import supabase from "config";
-import { useDispatch, useSelector } from "react-redux";
-import { loadTaskFromDB } from "store/actions/todo";
-import { showErrorToast } from "utils/toast";
 import Loader from "components/base/loader";
+import supabase from "config";
+import { loadTaskFromDB } from "store/actions/todo";
 import { setisLoading } from "store/actions/filter";
+import { showErrorToast } from "utils/toast";
 
 function Home() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ function Home() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      <Loader isLoading={isLoading} />
       <ToastContainer />
       <Layout />
       <HomeContainer />

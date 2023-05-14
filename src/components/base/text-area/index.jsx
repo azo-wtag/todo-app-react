@@ -19,7 +19,7 @@ function TextArea({ numOfRows, register, error, className, isDisabled }) {
 }
 
 TextArea.propTypes = {
-  noOfRows: propTypes.number,
+  numOfRows: propTypes.number,
   register: propTypes.object.isRequired,
   error: propTypes.object,
   className: propTypes.string,
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 TextArea.defaultProps = {
-  noOfRows: TEXTAREA_DEFAULT_ROW,
+  numOfRows: TEXTAREA_DEFAULT_ROW,
   className: "",
 };
 

@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 * {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
 }
 
 .width-full {
@@ -15,7 +15,7 @@
   height: 100%;
 }
 
-.min-h-screen {
+.min-height-screen {
   min-height: 100vh;
 }
 
@@ -64,6 +64,10 @@
   justify-content: end;
 }
 
+.justify-start {
+  justify-content: start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -73,6 +77,10 @@
 }
 
 @media only screen and (min-width: $breakpoint-sm) {
+  .justify-md-end {
+    justify-content: end;
+  }
+
   .flex-md-col {
     flex-direction: column;
   }
@@ -114,30 +122,30 @@
   font-weight: 500;
 }
 
-.text-white1 {
-  color: $white-color1;
+.text-white {
+  color: $color-white;
 }
 
-.text-grey1 {
-  color: $black-color1;
+.text-grey-ship {
+  color: $color-grey-ship;
 }
 
-.text-grey2 {
-  color: $grey-color2;
+.text-grey-french {
+  color: $color-grey-french;
 }
 
-.text-green1 {
-  color: $green-color1;
+.text-green-mint {
+  color: $color-green-mint;
 }
 
 .bg-white {
-  background-color: $white-color1;
+  background-color: $color-white;
 }
 
-.bg-violet2 {
-  background-color: $violet-color2;
+.bg-blue-lavender {
+  background-color: $color-blue-lavender;
 }
 
-.bg-violet3 {
-  background-color: $violet-color3;
+.bg-white-ghost {
+  background-color: $color-white-ghost;
 }
