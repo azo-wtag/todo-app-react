@@ -1,14 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
+import { connect } from "react-redux";
 import Image from "components/base/image";
-import { ALT_LOADER_TAG, PATH_LOADER_ICON } from "utils/const";
+import { ALT_LOADER_TAG, ICON_LOADER } from "utils/const";
 import styles from "components/base/loader/index.module.scss";
 
-function Loader({ imageClassName }) {
+function Loader({ imageClassName, isLoading }) {
+  if (!isLoading) {
+    return null;
+  }
+
   return (
     <div className={styles.loader}>
       <Image
-        src={PATH_LOADER_ICON}
+        src={ICON_LOADER}
         alt={ALT_LOADER_TAG}
         className={`${styles.icon} ${imageClassName}`}
       />
@@ -16,12 +21,17 @@ function Loader({ imageClassName }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  isLoading: state.filter.isFiltering,
+});
+
 Loader.propTypes = {
   imageClassName: propTypes.string,
+  isLoading: propTypes.bool,
 };
 
 Loader.defaultProps = {
   imageClassName: "",
 };
 
-export default Loader;
+export default connect(mapStateToProps)(Loader);

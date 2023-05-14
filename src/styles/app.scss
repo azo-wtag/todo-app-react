@@ -64,6 +64,10 @@
   justify-content: end;
 }
 
+.justify-start {
+  justify-content: start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -73,6 +77,10 @@
 }
 
 @media only screen and (min-width: $breakpoint-sm) {
+  .justify-md-end {
+    justify-content: end;
+  }
+
   .flex-md-col {
     flex-direction: column;
   }

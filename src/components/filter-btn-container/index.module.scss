@@ -1,7 +1,9 @@
 @import "styles/base.scss";
 
 .buttonContainer {
-  margin-top: 1rem;
+  display: none;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
 
   .allBtn {
     border-radius: 0.313rem;
@@ -9,7 +11,7 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    width: 3rem;
+    padding: 0.5rem 0.813rem;
   }
 
   .incompleteBtn {
@@ -18,8 +20,9 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    margin: 0 1.188rem;
-    width: 6.938rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem 0.813rem;
   }
 
   .completeBtn {
@@ -28,12 +31,27 @@
     font-size: 1rem;
     height: 2.25rem;
     line-height: 1.172rem;
-    width: 6.5rem;
+    padding: 0.5rem 0.813rem;
   }
+
+  .selectedBtn {
+    background-color: $color-blue-lavender;
+    color: $color-white;
+  }
+}
+
+.selectBoxContainer {
+  display: block;
+  margin-top: 1rem;
 }
 
 @media only screen and (min-width: $breakpoint-sm) {
   .buttonContainer {
-    margin-top: 1.75rem;
+    display: flex;
+    padding-bottom: 0;
+  }
+
+  .selectBoxContainer {
+    display: none;
   }
 }

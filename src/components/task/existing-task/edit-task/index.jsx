@@ -3,22 +3,22 @@ import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  TASK_TEXTAREA_NUM_OF_ROW,
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
-  PATH_CHECK_ICON,
+  ICON_CHECK,
   ALT_CHECK_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   ALT_DELETE_ICON_TAG,
-  TASK_SANITIZE_REGEX_PATTERN,
   ERROR_MESSAGE_CUSTOM_TYPE,
   ERROR_MESSAGE_TASK_TITLE,
   SUCCESS_MESSAGE_TASK_UPDATED,
   SUCCESS_MESSAGE_EDITED_TASK_DONE,
+  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
@@ -27,18 +27,11 @@ import Loader from "components/base/loader";
 import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
-  const dispath = useDispatch();
-  useEffect(
-    () => setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle),
-    [existingTitle]
-  );
+  const dispatch = useDispatch();
 
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
-
-  const titleSanitizer = (title) => {
-    const sanitizedTitle = title
-      .replace(TASK_SANITIZE_REGEX_PATTERN, "")
-      .trim();
+  function titleSanitizer(title) {
+    const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
         type: ERROR_MESSAGE_CUSTOM_TYPE,
@@ -48,34 +41,34 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     }
 
     return sanitizedTitle;
-  };
+  }
 
-  const updateTask = async (task) => {
+  async function updateTask(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
     setIsTaskUpdating(true);
-    await dispath(editTask({ taskId, title: title }));
+    await dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
     onTaskEdit();
     setIsTaskUpdating(false);
-  };
+  }
 
-  const saveAsDone = async (task) => {
+  async function saveAsDone(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
     setIsTaskUpdating(true);
-    await dispath(editTask({ taskId, title: title }));
-    await dispath(markAsDone(taskId));
+    await dispatch(editTask({ taskId, title: title }));
+    await dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
     setIsTaskUpdating(false);
-  };
+  }
 
-  const onValidationError = (errors) => {
+  function onValidationError(errors) {
     showErrorToast(errors.title.message);
-  };
+  }
 
   const {
     register,
@@ -85,13 +78,22 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     setError,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
     resolver: yupResolver(taskSchema),
   });
 
+  function handleEditTask(e) {
+    handleSubmit(updateTask, onValidationError)(e);
+  }
+
+  function handleSaveTask(e) {
+    handleSubmit(saveAsDone, onValidationError)(e);
+  }
+
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
-  }, [setFocus]);
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
+  }, []);
 
   if (isTaskUpdating)
     return (
@@ -103,7 +105,6 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   return (
     <form>
       <TextArea
-        numOfRows={TASK_TEXTAREA_NUM_OF_ROW}
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
         className={`fw-500 ${styles.textArea}`}
@@ -111,23 +112,23 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
       <div className={`flex items-center ${styles.btnContainer}`}>
         <Button
-          onClick={handleSubmit(updateTask, onValidationError)}
-          className={`bg-white ${styles.saveBtn}`}
+          onClick={handleEditTask}
+          className={`bg-white fw-500 ${styles.saveBtn}`}
         >
           Save
         </Button>
         <Button
-          onClick={handleSubmit(saveAsDone, onValidationError)}
+          onClick={handleSaveTask}
           className={`bg-white ${styles.doneBtn}`}
         >
-          <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
+          <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
         <Button
           buttonType={TYPE_BUTTON}
           onClick={onDelete}
           className="bg-white"
         >
-          <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
     </form>
@@ -136,6 +137,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
 
 EditTaskForm.propTypes = {
   taskId: propTypes.string.isRequired,
+  existingTitle: propTypes.string.isRequired,
   onDelete: propTypes.func.isRequired,
   onTaskEdit: propTypes.func.isRequired,
 };

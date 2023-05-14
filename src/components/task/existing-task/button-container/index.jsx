@@ -5,38 +5,52 @@ import Button from "components/base/button";
 import Image from "components/base/image";
 import {
   ALT_CHECK_ICON_TAG,
-  PATH_CHECK_ICON,
+  ICON_CHECK,
   ALT_DELETE_ICON_TAG,
-  PATH_DELETE_ICON,
+  ICON_DELETE,
   ALT_EDIT_ICON_TAG,
-  PATH_EDIT_ICON,
+  ICON_EDIT,
 } from "utils/const";
 
-function ButtonContainer({ onDone, onEdit, onDelete, isTaskCompleted }) {
+function ButtonContainer({
+  isTaskCompleted,
+  onDoneClick,
+  onDeleteClick,
+  onEditClick,
+}) {
   return (
     <div className="flex items-center">
       {!isTaskCompleted && (
         <>
-          <Button className={`bg-white ${styles.doneBtn}`} onClick={onDone}>
-            <Image src={PATH_CHECK_ICON} alt={ALT_CHECK_ICON_TAG} />
+          <Button
+            className={`bg-white ${styles.doneBtn}`}
+            onClick={onDoneClick}
+          >
+            <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
           </Button>
-          <Button className={`bg-white ${styles.editBtn}`} onClick={onEdit}>
-            <Image src={PATH_EDIT_ICON} alt={ALT_EDIT_ICON_TAG} />
+          <Button
+            className={`bg-white ${styles.editBtn}`}
+            onClick={onEditClick}
+          >
+            <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
           </Button>
         </>
       )}
-      <Button className={`bg-white ${styles.deleteBtn}`} onClick={onDelete}>
-        <Image src={PATH_DELETE_ICON} alt={ALT_DELETE_ICON_TAG} />
+      <Button
+        className={`bg-white ${styles.deleteBtn}`}
+        onClick={onDeleteClick}
+      >
+        <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
       </Button>
     </div>
   );
 }
 
 ButtonContainer.propTypes = {
-  onDone: propTypes.func.isRequired,
-  onDelete: propTypes.func.isRequired,
-  onEdit: propTypes.func.isRequired,
   isTaskCompleted: propTypes.bool.isRequired,
+  onDoneClick: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
+  onEditClick: propTypes.func.isRequired,
 };
 
 export default ButtonContainer;

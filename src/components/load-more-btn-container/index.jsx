@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import propTypes from "prop-types";
-
 import Button from "components/base/button";
 import styles from "components/load-more-btn-container/index.module.scss";
-import { loadMoreTask, showLessTasks } from "store/actions/filter";
+import {
+  loadMoreTask,
+  resetVisibleTaskCount,
+  showLessTasks,
+} from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
 
 function LoadMoreBtnContainer({ numOfTotalTask }) {
@@ -14,12 +17,24 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
     (state) => state.filter.visibleCardCount
   );
 
-  const handleLoadMoreClick = () => {
+  function handleLoadMoreClick() {
     const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
-    if (numOfRemainingCard >= CARD_PER_PAGE)
+    if (numOfRemainingCard >= CARD_PER_PAGE) {
       dispatch(loadMoreTask(CARD_PER_PAGE));
-    else dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
-  };
+    } else {
+      dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
+    }
+  }
+
+  function handleShowLessClick() {
+    dispatch(showLessTasks());
+  }
+
+  useEffect(() => {
+    if (numOfTotalTask < numOfVisibleTask) {
+      dispatch(resetVisibleTaskCount(numOfTotalTask));
+    }
+  }, []);
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, "fw-500", {
     "d-none": numOfTotalTask <= numOfVisibleTask,
@@ -28,7 +43,9 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
     "d-none": numOfVisibleTask < numOfTotalTask,
   });
 
-  if (numOfTotalTask <= CARD_PER_PAGE) return null;
+  if (numOfTotalTask <= CARD_PER_PAGE) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center">
@@ -36,10 +53,7 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
         Load More
       </Button>
 
-      <Button
-        className={showLessButtonClasses}
-        onClick={() => dispatch(showLessTasks())}
-      >
+      <Button className={showLessButtonClasses} onClick={handleShowLessClick}>
         Show Less
       </Button>
     </div>
