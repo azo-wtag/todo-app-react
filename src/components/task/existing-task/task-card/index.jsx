@@ -78,7 +78,6 @@ function TaskCard({
           onDelete={hideEditTaskFrom}
           onTaskEdit={hideEditTaskFrom}
         />
-        {isCompleted && <Button>Completed in days</Button>}
       </div>
     );
   } else {
