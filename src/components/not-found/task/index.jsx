@@ -4,21 +4,16 @@ import styles from "components/not-found/task/index.module.scss";
 import {
   ALT_NO_TASK_FOUND_ICON_TAG,
   ICON_NO_TASK_FOUND,
-  TASK_FILTER_ALL,
-  TASK_FILTER_INCOMPLETED,
+  TASK_FILTER_COMPLETED,
 } from "utils/const";
 import { useSelector } from "react-redux";
 
 function NoTaskFound() {
   const filterState = useSelector((state) => state.filter.filteredCardState);
 
-  let taskState;
-  if (
-    filterState === TASK_FILTER_ALL ||
-    filterState === TASK_FILTER_INCOMPLETED
-  ) {
-    taskState = "add";
-  } else {
+  let taskState = "add";
+
+  if (filterState === TASK_FILTER_COMPLETED) {
     taskState = "complete";
   }
 
