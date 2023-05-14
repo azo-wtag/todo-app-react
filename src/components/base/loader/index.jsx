@@ -21,8 +21,8 @@ function Loader({ imageClassName, isLoading }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  isLoading: state.filter.isFiltering,
+const mapStateToProps = (state, ownProps) => ({
+  isLoading: ownProps.isLoading || state.filter.isFiltering,
 });
 
 Loader.propTypes = {
