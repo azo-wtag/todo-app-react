@@ -8,8 +8,8 @@ import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import TaskCardContainer from "components/task/existing-task/container";
 import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
-import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
-import { resetVisibleTaskCount } from "store/actions/filter";
+import { filterTaskByStatusTitle, filterTaskByTitle } from "utils/helper";
+import { resetVisibleTaskCount, toggleIsFiltering } from "store/actions/filter";
 
 function HomeContainer() {
   const dispatch = useDispatch();
@@ -20,20 +20,28 @@ function HomeContainer() {
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   const filteredState = useSelector((state) => state.filter.filteredCardState);
+  const searchKey = useSelector((state) => state.filter.searchKey);
   const [filteredTasks, setFilteredTasks] = useState([]);
   useEffect(() => {
     function filterTasks() {
+      dispatch(toggleIsFiltering(true));
+      const isCompleted = true;
       if (filteredState === TASK_FILTER_COMPLETED) {
-        setFilteredTasks(filterCompletedTask(tasks));
+        setFilteredTasks(
+          filterTaskByStatusTitle(tasks, isCompleted, searchKey)
+        );
       } else if (filteredState === TASK_FILTER_INCOMPLETED) {
-        setFilteredTasks(filterInCompletedTask(tasks));
+        setFilteredTasks(
+          filterTaskByStatusTitle(tasks, !isCompleted, searchKey)
+        );
       } else {
-        setFilteredTasks(tasks);
+        setFilteredTasks(filterTaskByTitle(tasks, searchKey));
       }
+      dispatch(toggleIsFiltering(false));
     }
 
     filterTasks();
-  }, [filteredState, tasks]);
+  }, [filteredState, tasks, searchKey]);
 
   useEffect(() => {
     dispatch(resetVisibleTaskCount());

@@ -12,12 +12,22 @@ export const generateTaskObject = (title) => {
   };
 };
 
-export const filterCompletedTask = (tasks) => {
-  return tasks.filter((task) => task.isCompleted);
+export const filterTaskByStatusTitle = (tasks, isCompleted, title = "") => {
+  return tasks.filter(
+    (task) =>
+      task.isCompleted === isCompleted &&
+      task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
+  );
 };
 
-export const filterInCompletedTask = (tasks) => {
-  return tasks.filter((task) => !task.isCompleted);
+export const filterTaskByTitle = (tasks, title = "") => {
+  if (title === "") {
+    return tasks;
+  }
+
+  return tasks.filter((task) =>
+    task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
+  );
 };
 
 export const calculateDateDifference = (completedAt, createdAt) => {
@@ -25,4 +35,16 @@ export const calculateDateDifference = (completedAt, createdAt) => {
   return dateDifference === 0
     ? `1 day`
     : `${Math.abs(dateDifference) + 1} days`;
+};
+
+export const debounce = (fn, delay) => {
+  let timerId;
+  return function (...args) {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
 };

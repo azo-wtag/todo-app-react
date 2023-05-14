@@ -21,7 +21,11 @@ import {
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/actions/todo";
-import { filterTask } from "store/actions/filter";
+import {
+  filterTask,
+  resetVisibleTaskCount,
+  setSearchKey,
+} from "store/actions/filter";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
@@ -39,6 +43,8 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
+    dispatch(resetVisibleTaskCount());
+    dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
   }
 
