@@ -50,9 +50,9 @@ function TaskCard({
     }
   }
 
-  function handleDoneClick() {
+  async function handleDoneClick() {
     dispatch(setisLoading(true));
-    dispatch(markAsDone(taskId));
+    await dispatch(markAsDone(taskId));
     dispatch(setisLoading(false));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   }
