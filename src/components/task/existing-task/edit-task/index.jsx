@@ -7,6 +7,7 @@ import DOMPurify from "dompurify";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
+import Loader from "components/base/loader";
 import {
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
@@ -21,10 +22,9 @@ import {
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
-import Loader from "components/base/loader";
-import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
