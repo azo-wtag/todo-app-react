@@ -18,3 +18,10 @@ export const calculateDateDifference = (completedAt, createdAt) => {
     ? `1 day`
     : `${Math.abs(dateDifference) + 1} days`;
 };
+
+export const findTaskIndexById = (tasks, selectedTaskId) => {
+  const selectedTaskIndex = tasks.findIndex((task) => {
+    return task.id === selectedTaskId;
+  });
+  return selectedTaskIndex;
+};
