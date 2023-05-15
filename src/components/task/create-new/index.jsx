@@ -8,7 +8,6 @@ import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
-import { addTaskToTodo } from "store/actions/todo";
 import {
   ALT_DELETE_ICON_TAG,
   ICON_DELETE,
@@ -20,6 +19,7 @@ import {
 } from "utils/const";
 import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
+import { addTask } from "store/slices/todoSlce";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
       return;
     }
-    dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
+    dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
     onSuccessfullTaskEntry();
   }
