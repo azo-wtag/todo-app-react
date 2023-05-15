@@ -34,9 +34,20 @@ const todoSlice = createSlice({
         completedAt: dayjs().format(TASK_DATE_FORMAT),
       };
     },
+
+    editTask: (state, action) => {
+      const selectedIndex = findTaskIndexById(
+        current(state.tasks),
+        action.payload.taskId
+      );
+      state.tasks[selectedIndex] = {
+        ...state.tasks[selectedIndex],
+        title: action.payload.title,
+      };
+    },
   },
 });
 
 const { reducer } = todoSlice;
-export const { addTask, deleteTask, markAsDone } = todoSlice.actions;
+export const { addTask, deleteTask, markAsDone, editTask } = todoSlice.actions;
 export default reducer;

@@ -19,7 +19,7 @@ import {
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
-import { editTask, markAsDone } from "store/actions/todo";
+import { editTask, markAsDone } from "store/slices/todoSlce";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
