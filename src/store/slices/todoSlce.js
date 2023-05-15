@@ -12,9 +12,13 @@ const todoSlice = createSlice({
     addTask: (state, action) => {
       state.tasks.unshift(action.payload);
     },
+
+    deleteTask: (state, action) => {
+      state.tasks.splice(action.payload, 1);
+    },
   },
 });
 
 const { reducer } = todoSlice;
-export const { addTask } = todoSlice.actions;
+export const { addTask, deleteTask } = todoSlice.actions;
 export default reducer;
