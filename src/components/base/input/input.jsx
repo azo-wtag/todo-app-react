@@ -4,10 +4,10 @@ import { INPUT_TYPE_TEXT } from "utils/const";
 
 function InputField({ classNames, type, register, error }) {
   return (
-    <>
+    <div className="width-full">
       <input type={type} className={classNames} {...register} />
       {error && <p>{error.message}</p>}
-    </>
+    </div>
   );
 }
 
