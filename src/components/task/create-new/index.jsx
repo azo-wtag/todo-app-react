@@ -80,6 +80,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
       <TextArea
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
+        className="width-full"
       />
 
       <div className={`flex items-center ${styles.buttonContainer}`}>

@@ -1,24 +1,24 @@
 @import "styles/base.scss";
 
 .card {
-  border: 1px solid $violet-color;
+  border-radius: 0.313rem;
+  border: 1px solid $color-blue-hawkes;
   padding: 0.938rem;
 
+  .header {
+    font-size: 1.5rem;
+    line-height: 1.758rem;
+  }
+
   .date {
-    margin-top: 0.563rem;
+    font-size: 0.875rem;
     margin-bottom: 1.5rem;
+    margin-top: 0.563rem;
   }
 
-  .doneBtn {
-    width: 1.5rem;
-  }
-
-  .editBtn {
-    width: 1.5rem;
-    margin-left: 1.625rem;
-    margin-right: 1.813rem;
-  }
-  .deleteBtn {
-    width: 1.25rem;
+  .completedText {
+    border-radius: 0.313rem;
+    font-size: 0.75rem;
+    padding: 0.313rem 0.75rem;
   }
 }

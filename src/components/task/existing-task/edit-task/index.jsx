@@ -23,6 +23,7 @@ import {
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/slices/todoSlce";
 import { showErrorToast, showSuccessToast } from "utils/toast";
+import styles from "components/task/existing-task/edit-task/index.module.scss";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
@@ -93,14 +94,27 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       <TextArea
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
+        className={`fw-500 ${styles.textArea}`}
       />
 
-      <div className="flex items-center">
-        <Button onClick={handleEditTask}>Save</Button>
-        <Button onClick={handleSaveTask}>
+      <div className={`flex items-center ${styles.btnContainer}`}>
+        <Button
+          onClick={handleEditTask}
+          className={`bg-white ${styles.saveBtn}`}
+        >
+          Save
+        </Button>
+        <Button
+          onClick={handleSaveTask}
+          className={`bg-white ${styles.doneBtn}`}
+        >
           <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
         </Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
+        <Button
+          buttonType={TYPE_BUTTON}
+          onClick={onDelete}
+          className="bg-white"
+        >
           <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
