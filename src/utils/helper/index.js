@@ -12,6 +12,14 @@ export const generateTaskObject = (title) => {
   };
 };
 
+export const filterCompletedTask = (tasks) => {
+  return tasks.filter((task) => task.isCompleted);
+};
+
+export const filterInCompletedTask = (tasks) => {
+  return tasks.filter((task) => !task.isCompleted);
+};
+
 export const calculateDateDifference = (completedAt, createdAt) => {
   const dateDifference = dayjs(completedAt).diff(createdAt, "day");
   return dateDifference === 0
