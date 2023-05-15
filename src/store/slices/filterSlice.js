@@ -14,17 +14,25 @@ const filterSlice = createSlice({
       state.visibleCardCount += action.payload;
     },
 
-    showLessTask: (state, action) => {
+    resetVisibleTaskCount: (state, action) => {
       state.visibleCardCount = action.payload;
     },
 
     decreaseNumOfVisibleTask: (state, action) => {
       state.visibleCardCount -= action.payload;
     },
+
+    filterTask: (state, action) => {
+      state.filteredCardState = action.payload;
+    },
   },
 });
 
 const { reducer } = filterSlice;
-export const { loadMoreTask, showLessTask, decreaseNumOfVisibleTask } =
-  filterSlice.actions;
+export const {
+  loadMoreTask,
+  resetVisibleTaskCount,
+  decreaseNumOfVisibleTask,
+  filterTask,
+} = filterSlice.actions;
 export default reducer;

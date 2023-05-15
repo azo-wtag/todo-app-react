@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "components/base/button";
 import { useDispatch } from "react-redux";
-import { filterTask } from "store/actions/filter";
 import {
   TASK_FILTER_ALL,
   TASK_FILTER_COMPLETED,
   TASK_FILTER_INCOMPLETED,
 } from "utils/const";
+import { filterTask } from "store/slices/filterSlice";
 
 function FilterBtnContainer() {
   const dispatch = useDispatch();

@@ -5,23 +5,26 @@ import propTypes from "prop-types";
 
 import Button from "components/base/button";
 import styles from "components/load-more-btn-container/index.module.scss";
-import { loadMoreTask, showLessTasks } from "store/actions/filter";
-import {
-  loadMoreTask,
-  resetVisibleTaskCount,
-  showLessTasks,
-} from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
+import { loadMoreTask, resetVisibleTaskCount } from "store/slices/filterSlice";
 
-function LoadMoreBtnContainer() {
 function LoadMoreBtnContainer({ numOfTotalTask }) {
   const dispatch = useDispatch();
-  const numOfTotalTask = useSelector((state) => state.todo.tasks.length);
   const numOfVisibleTask = useSelector(
     (state) => state.filter.visibleCardCount
   );
-@@ -27,6 +31,12 @@ function LoadMoreBtnContainer() {
-    dispatch(showLessTasks());
+
+  function handleLoadMoreClick() {
+    const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
+    if (numOfRemainingCard >= CARD_PER_PAGE) {
+      dispatch(loadMoreTask(CARD_PER_PAGE));
+    } else {
+      dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
+    }
+  }
+
+  function handleShowLessClick() {
+    dispatch(resetVisibleTaskCount(CARD_PER_PAGE));
   }
 
   useEffect(() => {
@@ -36,14 +39,17 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
   const showLessButtonClasses = classNames({
     "d-none": numOfVisibleTask < numOfTotalTask,
   });
+
   if (numOfTotalTask <= CARD_PER_PAGE) {
     return null;
   }
+
   return (
     <div className="flex justify-center">
       <Button className={loadMoreButtonClasses} onClick={handleLoadMoreClick}>
         Load More
       </Button>
+
       <Button className={showLessButtonClasses} onClick={handleShowLessClick}>
         Show Less
       </Button>

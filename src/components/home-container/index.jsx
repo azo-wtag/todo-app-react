@@ -7,9 +7,13 @@ import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import TaskCardContainer from "components/task/existing-task/container";
-import { TASK_FILTER_COMPLETED, TASK_FILTER_INCOMPLETED } from "utils/const";
+import {
+  CARD_PER_PAGE,
+  TASK_FILTER_COMPLETED,
+  TASK_FILTER_INCOMPLETED,
+} from "utils/const";
 import { filterCompletedTask, filterInCompletedTask } from "utils/helper";
-import { resetVisibleTaskCount } from "store/actions/filter";
+import { resetVisibleTaskCount } from "store/slices/filterSlice";
 
 function HomeContainer() {
   const dispatch = useDispatch();
@@ -36,7 +40,7 @@ function HomeContainer() {
   }, [filteredState, tasks]);
 
   useEffect(() => {
-    dispatch(resetVisibleTaskCount());
+    dispatch(resetVisibleTaskCount(CARD_PER_PAGE));
   }, [filteredState]);
 
   function showNewTaskCard() {
