@@ -76,16 +76,25 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(addNewTask, onValidationError)}>
+    <form
+      onSubmit={handleSubmit(addNewTask, onValidationError)}
+      className={styles.card}
+    >
       <TextArea
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
-        className="width-full"
+        className={`${styles.textArea}`}
       />
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
-        <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON} onClick={onDeleteClick}>
+        <Button className={`bg-white fw-500 ${styles.addTaskBtn}`}>
+          Add Task
+        </Button>
+        <Button
+          className="bg-white"
+          buttonType={TYPE_BUTTON}
+          onClick={onDeleteClick}
+        >
           <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>

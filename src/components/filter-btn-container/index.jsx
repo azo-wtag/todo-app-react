@@ -7,6 +7,7 @@ import {
   TASK_FILTER_INCOMPLETED,
 } from "utils/const";
 import { filterTask } from "store/slices/filterSlice";
+import styles from "components/filter-btn-container/index.module.scss";
 
 function FilterBtnContainer() {
   const dispatch = useDispatch();
@@ -19,11 +20,22 @@ function FilterBtnContainer() {
 
   return (
     <div>
-      <Button onClick={handleFilterClick(TASK_FILTER_ALL)}>All</Button>
-      <Button onClick={handleFilterClick(TASK_FILTER_INCOMPLETED)}>
+      <Button
+        onClick={handleFilterClick(TASK_FILTER_ALL)}
+        className={`bg-white ${styles.allBtn}`}
+      >
+        All
+      </Button>
+      <Button
+        onClick={handleFilterClick(TASK_FILTER_INCOMPLETED)}
+        className={`bg-white ${styles.incompleteBtn}`}
+      >
         Incomplete
       </Button>
-      <Button onClick={handleFilterClick(TASK_FILTER_COMPLETED)}>
+      <Button
+        onClick={handleFilterClick(TASK_FILTER_COMPLETED)}
+        className={`bg-white ${styles.completeBtn}`}
+      >
         Complete
       </Button>
     </div>
