@@ -4,6 +4,8 @@ import { CARD_PER_PAGE } from "utils/const";
 const initialState = {
   visibleCardCount: CARD_PER_PAGE,
   filteredCardState: 1,
+  searchKey: "",
+  isFiltering: false,
 };
 
 const filterSlice = createSlice({
@@ -25,6 +27,14 @@ const filterSlice = createSlice({
     filterTask: (state, action) => {
       state.filteredCardState = action.payload;
     },
+
+    toggleIsFiltering: (state, action) => {
+      state.isFiltering = action.payload;
+    },
+
+    setSearchKey: (state, action) => {
+      state.searchKey = action.payload;
+    },
   },
 });
 
@@ -34,5 +44,7 @@ export const {
   resetVisibleTaskCount,
   decreaseNumOfVisibleTask,
   filterTask,
+  toggleIsFiltering,
+  setSearchKey,
 } = filterSlice.actions;
 export default reducer;

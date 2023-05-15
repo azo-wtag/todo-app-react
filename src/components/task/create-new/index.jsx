@@ -17,15 +17,17 @@ import {
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
   TASK_FILTER_ALL,
+  CARD_PER_PAGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
+
+import { addTask } from "store/slices/todoSlce";
 import {
   filterTask,
   resetVisibleTaskCount,
   setSearchKey,
-} from "store/actions/filter";
-import { addTask } from "store/slices/todoSlce";
+} from "store/slices/filterSlice";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
-    dispatch(resetVisibleTaskCount());
+    dispatch(resetVisibleTaskCount(CARD_PER_PAGE));
     dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
   }

@@ -13,7 +13,10 @@ import {
   TASK_FILTER_INCOMPLETED,
 } from "utils/const";
 import { filterTaskByStatusTitle, filterTaskByTitle } from "utils/helper";
-import { resetVisibleTaskCount } from "store/slices/filterSlice";
+import {
+  resetVisibleTaskCount,
+  toggleIsFiltering,
+} from "store/slices/filterSlice";
 
 function HomeContainer() {
   const dispatch = useDispatch();

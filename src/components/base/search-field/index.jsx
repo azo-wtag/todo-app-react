@@ -11,8 +11,8 @@ import {
   TITLE_FIELD_NAME_ATTRIBUTE,
 } from "utils/const";
 import { searchTaskSchema } from "utils/schema";
-import { setSearchKey, toggleIsFiltering } from "store/actions/filter";
 import { debounce } from "utils/helper";
+import { setSearchKey, toggleIsFiltering } from "store/slices/filterSlice";
 
 function SearchField() {
   const dispatch = useDispatch();
