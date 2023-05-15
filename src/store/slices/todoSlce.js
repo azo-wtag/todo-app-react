@@ -1,10 +1,14 @@
 import dayjs from "dayjs";
 import { createSlice, current } from "@reduxjs/toolkit";
 import { findTaskIndexById, generateTaskObject } from "utils/helper";
-import { TASK_DATE_FORMAT } from "utils/const";
+import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
 
 const initialState = {
-  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
+  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
+    return generateTaskObject(
+      `Complete Initial setup of the Todo App ${i + 1}`
+    );
+  }),
 };
 
 const todoSlice = createSlice({
