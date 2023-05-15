@@ -12,6 +12,7 @@ import { validateDayjsDate } from "utils/helper/validation";
 import { deleteTask, markAsDone } from "store/slices/todoSlce";
 import { calculateDateDifference } from "utils/helper";
 import { decreaseNumOfVisibleTask } from "store/slices/filterSlice";
+import { showSuccessToast } from "utils/toast";
 
 function TaskCard({
   createdAt,
@@ -39,6 +40,7 @@ function TaskCard({
 
   function handleDeleteClick() {
     dispatch(deleteTask(taskId));
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DELETED);
     if (tasks.length === numOfCardVisible) {
       dispatch(decreaseNumOfVisibleTask(SINGLE_CARD));
     }
@@ -46,6 +48,7 @@ function TaskCard({
 
   function handleDoneClick() {
     dispatch(markAsDone(taskId));
+    showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   }
 
   const tasks = useSelector((state) => state.todo.tasks);
