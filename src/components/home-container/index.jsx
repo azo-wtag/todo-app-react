@@ -3,12 +3,16 @@ import { useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
-import TaskCard from "components/task/existing-task/task-card";
 import FilterBtnContainer from "components/filter-btn-container";
 import NoTaskFound from "components/not-found/task";
+import LoadMoreBtnContainer from "components/load-more-btn-container";
+import TaskCardContainer from "components/task/existing-task/container";
 
 function HomeContainer() {
   const tasks = useSelector((state) => state.todo.tasks);
+  const numOfCardVisible = useSelector(
+    (state) => state.filter.visibleCardCount
+  );
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
   function showNewTaskCard() {
@@ -19,7 +23,8 @@ function HomeContainer() {
     setIsNewTaskRequested(false);
   }
 
-  const isTaskAvailable = tasks.length > 0;
+  const isTaskEmpty = tasks.length <= 0;
+  const paginatedTasks = tasks.slice(0, numOfCardVisible);
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
@@ -36,26 +41,11 @@ function HomeContainer() {
             onDeleteClick={hideNewTaskCard}
           />
         )}
-        {isTaskAvailable &&
-          tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              taskId={task.id}
-              title={task.title}
-              createdAt={task.createdAt}
-              isCompleted={task.isCompleted}
-              completedAt={task.completedAt}
-            />
-          ))}
+
+        <TaskCardContainer tasks={paginatedTasks} />
       </div>
 
-      {!isTaskAvailable ? (
-        <NoTaskFound />
-      ) : (
-        <div className="flex justify-center">
-          <Button className={styles.loadMoreBtn}>Load More</Button>
-        </div>
-      )}
+      {isTaskEmpty ? <NoTaskFound /> : <LoadMoreBtnContainer />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import propTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import classnames from "classnames";
 import styles from "components/task/existing-task/task-card/index.module.scss";
@@ -38,11 +38,19 @@ function TaskCard({
 
   function handleDeleteClick() {
     dispatch(deleteTask(taskId));
+    if (tasks.length === numOfCardVisible) {
+      dispatch(decreaseNumOfVisibleTasks());
+    }
   }
 
   function handleDoneClick() {
     dispatch(markAsDone(taskId));
   }
+
+  const tasks = useSelector((state) => state.todo.tasks);
+  const numOfCardVisible = useSelector(
+    (state) => state.filter.visibleCardCount
+  );
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
 
@@ -64,10 +72,10 @@ function TaskCard({
         <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
         <div className="flex justify-between">
           <ButtonContainer
+            isTaskCompleted={isCompleted}
             onDoneClick={handleDoneClick}
             onEditClick={showEditTaskForm}
             onDeleteClick={handleDeleteClick}
-            isTaskCompleted={isCompleted}
           />
           {isCompleted && (
             <Button>
