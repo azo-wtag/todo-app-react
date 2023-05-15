@@ -1,64 +1,89 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import classNames from "classnames";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
-
+import { useDispatch } from "react-redux";
+import DOMPurify from "dompurify";
+import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
-import styles from "components/load-more-btn-container/index.module.scss";
-import { CARD_PER_PAGE } from "utils/const";
-import { loadMoreTask, resetVisibleTaskCount } from "store/slices/filterSlice";
+import TextArea from "components/base/text-area";
+import Image from "components/base/image";
+import {
+  ALT_DELETE_ICON_TAG,
+  ICON_DELETE,
+  TITLE_FIELD_NAME_ATTRIBUTE,
+  CUSTOM_ERROR_MESSAGE_TYPE,
+  TASK_TITLE_ERROR_MESSAGE,
+  TYPE_BUTTON,
+  FORM_VALIDATION_MODE_ONCHANGE,
+  TASK_FILTER_ALL,
+} from "utils/const";
+import { taskSchema } from "utils/schema";
+import { generateTaskObject } from "utils/helper";
+import {
+  filterTask,
+  resetVisibleTaskCount,
+  setSearchKey,
+} from "store/actions/filter";
+import { addTask } from "store/slices/todoSlce";
 
-function LoadMoreBtnContainer({ numOfTotalTask }) {
+function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
-  const numOfVisibleTask = useSelector(
-    (state) => state.filter.visibleCardCount
-  );
 
-  function handleLoadMoreClick() {
-    const numOfRemainingCard = numOfTotalTask - numOfVisibleTask;
-    if (numOfRemainingCard >= CARD_PER_PAGE) {
-      dispatch(loadMoreTask(CARD_PER_PAGE));
-    } else {
-      dispatch(loadMoreTask(Math.abs(numOfRemainingCard)));
+  function addNewTask(task) {
+    const sanitizedTitle = DOMPurify.sanitize(task.title);
+    if (sanitizedTitle === "") {
+      setError(TITLE_FIELD_NAME_ATTRIBUTE, {
+        type: CUSTOM_ERROR_MESSAGE_TYPE,
+        message: TASK_TITLE_ERROR_MESSAGE,
+      });
+      setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
+      return;
     }
+    dispatch(addTask(generateTaskObject(sanitizedTitle)));
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    dispatch(filterTask(TASK_FILTER_ALL));
+    dispatch(resetVisibleTaskCount());
+    dispatch(setSearchKey(""));
+    onSuccessfullTaskEntry();
   }
 
-  function handleShowLessClick() {
-    dispatch(resetVisibleTaskCount());
-  }
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setFocus,
+    setError,
+    formState: { errors },
+  } = useForm({
+    mode: FORM_VALIDATION_MODE_ONCHANGE,
+    resolver: yupResolver(taskSchema),
+  });
 
   useEffect(() => {
-    if (numOfTotalTask < numOfVisibleTask) {
-      dispatch(resetVisibleTaskCount(numOfTotalTask));
-    }
+    setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, []);
 
-  const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
-    "d-none": numOfTotalTask === numOfVisibleTask,
-  });
-  const showLessButtonClasses = classNames({
-    "d-none": numOfVisibleTask < numOfTotalTask,
-  });
-
-  if (numOfTotalTask <= CARD_PER_PAGE) {
-    return null;
-  }
-
   return (
-    <div className="flex justify-center">
-      <Button className={loadMoreButtonClasses} onClick={handleLoadMoreClick}>
-        Load More
-      </Button>
+    <form onSubmit={handleSubmit(addNewTask)}>
+      <TextArea
+        register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
+        error={errors.title}
+      />
 
-      <Button className={showLessButtonClasses} onClick={handleShowLessClick}>
-        Show Less
-      </Button>
-    </div>
+      <div className={`flex items-center ${styles.buttonContainer}`}>
+        <Button className={styles.addTaskBtn}>Add Task</Button>
+        <Button buttonType={TYPE_BUTTON} onClick={onDeleteClick}>
+          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
+        </Button>
+      </div>
+    </form>
   );
 }
 
-LoadMoreBtnContainer.propTypes = {
-  numOfTotalTask: propTypes.number.isRequired,
+CreateTask.propTypes = {
+  onSuccessfullTaskEntry: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
 };
 
-export default LoadMoreBtnContainer;
+export default CreateTask;

@@ -1,13 +1,20 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
+import { connect } from "react-redux";
 import styles from "components/base/button/index.module.scss";
 import { TYPE_SUBMIT } from "utils/const";
 
-function Button({ buttonType, children, className, onClick }) {
+function Button({ children, className, buttonType, isDisabled, onClick }) {
   const buttonClass = classNames(styles.button, className);
+
   return (
-    <button className={buttonClass} onClick={onClick} type={buttonType}>
+    <button
+      className={buttonClass}
+      onClick={onClick}
+      type={buttonType}
+      disabled={isDisabled}
+    >
       {children}
     </button>
   );
@@ -18,7 +25,12 @@ Button.propTypes = {
   className: propTypes.string,
   onClick: propTypes.func,
   buttonType: propTypes.string,
+  isDisabled: propTypes.bool,
 };
+
+const mapStateToProps = (state) => ({
+  isDisabled: state.filter.isFiltering,
+});
 
 Button.defaultProps = {
   className: "",
@@ -26,4 +38,4 @@ Button.defaultProps = {
   buttonType: TYPE_SUBMIT,
 };
 
-export default Button;
+export default connect(mapStateToProps)(Button);

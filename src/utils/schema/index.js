@@ -6,3 +6,7 @@ export const taskSchema = yup
     title: yup.string().trim().required(TASK_TITLE_ERROR_MESSAGE),
   })
   .required();
+
+export const searchTaskSchema = yup.object({
+  title: yup.string().trim(),
+});
