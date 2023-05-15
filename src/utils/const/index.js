@@ -21,7 +21,11 @@ import {
   TASK_DATE_FORMAT,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const/formElements";
-import { CARD_PER_PAGE, NUM_OF_FAKE_TASK_IN_STORE } from "utils/const/tasks";
+import {
+  CARD_PER_PAGE,
+  NUM_OF_FAKE_TASK_IN_STORE,
+  SINGLE_CARD,
+} from "utils/const/tasks";
 import {
   CUSTOM_ERROR_MESSAGE_TYPE,
   TASK_TITLE_ERROR_MESSAGE,
@@ -44,6 +48,7 @@ export {
   TITLE_FIELD_NAME_ATTRIBUTE,
   CARD_PER_PAGE,
   NUM_OF_FAKE_TASK_IN_STORE,
+  SINGLE_CARD,
   TYPE_SUBMIT,
   TYPE_BUTTON,
   TASK_DATE_FORMAT,

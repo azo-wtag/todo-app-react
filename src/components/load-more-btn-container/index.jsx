@@ -1,11 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-
 import Button from "components/base/button";
 import styles from "components/load-more-btn-container/index.module.scss";
-import { loadMoreTask, showLessTasks } from "store/actions/filter";
 import { CARD_PER_PAGE } from "utils/const";
+import { loadMoreTask, showLessTask } from "store/slices/filterSlice";
 
 function LoadMoreBtnContainer() {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ function LoadMoreBtnContainer() {
   }
 
   function handleShowLessClick() {
-    dispatch(showLessTasks());
+    dispatch(showLessTask(CARD_PER_PAGE));
   }
 
   const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
