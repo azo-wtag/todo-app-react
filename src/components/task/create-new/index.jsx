@@ -21,7 +21,7 @@ import { addNewTaskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/slices/todoSlce";
 
-function CreateTask({ onSuccessfullTaskEntry }) {
+function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
 
   function addNewTask(task) {
@@ -64,7 +64,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={TYPE_BUTTON}>
+        <Button buttonType={TYPE_BUTTON} onClick={onDeleteClick}>
           <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
         </Button>
       </div>
@@ -74,6 +74,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
 CreateTask.propTypes = {
   onSuccessfullTaskEntry: propTypes.func.isRequired,
+  onDeleteClick: propTypes.func.isRequired,
 };
 
 export default CreateTask;
