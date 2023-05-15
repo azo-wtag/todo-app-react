@@ -17,7 +17,7 @@ import {
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
-import { addNewTaskSchema } from "utils/schema";
+import { taskSchema } from "utils/schema";
 import { generateTaskObject } from "utils/helper";
 import { addTask } from "store/slices/todoSlce";
 
@@ -35,7 +35,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
       return;
     }
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, "");
+    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     onSuccessfullTaskEntry();
   }
 
@@ -48,7 +48,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     formState: { errors },
   } = useForm({
     mode: FORM_VALIDATION_MODE_ONCHANGE,
-    resolver: yupResolver(addNewTaskSchema),
+    resolver: yupResolver(taskSchema),
   });
 
   useEffect(() => {
