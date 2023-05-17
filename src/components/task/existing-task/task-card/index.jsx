@@ -6,7 +6,7 @@ import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
-import ButtonContainer from "components/task/existing-task/button-container";
+import ButtonGroup from "components/task/existing-task/button-group";
 
 function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, title }) {
   const [isTextAreaVisible, setIsTextAreaVisible] = useState(isTaskOnEditMode);
@@ -24,7 +24,7 @@ function TaskCard({ createdAt, isCompleted, isTaskOnEditMode, title }) {
       {isTextAreaVisible ? <TextArea /> : <h3>{title}</h3>}
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
-        <ButtonContainer onEditButtonClick={showEditTaskForm} />
+        <ButtonGroup onEditButtonClick={showEditTaskForm} />
         {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>

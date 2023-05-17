@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "components/task/existing-task/button-container/index.module.scss";
+import styles from "components/task/existing-task/button-group/index.module.scss";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
@@ -11,7 +11,7 @@ import {
   ICON_EDIT,
 } from "utils/const";
 
-function ButtonContainer() {
+function ButtonGroup() {
   return (
     <div className="flex items-center">
       <Button className={styles.doneBtn}>
@@ -27,4 +27,4 @@ function ButtonContainer() {
   );
 }
 
-export default ButtonContainer;
+export default ButtonGroup;
