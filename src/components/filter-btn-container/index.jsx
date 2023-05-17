@@ -1,14 +1,25 @@
 import React from "react";
 import Button from "components/base/button";
+import {
+  TASK_FILTER_ALL,
+  TASK_FILTER_COMPLETED,
+  TASK_FILTER_INCOMPLETED,
+} from "utils/const";
 
-function FilterBtnContainer() {
+function FilterButtonGroup() {
+  const filterButtons = [
+    { id: TASK_FILTER_ALL, label: "All" },
+    { id: TASK_FILTER_INCOMPLETED, label: "InComplete" },
+    { id: TASK_FILTER_COMPLETED, label: "Complete" },
+  ];
+
   return (
     <div>
-      <Button>All</Button>
-      <Button>Incomplete</Button>
-      <Button>Complete</Button>
+      {filterButtons.map((filterButton) => (
+        <Button key={filterButton.id}>{filterButton.label}</Button>
+      ))}
     </div>
   );
 }
 
-export default FilterBtnContainer;
+export default FilterButtonGroup;
