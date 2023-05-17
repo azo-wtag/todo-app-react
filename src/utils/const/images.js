@@ -4,11 +4,11 @@ import deleteIcon from "assets/images/delete.png";
 import editIcon from "assets/images/edit.png";
 import checkIcon from "assets/images/check.png";
 
-export const ALT_LOGO_TAG = "todo app logo";
-export const ALT_SEARCH_ICON_TAG = "task search icon";
-export const ALT_DELETE_ICON_TAG = "delete task button icon";
-export const ALT_EDIT_ICON_TAG = "edit task button icon";
-export const ALT_CHECK_ICON_TAG = "complete task button icon";
+export const ALT_TAG_LOGO = "todo app logo";
+export const ALT_TAG_ICON_SEARCH = "task search icon";
+export const ALT_TAG_ICON_DELETE = "delete task button icon";
+export const ALT_TAG_ICON_EDIT = "edit task button icon";
+export const ALT_TAG_ICON_CHECK = "complete task button icon";
 
 export const ICON_LOGO = logoImage;
 export const ICON_SEARCH = searchIcon;

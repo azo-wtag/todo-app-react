@@ -8,7 +8,7 @@ import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import { addTaskToTodo } from "store/actions/todo";
 import {
-  ALT_DELETE_ICON_TAG,
+  ALT_TAG_ICON_DELETE,
   ATTRIBUTE_TITLE,
   ERROR_MESSAGE_TASK_TITLE,
   ICON_DELETE,
@@ -45,7 +45,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType={TYPE_BUTTON}>
-          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_TAG_ICON_DELETE} />
         </Button>
       </div>
     </form>

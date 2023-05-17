@@ -1,28 +1,46 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "components/task/existing-task/button-group/index.module.scss";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
-  ALT_CHECK_ICON_TAG,
+  ALT_TAG_ICON_CHECK,
+  ALT_TAG_ICON_DELETE,
+  ALT_TAG_ICON_EDIT,
   ICON_CHECK,
-  ALT_DELETE_ICON_TAG,
   ICON_DELETE,
-  ALT_EDIT_ICON_TAG,
   ICON_EDIT,
 } from "utils/const";
 
 function ButtonGroup() {
+  const actionButtons = [
+    {
+      id: uuidv4(),
+      styleClass: styles.doneBtn,
+      src: ICON_CHECK,
+      alt: ALT_TAG_ICON_CHECK,
+    },
+    {
+      id: uuidv4(),
+      styleClass: styles.editBtn,
+      src: ICON_EDIT,
+      alt: ALT_TAG_ICON_EDIT,
+    },
+    {
+      id: uuidv4(),
+      styleClass: styles.deleteBtn,
+      src: ICON_DELETE,
+      alt: ALT_TAG_ICON_DELETE,
+    },
+  ];
+
   return (
     <div className="flex items-center">
-      <Button className={styles.doneBtn}>
-        <Image src={ICON_CHECK} alt={ALT_CHECK_ICON_TAG} />
-      </Button>
-      <Button className={styles.editBtn}>
-        <Image src={ICON_EDIT} alt={ALT_EDIT_ICON_TAG} />
-      </Button>
-      <Button className={styles.deleteBtn}>
-        <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
-      </Button>
+      {actionButtons.map((actionButton) => (
+        <Button key={actionButton.id} className={actionButton.styleClass}>
+          <Image src={actionButton.src} alt={actionButton.alt} />
+        </Button>
+      ))}
     </div>
   );
 }
