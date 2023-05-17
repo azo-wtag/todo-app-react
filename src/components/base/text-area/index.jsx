@@ -26,6 +26,7 @@ TextArea.propTypes = {
 
 TextArea.defaultProps = {
   numOfRows: TEXTAREA_DEFAULT_ROW,
+  errorMsg: "",
 };
 
 export default TextArea;
