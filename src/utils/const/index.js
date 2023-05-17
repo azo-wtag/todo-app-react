@@ -19,6 +19,11 @@ import {
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const/formElements";
 import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
+import {
+  TASK_FILTER_ALL,
+  TASK_FILTER_INCOMPLETED,
+  TASK_FILTER_COMPLETED,
+} from "./tasks";
 
 export {
   ALT_LOGO_TAG,
@@ -38,4 +43,7 @@ export {
   TASK_DATE_FORMAT,
   FORM_VALIDATION_MODE_ONCHANGE,
   ERROR_MESSAGE_TASK_TITLE,
+  TASK_FILTER_ALL,
+  TASK_FILTER_INCOMPLETED,
+  TASK_FILTER_COMPLETED,
 };
