@@ -16,7 +16,6 @@ import {
   TYPE_SUBMIT,
   TYPE_BUTTON,
   TASK_DATE_FORMAT,
-  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const/formElements";
 import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
 import {
@@ -41,7 +40,6 @@ export {
   TYPE_SUBMIT,
   TYPE_BUTTON,
   TASK_DATE_FORMAT,
-  FORM_VALIDATION_MODE_ONCHANGE,
   ERROR_MESSAGE_TASK_TITLE,
   TASK_FILTER_ALL,
   TASK_FILTER_INCOMPLETED,
