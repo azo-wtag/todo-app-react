@@ -6,6 +6,7 @@ import { TYPE_SUBMIT } from "utils/const";
 
 function Button({ buttonType, children, className, onClick }) {
   const buttonClass = classNames(styles.button, className);
+
   return (
     <button className={buttonClass} onClick={onClick} type={buttonType}>
       {children}
