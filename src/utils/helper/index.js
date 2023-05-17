@@ -11,3 +11,9 @@ export const generateTaskObject = (title) => {
     completedAt: null,
   };
 };
+
+export const parseForm = (submittedData) => {
+  const formData = new FormData(submittedData);
+  const formJson = Object.fromEntries(formData);
+  return formJson;
+};
