@@ -19,14 +19,14 @@ import styles from "components/task/create-new/index.module.scss";
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
   const taskInputRef = useRef(null);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
     const formData = parseForm(event.target);
     const sanitizedTitle = DOMPurify.sanitize(formData.title);
     if (sanitizedTitle === "") {
-      setErrorMsg(ERROR_MESSAGE_TASK_TITLE);
+      setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
       taskInputRef.current.focus();
       return;
     }
@@ -41,7 +41,11 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
   return (
     <form onSubmit={handleAddTaskSubmit}>
-      <TextArea ref={taskInputRef} name={ATTRIBUTE_TITLE} errorMsg={errorMsg} />
+      <TextArea
+        ref={taskInputRef}
+        name={ATTRIBUTE_TITLE}
+        errorMessage={errorMessage}
+      />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType={TYPE_BUTTON}>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
 
 const TextArea = forwardRef(function TextArea(props, ref) {
-  const { errorMsg, numOfRows, name } = props;
+  const { errorMessage, numOfRows, name } = props;
 
   return (
     <>
@@ -13,20 +13,20 @@ const TextArea = forwardRef(function TextArea(props, ref) {
         ref={ref}
         name={name}
       ></textarea>
-      {errorMsg !== "" && <p>{errorMsg}</p>}
+      {errorMessage !== "" && <p>{errorMessage}</p>}
     </>
   );
 });
 
 TextArea.propTypes = {
-  errorMsg: PropTypes.string,
+  errorMessage: PropTypes.string,
   numOfRows: PropTypes.number,
   name: PropTypes.string.isRequired,
 };
 
 TextArea.defaultProps = {
   numOfRows: TEXTAREA_DEFAULT_ROW,
-  errorMsg: "",
+  errorMessage: "",
 };
 
 export default TextArea;
