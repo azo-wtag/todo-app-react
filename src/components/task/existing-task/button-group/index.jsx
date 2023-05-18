@@ -12,7 +12,12 @@ import {
   ICON_EDIT,
 } from "utils/const";
 
-function ButtonGroup({ isTaskCompleted, onDoneClick, onDeleteClick }) {
+function ButtonGroup({
+  isTaskCompleted,
+  onDoneClick,
+  onDeleteClick,
+  onEditClick,
+}) {
   return (
     <div className="flex items-center">
       {!isTaskCompleted && (
@@ -20,7 +25,7 @@ function ButtonGroup({ isTaskCompleted, onDoneClick, onDeleteClick }) {
           <Button className={styles.doneBtn} onClick={onDoneClick}>
             <Image src={ICON_CHECK} alt={ALT_TAG_ICON_CHECK} />
           </Button>
-          <Button className={styles.editBtn}>
+          <Button className={styles.editBtn} onClick={onEditClick}>
             <Image src={ICON_EDIT} alt={ALT_TAG_ICON_EDIT} />
           </Button>
         </>
@@ -36,6 +41,7 @@ ButtonGroup.propTypes = {
   isTaskCompleted: propTypes.bool.isRequired,
   onDoneClick: propTypes.func.isRequired,
   onDeleteClick: propTypes.func.isRequired,
+  onEditClick: propTypes.func.isRequired,
 };
 
 export default ButtonGroup;
