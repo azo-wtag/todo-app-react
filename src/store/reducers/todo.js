@@ -21,7 +21,7 @@ export const todoReducer = (state = initialTodoState, action) => {
     case ADD_TASK: {
       return {
         ...state,
-        tasks: [action.payload, ...state.tasks],
+        tasks: [{ ...action.payload }, ...state.tasks],
       };
     }
 

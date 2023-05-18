@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "components/home-container/index.module.scss";
 import Button from "components/base/button";
 import CreateTask from "components/task/create-new";
-import FilterBtnContainer from "components/filter-btn-container";
+import FilterButtonGroup from "components/filter-button-group";
 import NoTaskFound from "components/not-found/task";
 import LoadMoreBtnContainer from "components/load-more-btn-container";
 import TaskCardContainer from "components/task/existing-task/container";
@@ -31,7 +31,7 @@ function HomeContainer() {
       <h1>Add Tasks</h1>
       <div className={`flex justify-between ${styles.actionBarContainer}`}>
         <Button onClick={showNewTaskCard}>Create</Button>
-        <FilterBtnContainer />
+        <FilterButtonGroup />
       </div>
 
       <div className="grid grid-cols-3 card-gap">

@@ -12,6 +12,12 @@ export const generateTaskObject = (title) => {
   };
 };
 
+export const parseForm = (submittedData) => {
+  const formData = new FormData(submittedData);
+  const formJson = Object.fromEntries(formData);
+  return formJson;
+};
+
 export const calculateDateDifference = (completedAt, createdAt) => {
   const dateDifference = dayjs(completedAt).diff(createdAt, "day");
   return dateDifference === 0
