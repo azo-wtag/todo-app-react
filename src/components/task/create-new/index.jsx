@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import DOMPurify from "dompurify";
 import Button from "components/common/button";
 import TextArea from "components/common/text-area";
 import Image from "components/common/image";
 import { addTaskToTodo } from "store/actions/todo";
-import { generateTaskObject } from "utils/helper";
+import { generateTaskObject, sanitizer } from "utils/helper";
 import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
 import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/formElements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
@@ -19,7 +18,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
   function handleAddTaskSubmit(event) {
     event.preventDefault();
     const title = event.target.title.value;
-    const sanitizedTitle = DOMPurify.sanitize(title);
+    const sanitizedTitle = sanitizer(title);
     if (sanitizedTitle === "") {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
       return;

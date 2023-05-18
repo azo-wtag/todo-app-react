@@ -16,3 +16,7 @@ export const formatDate = (date) => {
   const formattedDate = `${day}-${month}-${year}`;
   return formattedDate;
 };
+
+export const sanitizer = (text) => {
+  return text.replace(/(<([^>]+)>)/g, "");
+};
