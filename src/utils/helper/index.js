@@ -1,18 +1,18 @@
-import dayjs from "dayjs";
-import { TASK_DATE_FORMAT } from "utils/const/formElements";
-
 export const generateTaskObject = (title) => {
   return {
     id: Date.now().toString(),
     title: title,
-    createdAt: dayjs().format(TASK_DATE_FORMAT),
+    createdAt: new Date(),
     isCompleted: false,
     completedAt: null,
   };
 };
 
-export const parseForm = (submittedData) => {
-  const formData = new FormData(submittedData);
-  const formJson = Object.fromEntries(formData);
-  return formJson;
+export const formatDate = (date) => {
+  const today = new Date(date);
+  const day = today.getDate();
+  const month = today.getMonth();
+  const year = today.getFullYear();
+  const formattedDate = `${day}-${month}-${year}`;
+  return formattedDate;
 };
