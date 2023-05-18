@@ -6,7 +6,7 @@ import {
   ICON_LOGO,
   ICON_SEARCH,
 } from "utils/const";
-import styles from "components/layout/navbar/index.module.scss";
+import styles from "components/navbar/index.module.scss";
 
 function NavBar() {
   return (
