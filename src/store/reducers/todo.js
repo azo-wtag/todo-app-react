@@ -5,11 +5,15 @@ import {
   EDIT_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
-import { TASK_DATE_FORMAT } from "utils/const";
+import { NUM_OF_FAKE_TASK_IN_STORE, TASK_DATE_FORMAT } from "utils/const";
 import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
+  tasks: Array.from({ length: NUM_OF_FAKE_TASK_IN_STORE }, (_, i) => {
+    return generateTaskObject(
+      `Complete Initial setup of the Todo App ${i + 1}`
+    );
+  }),
 };
 
 export const todoReducer = (state = initialTodoState, action) => {

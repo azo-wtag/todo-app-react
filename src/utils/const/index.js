@@ -20,6 +20,7 @@ import {
   TYPE_BUTTON,
   TASK_DATE_FORMAT,
 } from "utils/const/formElements";
+import { CARD_PER_PAGE, NUM_OF_FAKE_TASK_IN_STORE } from "utils/const/tasks";
 import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
 import {
   TASK_FILTER_ALL,
@@ -41,6 +42,8 @@ export {
   ICON_CHECK,
   ICON_NO_TASK_FOUND,
   TEXTAREA_DEFAULT_ROW,
+  CARD_PER_PAGE,
+  NUM_OF_FAKE_TASK_IN_STORE,
   ATTRIBUTE_TITLE,
   TYPE_SUBMIT,
   TYPE_BUTTON,
