@@ -31,7 +31,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     return sanitizedTitle;
   }
 
-  function updateTask(event) {
+  function handleSaveClick(event) {
     event.preventDefault();
     const title = titleSanitizer(taskInputRef.current.value);
     if (title === "") return;
@@ -40,7 +40,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     onTaskEdit();
   }
 
-  function saveAsDone(event) {
+  function handleDoneClick(event) {
     event.preventDefault();
     const title = titleSanitizer(taskInputRef.current.value);
     if (title === "") return;
@@ -59,8 +59,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     <form>
       <TextArea ref={taskInputRef} name={ATTRIBUTE_TITLE} errorMsg={errorMsg} />
       <div className="flex items-center">
-        <Button onClick={updateTask}>Save</Button>
-        <Button onClick={saveAsDone}>
+        <Button onClick={handleSaveClick}>Save</Button>
+        <Button onClick={handleDoneClick}>
           <Image src={ICON_CHECK} alt={ALT_TAG_ICON_CHECK} />
         </Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDelete}>
