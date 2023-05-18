@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import Button from "components/base/button";
-import ButtonGroup from "components/task/existing-task/button-group";
+import ActionButtonGroup from "components/task/existing-task/action-button-group";
 import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
 import styles from "components/task/existing-task/task-card/index.module.scss";
@@ -17,7 +17,7 @@ function TaskCard({ createdAt, isCompleted, title }) {
       <h3>{title}</h3>
       <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
       <div className="flex justify-between">
-        <ButtonGroup />
+        <ActionButtonGroup />
         {isCompleted && <Button>Completed in days</Button>}
       </div>
     </div>
