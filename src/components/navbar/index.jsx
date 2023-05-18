@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "components/base/image";
+import Image from "components/common/image";
 import {
   ALT_TAG_ICON_CHECK,
   ALT_TAG_LOGO,

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "components/base/button";
+import Button from "components/common/button";
 import {
   TASK_FILTER_ALL,
   TASK_FILTER_COMPLETED,

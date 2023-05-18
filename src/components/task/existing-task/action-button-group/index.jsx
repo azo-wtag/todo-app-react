@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "components/base/button";
-import Image from "components/base/image";
+import Button from "components/common/button";
+import Image from "components/common/image";
 import {
   ALT_TAG_ICON_CHECK,
   ALT_TAG_ICON_DELETE,
