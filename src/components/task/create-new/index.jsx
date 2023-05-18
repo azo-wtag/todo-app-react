@@ -23,11 +23,9 @@ function CreateTask({ onSuccessfullTaskEntry }) {
     const sanitizedTitle = DOMPurify.sanitize(formData.title);
     if (sanitizedTitle === "") {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
-      //taskInputRef.current.focus();
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    // taskInputRef.current.value = "";
     onSuccessfullTaskEntry();
   }
 
