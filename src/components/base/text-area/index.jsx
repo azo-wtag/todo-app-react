@@ -1,28 +1,32 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import propTypes from "prop-types";
 import { TEXTAREA_DEFAULT_ROW } from "utils/const";
 
-function TextArea({ error, numOfRows, register }) {
+const TextArea = forwardRef(function TextArea(props, ref) {
+  const { errorMsg, numOfRows, name } = props;
+
   return (
     <>
       <textarea
-        {...register}
         className="width-full"
         rows={numOfRows}
+        ref={ref}
+        name={name}
       ></textarea>
-      {error && <p>{error.message}</p>}
+      {errorMsg !== "" && <p>{errorMsg}</p>}
     </>
   );
-}
+});
 
 TextArea.propTypes = {
+  errorMsg: propTypes.string,
   numOfRows: propTypes.number,
-  register: propTypes.object.isRequired,
-  error: propTypes.object,
+  name: propTypes.string.isRequired,
 };
 
 TextArea.defaultProps = {
   numOfRows: TEXTAREA_DEFAULT_ROW,
+  errorMsg: "",
 };
 
 export default TextArea;

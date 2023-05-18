@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useEffect, useRef, useState } from "react";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import DOMPurify from "dompurify";
@@ -9,63 +7,45 @@ import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import {
-  ALT_DELETE_ICON_TAG,
+  ALT_TAG_ICON_DELETE,
+  ATTRIBUTE_TITLE,
+  ERROR_MESSAGE_TASK_TITLE,
   ICON_DELETE,
-  TITLE_FIELD_NAME_ATTRIBUTE,
-  CUSTOM_ERROR_MESSAGE_TYPE,
-  TASK_TITLE_ERROR_MESSAGE,
   TYPE_BUTTON,
-  FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
-import { taskSchema } from "utils/schema";
-import { generateTaskObject } from "utils/helper";
+import { generateTaskObject, parseForm } from "utils/helper";
 import { addTask } from "store/actions/todo";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
+  const taskInputRef = useRef(null);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  function addNewTask(task) {
-    const sanitizedTitle = DOMPurify.sanitize(task.title);
+  function handleAddTaskSubmit(event) {
+    event.preventDefault();
+    const formData = parseForm(event.target);
+    const sanitizedTitle = DOMPurify.sanitize(formData.title);
     if (sanitizedTitle === "") {
-      setError(TITLE_FIELD_NAME_ATTRIBUTE, {
-        type: CUSTOM_ERROR_MESSAGE_TYPE,
-        message: TASK_TITLE_ERROR_MESSAGE,
-      });
-      setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
+      setErrorMsg(ERROR_MESSAGE_TASK_TITLE);
+      taskInputRef.current.focus();
       return;
     }
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
-    setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    taskInputRef.current.value = "";
     onSuccessfullTaskEntry();
   }
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    setFocus,
-    setError,
-    formState: { errors },
-  } = useForm({
-    mode: FORM_VALIDATION_MODE_ONCHANGE,
-    resolver: yupResolver(taskSchema),
-  });
-
   useEffect(() => {
-    setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
+    taskInputRef.current.focus();
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(addNewTask)}>
-      <TextArea
-        register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
-        error={errors.title}
-      />
-
+    <form onSubmit={handleAddTaskSubmit}>
+      <TextArea ref={taskInputRef} name={ATTRIBUTE_TITLE} errorMsg={errorMsg} />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
         <Button buttonType={TYPE_BUTTON} onClick={onDeleteClick}>
-          <Image src={ICON_DELETE} alt={ALT_DELETE_ICON_TAG} />
+          <Image src={ICON_DELETE} alt={ALT_TAG_ICON_DELETE} />
         </Button>
       </div>
     </form>
