@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { TEXTAREA_DEFAULT_ROW } from "utils/const";
+import { TEXTAREA_DEFAULT_ROW } from "utils/const/formElements";
 
 function TextArea(props) {
   const { errorMessage, numOfRows, name, shouldAutoFocus, value, onChange } =

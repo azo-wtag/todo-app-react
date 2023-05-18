@@ -4,7 +4,7 @@ import {
   TASK_FILTER_ALL,
   TASK_FILTER_COMPLETED,
   TASK_FILTER_INCOMPLETED,
-} from "utils/const";
+} from "utils/const/tasks";
 
 function FilterButtonGroup() {
   const filterButtons = [

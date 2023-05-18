@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "components/base/image";
 import {
-  ALT_TAG_ICON_SEARCH,
+  ALT_TAG_ICON_CHECK,
   ALT_TAG_LOGO,
+  ICON_CHECK,
   ICON_LOGO,
-  ICON_SEARCH,
-} from "utils/const";
+} from "utils/const/images";
 import styles from "components/navbar/index.module.scss";
 
 function NavBar() {
@@ -19,7 +19,7 @@ function NavBar() {
       </div>
 
       <div>
-        <Image src={ICON_SEARCH} alt={ALT_TAG_ICON_SEARCH} />
+        <Image src={ICON_CHECK} alt={ALT_TAG_ICON_CHECK} />
       </div>
     </nav>
   );

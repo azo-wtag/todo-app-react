@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { TYPE_SUBMIT } from "utils/const";
+import { BUTTON_TYPE_SUBMIT } from "utils/const/formElements";
 import styles from "components/base/button/index.module.scss";
 
 function Button({ buttonType, children, className, onClick }) {
@@ -24,7 +24,7 @@ Button.propTypes = {
 Button.defaultProps = {
   className: "",
   onClick: () => {},
-  buttonType: TYPE_SUBMIT,
+  buttonType: BUTTON_TYPE_SUBMIT,
 };
 
 export default Button;

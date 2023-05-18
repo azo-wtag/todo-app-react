@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import ActionButtonGroup from "components/task/existing-task/action-button-group";
-import { TASK_DATE_FORMAT } from "utils/const";
 import { validateDayjsDate } from "utils/helper/validation";
+import { TASK_DATE_FORMAT } from "utils/const/formElements";
 import styles from "components/task/existing-task/task-card/index.module.scss";
 
 function TaskCard({ createdAt, isCompleted, title }) {

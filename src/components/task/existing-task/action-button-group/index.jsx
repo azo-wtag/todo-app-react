@@ -8,7 +8,7 @@ import {
   ICON_CHECK,
   ICON_DELETE,
   ICON_EDIT,
-} from "utils/const";
+} from "utils/const/images";
 import styles from "components/task/existing-task/action-button-group/index.module.scss";
 
 function ActionButtonGroup() {
