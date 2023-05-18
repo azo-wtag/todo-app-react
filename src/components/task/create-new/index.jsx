@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import DOMPurify from "dompurify";
@@ -18,33 +18,29 @@ import styles from "components/task/create-new/index.module.scss";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
-  const taskInputRef = useRef(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
     const formData = parseForm(event.target);
+    console.log(formData);
     const sanitizedTitle = DOMPurify.sanitize(formData.title);
     if (sanitizedTitle === "") {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
-      taskInputRef.current.focus();
+      //taskInputRef.current.focus();
       return;
     }
     dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    taskInputRef.current.value = "";
+    // taskInputRef.current.value = "";
     onSuccessfullTaskEntry();
   }
-
-  useEffect(() => {
-    taskInputRef.current.focus();
-  }, []);
 
   return (
     <form onSubmit={handleAddTaskSubmit}>
       <TextArea
-        ref={taskInputRef}
         name={ATTRIBUTE_TITLE}
         errorMessage={errorMessage}
+        shouldAutoFocus={true}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
