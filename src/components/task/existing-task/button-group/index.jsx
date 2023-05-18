@@ -1,6 +1,5 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import styles from "components/task/existing-task/button-group/index.module.scss";
 import Button from "components/base/button";
 import Image from "components/base/image";
 import {
@@ -11,6 +10,7 @@ import {
   ICON_DELETE,
   ICON_EDIT,
 } from "utils/const";
+import styles from "components/task/existing-task/button-group/index.module.scss";
 
 function ButtonGroup() {
   const actionButtons = [

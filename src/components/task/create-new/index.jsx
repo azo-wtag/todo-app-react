@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import DOMPurify from "dompurify";
-import styles from "components/task/create-new/index.module.scss";
 import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
@@ -15,6 +14,7 @@ import {
   TYPE_BUTTON,
 } from "utils/const";
 import { generateTaskObject, parseForm } from "utils/helper";
+import styles from "components/task/create-new/index.module.scss";
 
 function CreateTask({ onSuccessfullTaskEntry }) {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 }
 
 CreateTask.propTypes = {
-  onSuccessfullTaskEntry: propTypes.func.isRequired,
+  onSuccessfullTaskEntry: PropTypes.func.isRequired,
 };
 
 export default CreateTask;

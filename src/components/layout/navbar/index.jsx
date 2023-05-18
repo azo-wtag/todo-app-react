@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "components/layout/navbar/index.module.scss";
 import Image from "components/base/image";
 import {
   ALT_TAG_ICON_SEARCH,
@@ -7,6 +6,7 @@ import {
   ICON_LOGO,
   ICON_SEARCH,
 } from "utils/const";
+import styles from "components/layout/navbar/index.module.scss";
 
 function NavBar() {
   return (
