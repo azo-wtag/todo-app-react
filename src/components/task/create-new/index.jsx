@@ -6,7 +6,7 @@ import Button from "components/base/button";
 import TextArea from "components/base/text-area";
 import Image from "components/base/image";
 import { addTaskToTodo } from "store/actions/todo";
-import { generateTaskObject, parseForm } from "utils/helper";
+import { generateTaskObject } from "utils/helper";
 import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
 import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/formElements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
@@ -18,9 +18,8 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
-    const formData = parseForm(event.target);
-    console.log(formData);
-    const sanitizedTitle = DOMPurify.sanitize(formData.title);
+    const title = event.target.title.value;
+    const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
       return;
