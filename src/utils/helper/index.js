@@ -1,10 +1,9 @@
 import dayjs from "dayjs";
-import { v4 as uuidv4 } from "uuid";
 import { TASK_DATE_FORMAT } from "utils/const/formElements";
 
 export const generateTaskObject = (title) => {
   return {
-    id: uuidv4(),
+    id: Date.now().toString(),
     title: title,
     createdAt: dayjs().format(TASK_DATE_FORMAT),
     isCompleted: false,
