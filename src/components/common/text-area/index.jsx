@@ -22,7 +22,7 @@ function TextArea(props) {
         onChange={onChange}
         ref={taskInputRef}
       ></textarea>
-      {errorMessage !== "" && <p>{errorMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
 }
