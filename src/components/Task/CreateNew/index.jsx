@@ -4,7 +4,7 @@ import Button from "components/Common/Button";
 import TextArea from "components/Common/TextArea";
 import Image from "components/Common/Image";
 import { sanitizer } from "utils/helper";
-import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/error-messages";
+import { VALIDATION_ERROR_TASK_TITLE } from "utils/const/error-messages";
 import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
 import styles from "components/Task/CreateNew/index.module.scss";
@@ -18,7 +18,7 @@ function CreateTask({ onAddTask }) {
     const title = event.target.title.value;
     const sanitizedTitle = sanitizer(title);
     if (sanitizedTitle === "") {
-      setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
+      setErrorMessage(VALIDATION_ERROR_TASK_TITLE);
       setIsTextAreaFocused(true);
       return;
     }
