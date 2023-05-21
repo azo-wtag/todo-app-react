@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import Button from "components/common/button";
-import TextArea from "components/common/text-area";
-import Image from "components/common/image";
-import { addTaskToTodo } from "store/actions/todo";
-import { generateTaskObject, sanitizer } from "utils/helper";
-import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
-import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/formElements";
+import Button from "components/Common/Button";
+import TextArea from "components/Common/TextArea";
+import Image from "components/Common/Image";
+import { sanitizer } from "utils/helper";
+import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/error-messages";
+import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
-import styles from "components/task/create-new/index.module.scss";
+import styles from "components/Task/CreateNew/index.module.scss";
 
-function CreateTask({ onSuccessfullTaskEntry }) {
-  const dispatch = useDispatch();
+function CreateTask({ onAddTask }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleAddTaskSubmit(event) {
@@ -23,8 +20,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
       return;
     }
-    dispatch(addTaskToTodo(generateTaskObject(sanitizedTitle)));
-    onSuccessfullTaskEntry();
+    onAddTask(sanitizedTitle);
   }
 
   return (
@@ -45,7 +41,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
 }
 
 CreateTask.propTypes = {
-  onSuccessfullTaskEntry: PropTypes.func.isRequired,
+  onAddTask: PropTypes.func.isRequired,
 };
 
 export default CreateTask;

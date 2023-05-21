@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import Button from "components/common/button";
-import CreateTask from "components/task/create-new";
-import TaskCard from "components/task/existing-task/task-card";
-import FilterButtonGroup from "components/filter-button-group";
-import styles from "components/home-container/index.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "components/Common/Button";
+import CreateTask from "components/Task/CreateNew";
+import TaskCard from "components/Task/ExistingTask/TaskCard";
+import FilterButtonGroup from "components/FilterButtonGroup";
+import { addTaskToTodo } from "store/actions/todo";
+import { generateTaskObject } from "utils/factory";
+import styles from "components/HomeContainer/index.module.scss";
 
 function HomeContainer() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
@@ -14,7 +17,8 @@ function HomeContainer() {
     setIsNewTaskRequested(true);
   }
 
-  function hideNewTaskCard() {
+  function handleAddTask(title) {
+    dispatch(addTaskToTodo(generateTaskObject(title)));
     setIsNewTaskRequested(false);
   }
 
@@ -27,9 +31,7 @@ function HomeContainer() {
       </div>
 
       <div className="grid grid-cols-3 card-gap">
-        {isNewTaskRequested && (
-          <CreateTask onSuccessfullTaskEntry={hideNewTaskCard} />
-        )}
+        {isNewTaskRequested && <CreateTask onAddTask={handleAddTask} />}
 
         {tasks.map((task) => (
           <TaskCard

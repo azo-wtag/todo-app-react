@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ActionButtonGroup from "components/task/existing-task/action-button-group";
+import ActionButtonGroup from "components/ActionButtonGroup";
 import { validateDate } from "utils/helper/validation";
 import { formatDate } from "utils/helper";
-import styles from "components/task/existing-task/task-card/index.module.scss";
+import styles from "components/Task/ExistingTask/TaskCard/index.module.scss";
 
 function TaskCard({ createdAt, isCompleted, title }) {
   return (

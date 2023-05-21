@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "components/common/button";
-import Image from "components/common/image";
+import Button from "components/Common/Button";
+import Image from "components/Common/Image";
 import {
   ALT_TAG_ICON_CHECK,
   ALT_TAG_ICON_DELETE,
@@ -9,7 +9,7 @@ import {
   ICON_DELETE,
   ICON_EDIT,
 } from "utils/const/images";
-import styles from "components/task/existing-task/action-button-group/index.module.scss";
+import styles from "components/ActionButtonGroup/index.module.scss";
 
 function ActionButtonGroup() {
   const actionButtons = [
@@ -34,7 +34,7 @@ function ActionButtonGroup() {
   ];
 
   return (
-    <div className="flex items-center">
+    <div className={`flex items-center ${styles.actionButtons}`}>
       {actionButtons.map((actionButton) => (
         <Button key={actionButton.id} className={actionButton.styleClass}>
           <Image src={actionButton.src} alt={actionButton.alt} />
