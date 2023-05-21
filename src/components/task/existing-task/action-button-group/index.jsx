@@ -1,9 +1,7 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import propTypes from "prop-types";
-import styles from "components/task/existing-task/button-group/index.module.scss";
-import Button from "components/base/button";
-import Image from "components/base/image";
+import Button from "components/common/button";
+import Image from "components/common/image";
 import {
   ALT_TAG_ICON_CHECK,
   ALT_TAG_ICON_DELETE,
@@ -11,26 +9,27 @@ import {
   ICON_CHECK,
   ICON_DELETE,
   ICON_EDIT,
-} from "utils/const";
+} from "utils/const/images";
+import styles from "components/task/existing-task/action-button-group/index.module.scss";
 
-function ButtonGroup({ onDeleteClick }) {
+function ActionButtonGroup({ onDeleteClick }) {
   const actionButtons = [
     {
-      id: uuidv4(),
+      id: 1,
       styleClass: styles.doneBtn,
       src: ICON_CHECK,
       alt: ALT_TAG_ICON_CHECK,
       onClick: () => {},
     },
     {
-      id: uuidv4(),
+      id: 2,
       styleClass: styles.editBtn,
       src: ICON_EDIT,
       alt: ALT_TAG_ICON_EDIT,
       onClick: () => {},
     },
     {
-      id: uuidv4(),
+      id: 3,
       styleClass: styles.deleteBtn,
       src: ICON_DELETE,
       alt: ALT_TAG_ICON_DELETE,
@@ -53,8 +52,8 @@ function ButtonGroup({ onDeleteClick }) {
   );
 }
 
-ButtonGroup.propTypes = {
+ActionButtonGroup.propTypes = {
   onDeleteClick: propTypes.func.isRequired,
 };
 
-export default ButtonGroup;
+export default ActionButtonGroup;

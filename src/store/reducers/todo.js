@@ -1,8 +1,7 @@
 import { ADD_TASK, DELETE_TASK } from "store/constants/actionTypes";
-import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
+  tasks: [],
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
@@ -10,7 +9,7 @@ export const todoReducer = (state = initialTodoState, action) => {
     case ADD_TASK: {
       return {
         ...state,
-        tasks: [{ ...action.payload }, ...state.tasks],
+        tasks: [action.payload, ...state.tasks],
       };
     }
 

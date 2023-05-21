@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "components/base/button";
+import Button from "components/common/button";
 import {
   TASK_FILTER_ALL,
   TASK_FILTER_COMPLETED,
   TASK_FILTER_INCOMPLETED,
-} from "utils/const";
+} from "utils/const/tasks";
 
 function FilterButtonGroup() {
   const filterButtons = [
