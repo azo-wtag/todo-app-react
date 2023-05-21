@@ -1,4 +1,4 @@
-export const validateDayjsDate = (props, propName, componentName) => {
+export const validateDate = (props, propName, componentName) => {
   const dateValue = props[propName];
   const timeStamp = Date.parse(dateValue);
   if (isNaN(timeStamp)) {
