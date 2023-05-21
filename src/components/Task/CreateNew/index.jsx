@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "components/Common/Button";
 import TextArea from "components/Common/TextArea";
 import Image from "components/Common/Image";
-import { sanitizer } from "utils/helper";
+import { taskSanitizer } from "utils/helper";
 import { VALIDATION_ERROR_TASK_TITLE } from "utils/const/error-messages";
 import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
@@ -16,7 +16,7 @@ function CreateTask({ onAddTask }) {
   function handleAddTaskSubmit(event) {
     event.preventDefault();
     const title = event.target.title.value;
-    const sanitizedTitle = sanitizer(title);
+    const sanitizedTitle = taskSanitizer(title);
     if (sanitizedTitle === "") {
       setErrorMessage(VALIDATION_ERROR_TASK_TITLE);
       setIsTextAreaFocused(true);
