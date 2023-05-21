@@ -32,7 +32,7 @@ function CreateTask({ onSuccessfullTaskEntry }) {
       <TextArea
         name={ATTRIBUTE_TITLE}
         errorMessage={errorMessage}
-        shouldAutoFocus={true}
+        autoFocus={true}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
