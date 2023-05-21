@@ -11,6 +11,7 @@ import styles from "components/Task/CreateNew/index.module.scss";
 
 function CreateTask({ onAddTask }) {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isTextAreaFocused, setIsTextAreaFocused] = useState(true);
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
@@ -18,8 +19,10 @@ function CreateTask({ onAddTask }) {
     const sanitizedTitle = sanitizer(title);
     if (sanitizedTitle === "") {
       setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
+      setIsTextAreaFocused(true);
       return;
     }
+    setIsTextAreaFocused(false);
     onAddTask(sanitizedTitle);
   }
 
@@ -28,7 +31,7 @@ function CreateTask({ onAddTask }) {
       <TextArea
         name={ATTRIBUTE_TITLE}
         errorMessage={errorMessage}
-        autoFocus={true}
+        autoFocus={isTextAreaFocused}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
