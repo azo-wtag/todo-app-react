@@ -7,10 +7,10 @@ import SearchField from "components/base/search-field";
 function NavBar() {
   return (
     <nav
-      className={`home-container flex flex-col flex-md-row justify-between width-full mx-auto ${styles.navbar}`}
+      className={`home-container flex justify-between items-center width-full mx-auto ${styles.navbar}`}
     >
-      <div className={`flex ${styles.logoContainer}`}>
-        <Image src={ICON_LOGO} alt={ALT_LOGO_TAG} />
+      <div className={`flex items-center ${styles.logoContainer}`}>
+        <Image src={ICON_LOGO} alt={ALT_LOGO_TAG} className={styles.logo} />
         <h1 className={styles.heading}>Todos</h1>
       </div>
 

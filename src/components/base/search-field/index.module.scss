@@ -1,13 +1,9 @@
 @import "styles/base.scss";
 
 .formContainer {
+  min-height: 2rem;
   padding: 0.938rem 0;
   width: 100%;
-
-  .searchField:focus {
-    border-radius: 0.313rem;
-    outline: none;
-  }
 
   .searchField {
     border-radius: 0.313rem;
@@ -18,7 +14,12 @@
     height: 2rem;
     line-height: 1.172rem;
     padding-left: 0.75rem;
-    width: calc(100% - 1rem);
+    width: calc(100% - 0.25rem);
+  }
+
+  .searchField:focus {
+    border-radius: 0.313rem;
+    outline: none;
   }
 }
 

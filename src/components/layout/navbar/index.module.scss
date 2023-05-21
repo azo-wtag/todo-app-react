@@ -1,11 +1,35 @@
 @import "styles/base.scss";
 
 .navbar {
+  gap: 0.625rem;
+
   .logoContainer {
     padding: 0.938rem 0;
 
+    .logo {
+      height: 1.5rem;
+    }
+
     .heading {
-      margin-left: 0.875rem;
+      font-size: 1.5rem;
+      margin-left: 0.25rem;
+    }
+  }
+}
+
+@media only screen and (min-width: $breakpoint-sm) {
+  .navbar {
+    .logoContainer {
+      padding: 0.938rem 0;
+
+      .logo {
+        height: 2.125rem;
+      }
+
+      .heading {
+        font-size: 2.25rem;
+        margin-left: 0.875rem;
+      }
     }
   }
 }

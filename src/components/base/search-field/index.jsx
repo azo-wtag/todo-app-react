@@ -77,9 +77,7 @@ function SearchField() {
   });
 
   return (
-    <div
-      className={`flex items-center justify-start justify-md-end ${styles.formContainer}`}
-    >
+    <div className={`flex items-center justify-end ${styles.formContainer}`}>
       {isSearchFieldVisible && (
         <form className="width-full" onSubmit={handleSubmit(searchTaskByTitle)}>
           <InputField
