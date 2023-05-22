@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { BUTTON_TYPE_SUBMIT } from "utils/const/formElements";
-import styles from "components/common/button/index.module.scss";
+import { BUTTON_TYPE_SUBMIT } from "utils/const/form-elements";
+import styles from "components/Common/Button/index.module.scss";
 
-function Button({ buttonType, children, className, onClick }) {
+function Button({ children, className, buttonType, onClick }) {
   const buttonClass = classNames(styles.button, className);
 
   return (
@@ -17,14 +17,14 @@ function Button({ buttonType, children, className, onClick }) {
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  onClick: PropTypes.func,
   buttonType: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
   className: "",
-  onClick: () => {},
   buttonType: BUTTON_TYPE_SUBMIT,
+  onClick: () => {},
 };
 
 export default Button;

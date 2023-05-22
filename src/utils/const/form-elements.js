@@ -4,5 +4,3 @@ export const ATTRIBUTE_TITLE = "title";
 
 export const BUTTON_TYPE_SUBMIT = "submit";
 export const BUTTON_TYPE_BUTTON = "button";
-
-export const TASK_DATE_FORMAT = "YYYY-MM-DD";

@@ -1,22 +1,10 @@
-export const generateTaskObject = (title) => {
-  return {
-    id: Date.now().toString(),
-    title: title,
-    createdAt: new Date(),
-    isCompleted: false,
-    completedAt: null,
-  };
-};
-
 export const formatDate = (date) => {
-  const today = new Date(date);
-  const day = today.getDate();
-  const month = today.getMonth();
-  const year = today.getFullYear();
-  const formattedDate = `${day}-${month}-${year}`;
-  return formattedDate;
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
 };
 
-export const sanitizer = (text) => {
+export const taskSanitizer = (text) => {
   return text.replace(/(<([^>]+)>)/g, "");
 };

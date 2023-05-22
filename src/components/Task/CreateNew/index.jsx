@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import Button from "components/common/button";
-import TextArea from "components/common/text-area";
-import Image from "components/common/image";
-import { addTask } from "store/actions/todo";
-import { generateTaskObject, sanitizer } from "utils/helper";
-import { ERROR_MESSAGE_TASK_TITLE } from "utils/const/errorMessages";
-import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/formElements";
+import Button from "components/Common/Button";
+import TextArea from "components/Common/TextArea";
+import Image from "components/Common/Image";
+import { taskSanitizer } from "utils/helper";
+import { VALIDATION_ERROR_TASK_TITLE } from "utils/const/error-messages";
+import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
-import styles from "components/task/create-new/index.module.scss";
+import styles from "components/Task/CreateNew/index.module.scss";
 
-function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
-  const dispatch = useDispatch();
+function CreateTask({ onAddTask, onDeleteClick }) {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isTextAreaFocused, setIsTextAreaFocused] = useState(true);
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
     const title = event.target.title.value;
-    const sanitizedTitle = sanitizer(title);
+    const sanitizedTitle = taskSanitizer(title);
     if (sanitizedTitle === "") {
-      setErrorMessage(ERROR_MESSAGE_TASK_TITLE);
+      setErrorMessage(VALIDATION_ERROR_TASK_TITLE);
+      setIsTextAreaFocused(true);
       return;
     }
-    dispatch(addTask(generateTaskObject(sanitizedTitle)));
-    onSuccessfullTaskEntry();
+    setIsTextAreaFocused(false);
+    onAddTask(sanitizedTitle);
   }
 
   return (
@@ -32,7 +31,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
       <TextArea
         name={ATTRIBUTE_TITLE}
         errorMessage={errorMessage}
-        shouldAutoFocus={true}
+        autoFocus={isTextAreaFocused}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
@@ -45,7 +44,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
 }
 
 CreateTask.propTypes = {
-  onSuccessfullTaskEntry: PropTypes.func.isRequired,
+  onAddTask: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };
 
