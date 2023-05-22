@@ -43,7 +43,7 @@ function HomeContainer() {
       </div>
 
       <div className="flex justify-center">
-        <Button className={styles.loadMoreBtn}>Load More</Button>
+        <Button className={styles.loadMoreButton}>Load More</Button>
       </div>
     </div>
   );
