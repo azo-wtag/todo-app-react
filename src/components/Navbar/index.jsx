@@ -1,12 +1,12 @@
 import React from "react";
-import Image from "components/Commons/Images";
+import Image from "components/Common/Image";
 import {
   ALT_TAG_ICON_CHECK,
   ALT_TAG_LOGO,
   ICON_CHECK,
   ICON_LOGO,
 } from "utils/const/images";
-import styles from "components/Navbars/index.module.scss";
+import styles from "components/Navbar/index.module.scss";
 
 function NavBar() {
   return (
