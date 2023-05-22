@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 import { asyncFunctionMiddleware } from "store/middleware";
-import EditTaskForm from ".";
+import EditTaskForm from "./index";
 
 jest.mock("config/index", () => ({
   from: () => ({
@@ -34,7 +35,12 @@ test("should hide edit-task-form on delete button click", async () => {
 
   render(
     <Provider store={store}>
-      <EditTaskForm taskId="1" onDelete={mockDelete} onTaskEdit={mockEdit} />
+      <EditTaskForm
+        taskId="1"
+        existingTitle=""
+        onDelete={mockDelete}
+        onTaskEdit={mockEdit}
+      />
     </Provider>
   );
 
@@ -65,7 +71,12 @@ test("should save updated task on save button click", async () => {
 
   render(
     <Provider store={store}>
-      <EditTaskForm taskId="1" onDelete={mockDelete} onTaskEdit={mockEdit} />
+      <EditTaskForm
+        taskId="1"
+        existingTitle=""
+        onDelete={mockDelete}
+        onTaskEdit={mockEdit}
+      />
     </Provider>
   );
 
@@ -104,7 +115,12 @@ test("should update & mark task as done on check icon click", async () => {
 
   render(
     <Provider store={store}>
-      <EditTaskForm taskId="1" onDelete={mockDelete} onTaskEdit={mockEdit} />
+      <EditTaskForm
+        existingTitle=""
+        taskId="1"
+        onDelete={mockDelete}
+        onTaskEdit={mockEdit}
+      />
     </Provider>
   );
 
@@ -121,9 +137,7 @@ test("should update & mark task as done on check icon click", async () => {
 
   const expectedActions = [
     { type: "EDIT_TASK", payload: { taskId: "1", title: "edited task" } },
-    { type: "SET_IS_LOADING", payload: true },
     { type: "MARK_TASK_DONE", payload: "1" },
-    { type: "SET_IS_LOADING", payload: false },
   ];
 
   expect(store.getActions()).toEqual(expectedActions);

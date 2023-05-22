@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import renderConnected from "utils/helper/rendererConnected";
 import ButtonContainer from "components/task/existing-task/button-container";
 
@@ -14,21 +15,49 @@ describe("<ButtonContainer />", () => {
 
     renderConnected(
       <ButtonContainer
-        onDelete={mockOnDelete}
-        onDone={mockOnDone}
-        onEdit={mockOnEdit}
+        onDeleteClick={mockOnDelete}
+        onDoneClick={mockOnDone}
+        onEditClick={mockOnEdit}
         isTaskCompleted={true}
       />
     );
 
-    const saveBtn = screen.queryByRole("button", {
+    const saveButton = screen.queryByRole("button", {
       name: /edit task button icon/i,
     });
-    expect(saveBtn).not.toBeInTheDocument();
+    expect(saveButton).not.toBeInTheDocument();
 
-    const markAsDoneBtn = screen.queryByRole("button", {
+    const markAsDoneButton = screen.queryByRole("button", {
       name: /complete task button icon/i,
     });
-    expect(markAsDoneBtn).not.toBeInTheDocument();
+    expect(markAsDoneButton).not.toBeInTheDocument();
+  });
+
+  test("should show all action buttons for incompleted task", () => {
+    const mockOnDelete = jest.fn();
+    const mockOnDone = jest.fn();
+    const mockOnEdit = jest.fn();
+
+    renderConnected(
+      <ButtonContainer
+        onDeleteClick={mockOnDelete}
+        onDoneClick={mockOnDone}
+        onEditClick={mockOnEdit}
+        isTaskCompleted={false}
+      />
+    );
+
+    const saveButton = screen.getByRole("button", {
+      name: /edit task button icon/i,
+    });
+    expect(saveButton).toBeInTheDocument();
+    const markAsDoneButton = screen.getByRole("button", {
+      name: /complete task button icon/i,
+    });
+    expect(markAsDoneButton).toBeInTheDocument();
+    const deleteButton = screen.getByRole("button", {
+      name: /delete task button icon/i,
+    });
+    expect(deleteButton).toBeInTheDocument();
   });
 });

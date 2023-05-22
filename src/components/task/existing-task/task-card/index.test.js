@@ -1,4 +1,5 @@
 import { act, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { createClient } from "@supabase/supabase-js";
 import userEvent from "@testing-library/user-event";
 import renderConnected from "utils/helper/rendererConnected";

@@ -1,4 +1,5 @@
 import { Provider } from "react-redux";
+import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
 import { render, screen } from "@testing-library/react";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
