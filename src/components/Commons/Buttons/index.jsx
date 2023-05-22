@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { BUTTON_TYPE_SUBMIT } from "utils/const/form-elements";
-import styles from "components/Common/Button/index.module.scss";
+import styles from "components/Commons/Buttons/index.module.scss";
 
 function Button({ buttonType, children, className, onClick }) {
   const buttonClass = classNames(styles.button, className);

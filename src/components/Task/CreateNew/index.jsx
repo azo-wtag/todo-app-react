@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Button from "components/Common/Button";
-import TextArea from "components/Common/TextArea";
-import Image from "components/Common/Image";
+import Button from "components/Commons/Buttons";
+import TextArea from "components/Commons/TextArea";
+import Image from "components/Commons/Images";
 import { taskSanitizer } from "utils/helper";
 import { VALIDATION_ERROR_TASK_TITLE } from "utils/const/error-messages";
 import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
