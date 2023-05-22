@@ -15,19 +15,19 @@ function ActionButtonGroup() {
   const actionButtons = [
     {
       id: 1,
-      styleClass: styles.doneBtn,
+      styleClass: styles.doneButton,
       src: ICON_CHECK,
       alt: ALT_TAG_ICON_CHECK,
     },
     {
       id: 2,
-      styleClass: styles.editBtn,
+      styleClass: styles.editButton,
       src: ICON_EDIT,
       alt: ALT_TAG_ICON_EDIT,
     },
     {
       id: 3,
-      styleClass: styles.deleteBtn,
+      styleClass: styles.deleteButton,
       src: ICON_DELETE,
       alt: ALT_TAG_ICON_DELETE,
     },
