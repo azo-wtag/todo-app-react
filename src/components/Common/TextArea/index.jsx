@@ -7,10 +7,10 @@ function TextArea(props) {
   const taskInputRef = useRef(null);
 
   useEffect(() => {
-    if (autoFocus) {
+    if (autoFocus || errorMessage) {
       taskInputRef.current.focus();
     }
-  }, [autoFocus]);
+  }, [autoFocus, errorMessage]);
 
   return (
     <>
