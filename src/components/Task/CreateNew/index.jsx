@@ -28,6 +28,8 @@ function CreateTask({ onAddTask }) {
     setTitle(event.target.value);
   }
 
+  const isTextAreaAutoFocused = true;
+
   return (
     <form onSubmit={handleAddTaskSubmit}>
       <TextArea
@@ -35,6 +37,7 @@ function CreateTask({ onAddTask }) {
         errorMessage={errorMessage}
         value={title}
         onChange={handleTitleChange}
+        autoFocus={isTextAreaAutoFocused}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
