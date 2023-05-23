@@ -19,14 +19,12 @@ function ActionButtonGroup({ onDeleteClick }) {
       styleClass: styles.doneButton,
       src: ICON_CHECK,
       alt: ALT_TAG_ICON_CHECK,
-      onClick: () => {},
     },
     {
       id: 2,
       styleClass: styles.editButton,
       src: ICON_EDIT,
       alt: ALT_TAG_ICON_EDIT,
-      onClick: () => {},
     },
     {
       id: 3,

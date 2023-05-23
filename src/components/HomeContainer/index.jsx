@@ -18,6 +18,10 @@ function HomeContainer() {
     setIsNewTaskRequested(true);
   }
 
+  function hideNewTaskCard() {
+    setIsNewTaskRequested(false);
+  }
+
   function handleAddTask(title) {
     dispatch(addTask(generateTaskObject(title)));
     setIsNewTaskRequested(false);
@@ -34,7 +38,12 @@ function HomeContainer() {
       </div>
 
       <div className="grid grid-cols-3 card-gap">
-        {isNewTaskRequested && <CreateTask onAddTask={handleAddTask} />}
+        {isNewTaskRequested && (
+          <CreateTask
+            onAddTask={handleAddTask}
+            onDeleteClick={hideNewTaskCard}
+          />
+        )}
 
         {tasks.map((task) => (
           <TaskCard
