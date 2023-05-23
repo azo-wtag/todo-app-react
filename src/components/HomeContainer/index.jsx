@@ -4,9 +4,9 @@ import Button from "components/Common/Button";
 import CreateTask from "components/Task/CreateNew";
 import TaskCard from "components/Task/ExistingTask/TaskCard";
 import FilterButtonGroup from "components/FilterButtonGroup";
+import NoTaskFound from "components/NoTaskFound";
 import { addTask } from "store/actions/todo";
 import { generateTaskObject } from "utils/factory";
-import NoTaskFound from "components/NoTaskFound";
 import styles from "components/HomeContainer/index.module.scss";
 
 function HomeContainer() {
