@@ -3,11 +3,16 @@
 .card {
   border-radius: 0.313rem;
   border: 1px solid $color-blue-hawkes;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 9rem;
   padding: 0.938rem;
 
   .header {
     font-size: 1.5rem;
     line-height: 1.758rem;
+    word-break: break-all;
   }
 
   .date {

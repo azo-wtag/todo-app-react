@@ -1,33 +1,57 @@
 @import "styles/base.scss";
 
-.allBtn {
-  border-radius: 0.313rem;
-  border: 1px solid $color-blue-hawkes;
-  font-size: 1rem;
-  height: 2.25rem;
-  line-height: 1.172rem;
-  margin-top: 1.75rem;
-  margin-left: 1rem;
-  width: 3rem;
+.buttonContainer {
+  display: none;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+
+  .allBtn {
+    border-radius: 0.313rem;
+    border: 1px solid $color-blue-hawkes;
+    font-size: 1rem;
+    height: 2.25rem;
+    line-height: 1.172rem;
+    padding: 0.5rem 0.813rem;
+  }
+
+  .incompleteBtn {
+    border-radius: 0.313rem;
+    border: 1px solid $color-blue-hawkes;
+    font-size: 1rem;
+    height: 2.25rem;
+    line-height: 1.172rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 0.5rem 0.813rem;
+  }
+
+  .completeBtn {
+    border-radius: 0.313rem;
+    border: 1px solid $color-blue-hawkes;
+    font-size: 1rem;
+    height: 2.25rem;
+    line-height: 1.172rem;
+    padding: 0.5rem 0.813rem;
+  }
+
+  .selectedBtn {
+    background-color: $color-blue-lavender;
+    color: $color-white;
+  }
 }
 
-.incompleteBtn {
-  border-radius: 0.313rem;
-  border: 1px solid $color-blue-hawkes;
-  font-size: 1rem;
-  height: 2.25rem;
-  line-height: 1.172rem;
-  margin-top: 1.75rem;
-  margin: 0 1.188rem;
-  width: 6.938rem;
+.selectBoxContainer {
+  display: block;
+  margin-top: 1rem;
 }
 
-.completeBtn {
-  border-radius: 0.313rem;
-  border: 1px solid $color-blue-hawkes;
-  font-size: 1rem;
-  height: 2.25rem;
-  line-height: 1.172rem;
-  margin-top: 1.75rem;
-  width: 6.5rem;
+@media only screen and (min-width: $breakpoint-sm) {
+  .buttonContainer {
+    display: flex;
+    padding-bottom: 0;
+  }
+
+  .selectBoxContainer {
+    display: none;
+  }
 }
