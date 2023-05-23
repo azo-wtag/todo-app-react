@@ -8,4 +8,4 @@ export const SUCCESS_MESSAGE_EDITED_TASK_DONE = "Task updated & marked as done";
 export const SUCCESS_MESSAGE_TASK_DONE = "Task marked as done";
 
 export const ERROR_MESSAGE_SOMETHING_GOES_WRONG =
-  "Something went wrong please try again";
+  "Something went wrong, please try again";
