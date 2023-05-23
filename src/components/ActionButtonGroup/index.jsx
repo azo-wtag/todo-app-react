@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "components/Common/Button";
 import Image from "components/Common/Image";
 import {
@@ -51,7 +51,7 @@ function ActionButtonGroup({ onDeleteClick }) {
 }
 
 ActionButtonGroup.propTypes = {
-  onDeleteClick: propTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default ActionButtonGroup;
