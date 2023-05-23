@@ -6,7 +6,7 @@ import TaskCard from "components/Task/ExistingTask/TaskCard";
 import FilterButtonGroup from "components/FilterButtonGroup";
 import { addTask } from "store/actions/todo";
 import { generateTaskObject } from "utils/factory";
-import NoTaskFound from "components/not-found/task";
+import NoTaskFound from "components/NoTaskFound";
 import styles from "components/HomeContainer/index.module.scss";
 
 function HomeContainer() {
