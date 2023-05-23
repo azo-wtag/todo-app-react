@@ -66,8 +66,8 @@ function HomeContainer() {
   const paginatedTasks = filteredTasks.slice(0, numOfCardVisible);
 
   return (
-    <div className={`${styles.homeWrapper}`}>
-      <div className={`home-container mx-auto`}>
+    <div className={styles.homeWrapper}>
+      <div className="home-container mx-auto">
         <h1 className={styles.heading}>Add Tasks</h1>
         <div className={`flex justify-between ${styles.actionBarContainer}`}>
           <Button
