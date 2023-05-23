@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "components/Common/Image";
-import styles from "components/NoTaskFound/index.module.scss";
 import {
   ALT_TAG_NO_TASK_FOUND_ICON,
   ICON_NO_TASK_FOUND,
 } from "utils/const/images";
+import styles from "components/NoTaskFound/index.module.scss";
 
 function NoTaskFound() {
   return (
