@@ -14,12 +14,15 @@ import {
   ALT_CHECK_ICON_TAG,
   ICON_DELETE,
   ALT_DELETE_ICON_TAG,
-  CUSTOM_ERROR_MESSAGE_TYPE,
-  TASK_TITLE_ERROR_MESSAGE,
+  ERROR_MESSAGE_CUSTOM_TYPE,
+  ERROR_MESSAGE_TASK_TITLE,
+  SUCCESS_MESSAGE_TASK_UPDATED,
+  SUCCESS_MESSAGE_EDITED_TASK_DONE,
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
 import { editTask, markAsDone } from "store/actions/todo";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
@@ -28,8 +31,8 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
-        type: CUSTOM_ERROR_MESSAGE_TYPE,
-        message: TASK_TITLE_ERROR_MESSAGE,
+        type: ERROR_MESSAGE_CUSTOM_TYPE,
+        message: ERROR_MESSAGE_TASK_TITLE,
       });
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
     }
@@ -42,6 +45,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     if (title === "") return;
     dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
     onTaskEdit();
   }
 
@@ -51,7 +55,12 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     dispatch(editTask({ taskId, title: title }));
     dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
+    showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
+  }
+
+  function onValidationError(errors) {
+    showErrorToast(errors.title.message);
   }
 
   const {
@@ -67,11 +76,11 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   });
 
   function handleEditTask(e) {
-    handleSubmit(updateTask)(e);
+    handleSubmit(updateTask, onValidationError)(e);
   }
 
   function handleSaveTask(e) {
-    handleSubmit(saveAsDone)(e);
+    handleSubmit(saveAsDone, onValidationError)(e);
   }
 
   useEffect(() => {

@@ -12,10 +12,11 @@ import {
   ALT_DELETE_ICON_TAG,
   ICON_DELETE,
   TITLE_FIELD_NAME_ATTRIBUTE,
-  CUSTOM_ERROR_MESSAGE_TYPE,
-  TASK_TITLE_ERROR_MESSAGE,
+  ERROR_MESSAGE_CUSTOM_TYPE,
+  ERROR_MESSAGE_TASK_TITLE,
   TYPE_BUTTON,
   FORM_VALIDATION_MODE_ONCHANGE,
+  SUCCESS_MESSAGE_TASK_ADDED,
   TASK_FILTER_ALL,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
@@ -26,6 +27,7 @@ import {
   resetVisibleTaskCount,
   setSearchKey,
 } from "store/actions/filter";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
   const dispatch = useDispatch();
@@ -34,15 +36,18 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     const sanitizedTitle = DOMPurify.sanitize(task.title);
     if (sanitizedTitle === "") {
       setError(TITLE_FIELD_NAME_ATTRIBUTE, {
-        type: CUSTOM_ERROR_MESSAGE_TYPE,
-        message: TASK_TITLE_ERROR_MESSAGE,
+        type: ERROR_MESSAGE_CUSTOM_TYPE,
+        message: ERROR_MESSAGE_TASK_TITLE,
       });
+      showErrorToast(ERROR_MESSAGE_TASK_TITLE);
       setValue(TITLE_FIELD_NAME_ATTRIBUTE, sanitizedTitle);
       return;
     }
+
     dispatch(addTask(generateTaskObject(sanitizedTitle)));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     dispatch(filterTask(TASK_FILTER_ALL));
+    showSuccessToast(SUCCESS_MESSAGE_TASK_ADDED);
     dispatch(resetVisibleTaskCount());
     dispatch(setSearchKey(""));
     onSuccessfullTaskEntry();
@@ -60,12 +65,16 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
     resolver: yupResolver(taskSchema),
   });
 
+  const onValidationError = (errors) => {
+    showErrorToast(errors.title.message);
+  };
+
   useEffect(() => {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(addNewTask)}>
+    <form onSubmit={handleSubmit(addNewTask, onValidationError)}>
       <TextArea
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
