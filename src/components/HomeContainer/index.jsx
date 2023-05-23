@@ -4,7 +4,7 @@ import Button from "components/Common/Button";
 import CreateTask from "components/Task/CreateNew";
 import TaskCard from "components/Task/ExistingTask/TaskCard";
 import FilterButtonGroup from "components/FilterButtonGroup";
-import { addTaskToTodo } from "store/actions/todo";
+import { addTask } from "store/actions/todo";
 import { generateTaskObject } from "utils/factory";
 import NoTaskFound from "components/not-found/task";
 import styles from "components/HomeContainer/index.module.scss";
@@ -19,7 +19,7 @@ function HomeContainer() {
   }
 
   function handleAddTask(title) {
-    dispatch(addTaskToTodo(generateTaskObject(title)));
+    dispatch(addTask(generateTaskObject(title)));
     setIsNewTaskRequested(false);
   }
 

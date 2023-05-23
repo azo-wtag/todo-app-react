@@ -10,20 +10,22 @@ import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
 import styles from "components/Task/CreateNew/index.module.scss";
 
 function CreateTask({ onAddTask, onDeleteClick }) {
+  const [title, setTitle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isTextAreaFocused, setIsTextAreaFocused] = useState(true);
 
   function handleAddTaskSubmit(event) {
     event.preventDefault();
-    const title = event.target.title.value;
     const sanitizedTitle = taskSanitizer(title);
     if (sanitizedTitle === "") {
       setErrorMessage(VALIDATION_ERROR_TASK_TITLE);
-      setIsTextAreaFocused(true);
       return;
     }
-    setIsTextAreaFocused(false);
+    setErrorMessage("");
     onAddTask(sanitizedTitle);
+  }
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value);
   }
 
   return (
@@ -31,7 +33,9 @@ function CreateTask({ onAddTask, onDeleteClick }) {
       <TextArea
         name={ATTRIBUTE_TITLE}
         errorMessage={errorMessage}
-        autoFocus={isTextAreaFocused}
+        value={title}
+        onChange={handleTitleChange}
+        autoFocus={true}
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
