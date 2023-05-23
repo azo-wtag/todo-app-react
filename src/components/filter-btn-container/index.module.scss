@@ -1,0 +1,33 @@
+@import "styles/base.scss";
+
+.allBtn {
+  border-radius: 0.313rem;
+  border: 1px solid $color-blue-hawkes;
+  font-size: 1rem;
+  height: 2.25rem;
+  line-height: 1.172rem;
+  margin-top: 1.75rem;
+  margin-left: 1rem;
+  width: 3rem;
+}
+
+.incompleteBtn {
+  border-radius: 0.313rem;
+  border: 1px solid $color-blue-hawkes;
+  font-size: 1rem;
+  height: 2.25rem;
+  line-height: 1.172rem;
+  margin-top: 1.75rem;
+  margin: 0 1.188rem;
+  width: 6.938rem;
+}
+
+.completeBtn {
+  border-radius: 0.313rem;
+  border: 1px solid $color-blue-hawkes;
+  font-size: 1rem;
+  height: 2.25rem;
+  line-height: 1.172rem;
+  margin-top: 1.75rem;
+  width: 6.5rem;
+}

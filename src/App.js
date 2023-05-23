@@ -4,7 +4,7 @@ import "styles/app.scss";
 
 function App() {
   return (
-    <div>
+    <div className="min-height-screen bg-white-ghost">
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>

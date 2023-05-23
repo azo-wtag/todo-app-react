@@ -16,14 +16,16 @@
 }
 
 .btnContainer {
-  margin-top: 1.313rem;
+  margin-top: 0.813rem;
 
   .saveBtn {
-    border: 1px solid $color-white;
+    border-radius: 0.313rem;
+    border: 1px solid $color-blue-hawkes;
     color: $color-grey-ship;
     font-size: 1rem;
+    height: 2.25rem;
     line-height: 1.172rem;
-    padding: 0.563rem 0.813rem;
+    width: 5.688rem;
   }
 
   .doneBtn {

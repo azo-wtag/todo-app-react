@@ -37,10 +37,10 @@ function LoadMoreBtnContainer({ numOfTotalTask }) {
     }
   }, []);
 
-  const loadMoreButtonClasses = classNames(styles.loadMoreBtn, {
+  const loadMoreButtonClasses = classNames(styles.loadMoreBtn, "fw-500", {
     "d-none": numOfTotalTask <= numOfVisibleTask,
   });
-  const showLessButtonClasses = classNames({
+  const showLessButtonClasses = classNames(styles.showLessBtn, {
     "d-none": numOfVisibleTask < numOfTotalTask,
   });
 

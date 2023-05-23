@@ -1,7 +1,34 @@
-.buttonContainer {
-  margin-top: 0.813rem;
+@import "styles/base.scss";
 
-  .addTaskBtn {
-    margin-right: 1.188rem;
+.card {
+  background-color: $color-white;
+  border-radius: 0.313rem;
+  border: 1px solid $color-blue-hawkes;
+  padding: 0.938rem;
+
+  .textArea {
+    border-radius: 0.313rem;
+    border: none;
+    color: $color-grey-ship;
+    font-size: 1rem;
+    line-height: 1.172rem;
+    outline: 3px solid $color-blue-tropical;
+    padding: 0.25rem 0.5rem;
+    width: calc(100% - 1rem);
+  }
+
+  .buttonContainer {
+    margin-top: 0.813rem;
+
+    .addTaskBtn {
+      border-radius: 0.313rem;
+      border: 1px solid $color-blue-hawkes;
+      color: $color-grey-ship;
+      font-size: 1rem;
+      height: 2.25rem;
+      line-height: 1.172rem;
+      margin-right: 1.188rem;
+      width: 5.688rem;
+    }
   }
 }

@@ -100,7 +100,7 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
       <div className={`flex items-center ${styles.btnContainer}`}>
         <Button
           onClick={handleEditTask}
-          className={`bg-white ${styles.saveBtn}`}
+          className={`bg-white fw-500 ${styles.saveBtn}`}
         >
           Save
         </Button>

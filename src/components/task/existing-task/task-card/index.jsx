@@ -71,7 +71,7 @@ function TaskCard({
 
   if (isTextAreaVisible) {
     return (
-      <div className={styles.card}>
+      <div className={`bg-white ${styles.card}`}>
         <EditTaskForm
           taskId={taskId}
           existingTitle={title}
@@ -82,7 +82,7 @@ function TaskCard({
     );
   } else {
     return (
-      <div className={styles.card}>
+      <div className={`bg-white ${styles.card}`}>
         <h3 className={taskHeaderClasses}>{title}</h3>
         <p className={`text-grey-french ${styles.date}`}>
           Created At: {formatDate(createdAt)}
