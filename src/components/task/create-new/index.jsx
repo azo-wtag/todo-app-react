@@ -81,7 +81,7 @@ function CreateTask({ onSuccessfullTaskEntry, onDeleteClick }) {
       <TextArea
         register={{ ...register(TITLE_FIELD_NAME_ATTRIBUTE) }}
         error={errors.title}
-        className={`${styles.textArea}`}
+        className={styles.textArea}
       />
 
       <div className={`flex items-center ${styles.buttonContainer}`}>

@@ -7,8 +7,9 @@ const HIDE_PROGRESSBAR = false;
 const CLOSE_ONCLICK = true;
 const PAUSE_ONHOVER = true;
 const DRAGGABLE = true;
-const PROGRESS = undefined;
 const THEME = "colored";
+const BG_ERROR = "#E85F5F";
+const BG_SUCCESS = "#0BC375";
 
 export const NUM_OF_CONCURRENT_TOAST = 3;
 
@@ -20,10 +21,9 @@ export const ERROR_TOAST_DEFAULT_OPTIONS = {
   closeOnClick: CLOSE_ONCLICK,
   pauseOnHover: PAUSE_ONHOVER,
   draggable: DRAGGABLE,
-  progress: PROGRESS,
   theme: THEME,
   style: {
-    backgroundColor: "#E85F5F",
+    backgroundColor: BG_ERROR,
   },
 };
 
@@ -37,9 +37,8 @@ export const SUCCESS_TOAST_DEFAULT_OPTIONS = {
   closeOnClick: CLOSE_ONCLICK,
   pauseOnHover: PAUSE_ONHOVER,
   draggable: DRAGGABLE,
-  progress: PROGRESS,
   theme: THEME,
   style: {
-    backgroundColor: "#0BC375",
+    backgroundColor: BG_SUCCESS,
   },
 };
