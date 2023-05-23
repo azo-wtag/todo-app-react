@@ -1,4 +1,5 @@
 import React from "react";
+import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { asyncFunctionMiddleware } from "store/middleware";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
