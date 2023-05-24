@@ -3,5 +3,7 @@ export const generateTaskObject = (title) => {
     id: Date.now().toString(),
     title,
     createdAt: new Date(),
+    isCompleted: false,
+    completedAt: null,
   };
 };
