@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+import classnames from "classnames";
 import Button from "components/Common/Button";
 import Image from "components/Common/Image";
 import {
@@ -17,14 +17,14 @@ function ActionButtonGroup({ isTaskCompleted, onDoneClick, onDeleteClick }) {
   const actionButtons = [
     {
       id: 1,
-      styleClass: classNames(styles.doneButton, { hidden: isTaskCompleted }),
+      styleClass: classnames(styles.doneButton, { hidden: isTaskCompleted }),
       src: ICON_CHECK,
       alt: ALT_TAG_ICON_CHECK,
       onClick: onDoneClick,
     },
     {
       id: 2,
-      styleClass: classNames(styles.editButton, { hidden: isTaskCompleted }),
+      styleClass: classnames(styles.editButton, { hidden: isTaskCompleted }),
       src: ICON_EDIT,
       alt: ALT_TAG_ICON_EDIT,
     },
