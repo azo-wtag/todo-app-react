@@ -9,9 +9,6 @@ export const taskSanitizer = (text) => {
   return text.replace(/(<([^>]+)>)/g, "");
 };
 
-export const calculateDateDifference = (completedAt, createdAt) => {
-  const dateDifference = dayjs(completedAt).diff(createdAt, "day");
-  return dateDifference === 0
-    ? `1 day`
-    : `${Math.abs(dateDifference) + 1} days`;
+export const getDaysFromDate = (completedAt, createdAt) => {
+  return parseInt((completedAt - createdAt) / (1000 * 60 * 60 * 24), 10) + 1;
 };
