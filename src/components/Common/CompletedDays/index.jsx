@@ -6,7 +6,7 @@ function CompletedDays({ endDate, startDate }) {
   return <p>Completed {getDaysFromDate(endDate, startDate)} days </p>;
 }
 
-CompletedDays.PropTypes = {
+CompletedDays.propTypes = {
   endDate: PropTypes.instanceOf(Date).isRequired,
   startDate: PropTypes.instanceOf(Date).isRequired,
 };
