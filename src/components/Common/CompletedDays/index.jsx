@@ -7,8 +7,8 @@ function CompletedDays({ endDate, startDate }) {
 }
 
 CompletedDays.PropTypes = {
-  endDate: PropTypes.instanceOf(Date),
-  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date).isRequired,
+  startDate: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default CompletedDays;
