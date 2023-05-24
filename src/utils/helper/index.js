@@ -10,5 +10,9 @@ export const taskSanitizer = (text) => {
 };
 
 export const getDaysFromDate = (completedAt, createdAt) => {
-  return parseInt((completedAt - createdAt) / (1000 * 60 * 60 * 24), 10) + 1;
+  const second = 1000,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24;
+  return parseInt((completedAt - createdAt) / day, 10) + 1;
 };
