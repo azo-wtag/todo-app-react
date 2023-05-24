@@ -10,7 +10,7 @@ export const ALT_TAG_ICON_SEARCH = "task search icon";
 export const ALT_TAG_ICON_DELETE = "delete task button icon";
 export const ALT_TAG_ICON_EDIT = "edit task button icon";
 export const ALT_TAG_ICON_CHECK = "complete task button icon";
-export const ALT_TAG_NO_TASK_FOUND_ICON = "no task found icon";
+export const ALT_TAG_ICON_NO_TASK_FOUND = "no task found icon";
 
 export const ICON_LOGO = logoImage;
 export const ICON_SEARCH = searchIcon;

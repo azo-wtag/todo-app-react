@@ -1,11 +1,11 @@
 import React from "react";
-import HomeContainer from "components/home-container";
-import Layout from "components/layout";
+import HomeContainer from "components/HomeContainer";
+import NavBar from "components/Navbar";
 
 function Home() {
   return (
     <>
-      <Layout />
+      <NavBar />
       <HomeContainer />
     </>
   );

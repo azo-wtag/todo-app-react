@@ -1,14 +1,11 @@
-import dayjs from "dayjs";
 import {
   ADD_TASK,
   DELETE_TASK,
   MARK_TASK_DONE,
 } from "store/constants/actionTypes";
-import { TASK_DATE_FORMAT } from "utils/const";
-import { generateTaskObject } from "utils/helper";
 
 const initialTodoState = {
-  tasks: [generateTaskObject("Complete Initial setup of the Todo App")],
+  tasks: [],
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
@@ -16,7 +13,7 @@ export const todoReducer = (state = initialTodoState, action) => {
     case ADD_TASK: {
       return {
         ...state,
-        tasks: [{ ...action.payload }, ...state.tasks],
+        tasks: [action.payload, ...state.tasks],
       };
     }
 
@@ -33,7 +30,7 @@ export const todoReducer = (state = initialTodoState, action) => {
           return {
             ...task,
             isCompleted: true,
-            completedAt: dayjs().format(TASK_DATE_FORMAT),
+            completedAt: new Date(),
           };
         }
 

@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "components/layout/navbar/index.module.scss";
-import Image from "components/base/image";
+import Image from "components/Common/Image";
 import {
-  ALT_TAG_ICON_SEARCH,
-  ALT_TAG_LOGO,
   ICON_LOGO,
+  ALT_TAG_LOGO,
   ICON_SEARCH,
-} from "utils/const";
+  ALT_TAG_ICON_SEARCH,
+} from "utils/const/images";
+import styles from "components/Navbar/index.module.scss";
 
 function NavBar() {
   return (

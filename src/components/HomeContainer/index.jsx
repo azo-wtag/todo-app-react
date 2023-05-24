@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import styles from "components/home-container/index.module.scss";
-import Button from "components/base/button";
-import CreateTask from "components/task/create-new";
-import TaskCard from "components/task/existing-task/task-card";
-import FilterButtonGroup from "components/filter-button-group";
-import NoTaskFound from "components/not-found/task";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "components/Common/Button";
+import CreateTask from "components/Task/CreateNew";
+import TaskCard from "components/Task/ExistingTask/TaskCard";
+import FilterButtonGroup from "components/FilterButtonGroup";
+import NoTaskFound from "components/NoTaskFound";
+import { addTask } from "store/actions/todo";
+import { generateTaskObject } from "utils/factory";
+import styles from "components/HomeContainer/index.module.scss";
 
 function HomeContainer() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.todo.tasks);
   const [isNewTaskRequested, setIsNewTaskRequested] = useState(false);
 
@@ -16,6 +19,11 @@ function HomeContainer() {
   }
 
   function hideNewTaskCard() {
+    setIsNewTaskRequested(false);
+  }
+
+  function handleAddTask(title) {
+    dispatch(addTask(generateTaskObject(title)));
     setIsNewTaskRequested(false);
   }
 
@@ -32,28 +40,26 @@ function HomeContainer() {
       <div className="grid grid-cols-3 card-gap">
         {isNewTaskRequested && (
           <CreateTask
-            onSuccessfullTaskEntry={hideNewTaskCard}
+            onAddTask={handleAddTask}
             onDeleteClick={hideNewTaskCard}
           />
         )}
-        {isTaskAvailable &&
-          tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              taskId={task.id}
-              title={task.title}
-              createdAt={task.createdAt}
-              isCompleted={task.isCompleted}
-              completedAt={task.completedAt}
-            />
-          ))}
+
+        {tasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            taskId={task.id}
+            title={task.title}
+            createdAt={task.createdAt}
+          />
+        ))}
       </div>
 
       {!isTaskAvailable ? (
         <NoTaskFound />
       ) : (
         <div className="flex justify-center">
-          <Button className={styles.loadMoreBtn}>Load More</Button>
+          <Button className={styles.loadMoreButton}>Load More</Button>
         </div>
       )}
     </div>
