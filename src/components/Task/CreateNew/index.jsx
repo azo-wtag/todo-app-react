@@ -9,7 +9,7 @@ import { ATTRIBUTE_TITLE, BUTTON_TYPE_BUTTON } from "utils/const/form-elements";
 import { ALT_TAG_ICON_DELETE, ICON_DELETE } from "utils/const/images";
 import styles from "components/Task/CreateNew/index.module.scss";
 
-function CreateTask({ onAddTask }) {
+function CreateTask({ onAddTask, onDeleteTask }) {
   const [title, setTitle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -39,7 +39,7 @@ function CreateTask({ onAddTask }) {
       />
       <div className={`flex items-center ${styles.buttonContainer}`}>
         <Button className={styles.addTaskBtn}>Add Task</Button>
-        <Button buttonType={BUTTON_TYPE_BUTTON}>
+        <Button buttonType={BUTTON_TYPE_BUTTON} onClick={onDeleteTask}>
           <Image src={ICON_DELETE} alt={ALT_TAG_ICON_DELETE} />
         </Button>
       </div>
@@ -49,6 +49,7 @@ function CreateTask({ onAddTask }) {
 
 CreateTask.propTypes = {
   onAddTask: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
 };
 
 export default CreateTask;

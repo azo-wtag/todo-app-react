@@ -4,6 +4,7 @@ import Button from "components/Common/Button";
 import CreateTask from "components/Task/CreateNew";
 import TaskCard from "components/Task/ExistingTask/TaskCard";
 import FilterButtonGroup from "components/FilterButtonGroup";
+import NoTaskFound from "components/NoTaskFound";
 import { addTask } from "store/actions/todo";
 import { generateTaskObject } from "utils/factory";
 import styles from "components/HomeContainer/index.module.scss";
@@ -17,10 +18,16 @@ function HomeContainer() {
     setIsNewTaskRequested(true);
   }
 
+  function hideNewTaskCard() {
+    setIsNewTaskRequested(false);
+  }
+
   function handleAddTask(title) {
     dispatch(addTask(generateTaskObject(title)));
     setIsNewTaskRequested(false);
   }
+
+  const isTaskAvailable = tasks.length > 0;
 
   return (
     <div className={`home-container mx-auto ${styles.homeWrapper}`}>
@@ -31,20 +38,30 @@ function HomeContainer() {
       </div>
 
       <div className="grid grid-cols-3 card-gap">
-        {isNewTaskRequested && <CreateTask onAddTask={handleAddTask} />}
+        {isNewTaskRequested && (
+          <CreateTask
+            onAddTask={handleAddTask}
+            onDeleteTask={hideNewTaskCard}
+          />
+        )}
 
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
+            id={task.id}
             title={task.title}
             createdAt={task.createdAt}
           />
         ))}
       </div>
 
-      <div className="flex justify-center">
-        <Button className={styles.loadMoreButton}>Load More</Button>
-      </div>
+      {!isTaskAvailable ? (
+        <NoTaskFound />
+      ) : (
+        <div className="flex justify-center">
+          <Button className={styles.loadMoreButton}>Load More</Button>
+        </div>
+      )}
     </div>
   );
 }

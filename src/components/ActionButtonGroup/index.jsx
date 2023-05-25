@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "components/Common/Button";
 import Image from "components/Common/Image";
 import {
@@ -11,7 +12,7 @@ import {
 } from "utils/const/images";
 import styles from "components/ActionButtonGroup/index.module.scss";
 
-function ActionButtonGroup() {
+function ActionButtonGroup({ onDeleteClick }) {
   const actionButtons = [
     {
       id: 1,
@@ -30,18 +31,27 @@ function ActionButtonGroup() {
       styleClass: styles.deleteButton,
       src: ICON_DELETE,
       alt: ALT_TAG_ICON_DELETE,
+      onClick: onDeleteClick,
     },
   ];
 
   return (
     <div className={`flex items-center ${styles.actionButtons}`}>
       {actionButtons.map((actionButton) => (
-        <Button key={actionButton.id} className={actionButton.styleClass}>
+        <Button
+          key={actionButton.id}
+          className={actionButton.styleClass}
+          onClick={actionButton.onClick}
+        >
           <Image src={actionButton.src} alt={actionButton.alt} />
         </Button>
       ))}
     </div>
   );
 }
+
+ActionButtonGroup.propTypes = {
+  onDeleteClick: PropTypes.func.isRequired,
+};
 
 export default ActionButtonGroup;
