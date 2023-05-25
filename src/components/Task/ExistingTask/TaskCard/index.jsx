@@ -6,11 +6,11 @@ import { formatDate } from "utils/helper";
 import { deleteTask } from "store/actions/todo";
 import styles from "components/Task/ExistingTask/TaskCard/index.module.scss";
 
-function TaskCard({ taskId, createdAt, title }) {
+function TaskCard({ id, createdAt, title }) {
   const dispatch = useDispatch();
 
   function handleDeleteClick() {
-    dispatch(deleteTask(taskId));
+    dispatch(deleteTask(id));
   }
 
   return (
@@ -25,7 +25,7 @@ function TaskCard({ taskId, createdAt, title }) {
 }
 
 TaskCard.propTypes = {
-  taskId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.instanceOf(Date),
 };

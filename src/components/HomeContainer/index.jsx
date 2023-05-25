@@ -48,7 +48,7 @@ function HomeContainer() {
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
-            taskId={task.id}
+            id={task.id}
             title={task.title}
             createdAt={task.createdAt}
           />
