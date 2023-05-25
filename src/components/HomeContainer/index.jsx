@@ -41,7 +41,7 @@ function HomeContainer() {
         {isNewTaskRequested && (
           <CreateTask
             onAddTask={handleAddTask}
-            onDeleteClick={hideNewTaskCard}
+            onDeleteTask={hideNewTaskCard}
           />
         )}
 
