@@ -41,14 +41,14 @@ function HomeContainer() {
         {isNewTaskRequested && (
           <CreateTask
             onAddTask={handleAddTask}
-            onDeleteClick={hideNewTaskCard}
+            onDeleteTask={hideNewTaskCard}
           />
         )}
 
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
-            taskId={task.id}
+            id={task.id}
             title={task.title}
             createdAt={task.createdAt}
             isCompleted={task.isCompleted}

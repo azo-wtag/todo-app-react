@@ -8,15 +8,15 @@ import { formatDate } from "utils/helper";
 import { deleteTask, markAsDone } from "store/actions/todo";
 import styles from "components/Task/ExistingTask/TaskCard/index.module.scss";
 
-function TaskCard({ taskId, createdAt, title, isCompleted, completedAt }) {
+function TaskCard({ id, createdAt, title, isCompleted, completedAt }) {
   const dispatch = useDispatch();
 
   function handleDeleteClick() {
-    dispatch(deleteTask(taskId));
+    dispatch(deleteTask(id));
   }
 
   function handleDoneClick() {
-    dispatch(markAsDone(taskId));
+    dispatch(markAsDone(id));
   }
 
   const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
@@ -40,7 +40,7 @@ function TaskCard({ taskId, createdAt, title, isCompleted, completedAt }) {
 }
 
 TaskCard.propTypes = {
-  taskId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.instanceOf(Date),
 };
