@@ -20,7 +20,8 @@ export const todoReducer = (state = initialTodoState, action) => {
       return { ...state, tasks: filteredTasks };
     }
 
-    default:
+    default: {
       return state;
+    }
   }
 };
