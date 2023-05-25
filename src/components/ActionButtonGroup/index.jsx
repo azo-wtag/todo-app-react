@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import Button from "components/Common/Button";
 import Image from "components/Common/Image";
 import {
@@ -12,17 +13,18 @@ import {
 } from "utils/const/images";
 import styles from "components/ActionButtonGroup/index.module.scss";
 
-function ActionButtonGroup({ onDeleteClick }) {
+function ActionButtonGroup({ isTaskCompleted, onDoneClick, onDeleteClick }) {
   const actionButtons = [
     {
       id: 1,
-      styleClass: styles.doneButton,
+      styleClass: classnames(styles.doneButton, { hidden: isTaskCompleted }),
       src: ICON_CHECK,
       alt: ALT_TAG_ICON_CHECK,
+      onClick: onDoneClick,
     },
     {
       id: 2,
-      styleClass: styles.editButton,
+      styleClass: classnames(styles.editButton, { hidden: isTaskCompleted }),
       src: ICON_EDIT,
       alt: ALT_TAG_ICON_EDIT,
     },
@@ -51,6 +53,8 @@ function ActionButtonGroup({ onDeleteClick }) {
 }
 
 ActionButtonGroup.propTypes = {
+  isTaskCompleted: PropTypes.bool.isRequired,
+  onDoneClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };
 

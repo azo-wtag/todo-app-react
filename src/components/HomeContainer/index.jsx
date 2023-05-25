@@ -51,6 +51,8 @@ function HomeContainer() {
             id={task.id}
             title={task.title}
             createdAt={task.createdAt}
+            isCompleted={task.isCompleted}
+            completedAt={task.completedAt}
           />
         ))}
       </div>
