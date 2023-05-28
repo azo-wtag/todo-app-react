@@ -1,8 +1,6 @@
-import { ADD_TASK } from "../constants/actionTypes";
+import { ADD_TASK } from "store/constants/actionTypes";
 
-export const addTaskToTodo = (task) => {
-  return {
-    type: ADD_TASK,
-    payload: task,
-  };
-};
+export const addTask = (task) => ({
+  type: ADD_TASK,
+  payload: task,
+});

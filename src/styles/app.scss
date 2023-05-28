@@ -1,2 +1,49 @@
-body {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.border-none {
+  border: none;
+}
+
+.home-container {
+  width: 80%;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card-gap {
+  gap: 2.125rem;
 }

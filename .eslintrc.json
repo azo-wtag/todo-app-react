@@ -8,7 +8,8 @@
   ],
   "rules": {
     "react/prop-types": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "jsx-a11y/no-autofocus": "off"
   },
   "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {
@@ -28,9 +29,7 @@
       "version": "detect"
     },
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"]
-      }
+      "node": { "paths": ["src"], "extensions": [".js", ".jsx"] }
     }
   }
 }
