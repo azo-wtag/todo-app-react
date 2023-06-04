@@ -1,4 +1,8 @@
+@import "styles/base.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 * {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -62,4 +66,36 @@
 
 .card-gap {
   gap: 2.125rem;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.text-white {
+  color: $color-white;
+}
+
+.text-grey-ship {
+  color: $color-grey-ship;
+}
+
+.text-grey-french {
+  color: $color-grey-french;
+}
+
+.text-green-mint {
+  color: $color-green-mint;
+}
+
+.bg-white {
+  background-color: $color-white;
+}
+
+.bg-blue-lavender {
+  background-color: $color-blue-lavender;
 }

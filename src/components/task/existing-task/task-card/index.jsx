@@ -60,7 +60,14 @@ function TaskCard({
     (state) => state.filter.visibleCardCount
   );
 
-  const taskHeaderClasses = classnames({ "text-line-through": isCompleted });
+  const taskHeaderClasses = classnames(
+    styles.header,
+    "fw-700",
+    "text-grey-ship",
+    {
+      "text-line-through text-green-mint": isCompleted,
+    }
+  );
 
   if (isTextAreaVisible) {
     return (
@@ -77,7 +84,9 @@ function TaskCard({
     return (
       <div className={styles.card}>
         <h3 className={taskHeaderClasses}>{title}</h3>
-        <p className={styles.date}>Created At: {formatDate(createdAt)}</p>
+        <p className={`text-grey-french ${styles.date}`}>
+          Created At: {formatDate(createdAt)}
+        </p>
         <div className="flex justify-between">
           <ButtonContainer
             isTaskCompleted={isCompleted}
@@ -86,7 +95,9 @@ function TaskCard({
             onDeleteClick={handleDeleteClick}
           />
           {isCompleted && (
-            <Button>
+            <Button
+              className={`bg-blue-lavender text-white ${styles.completedText}`}
+            >
               Completed in {calculateDateDifference(completedAt, createdAt)}
             </Button>
           )}
