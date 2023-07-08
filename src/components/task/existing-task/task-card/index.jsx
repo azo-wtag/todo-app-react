@@ -16,7 +16,7 @@ import { validateDayjsDate } from "utils/helper/validation";
 import { showSuccessToast } from "utils/toast";
 import { calculateDateDifference } from "utils/helper";
 import { deleteTask, markAsDone } from "store/actions/todo";
-import { decreaseNumOfVisibleTasks } from "store/actions/filter";
+import { decreaseNumOfVisibleTasks, setisLoading } from "store/actions/filter";
 
 function TaskCard({
   createdAt,
@@ -42,16 +42,18 @@ function TaskCard({
     setIsTextAreaVisible(false);
   }
 
-  function handleDeleteClick() {
-    dispatch(deleteTask(taskId));
+  async function handleDeleteClick() {
+    await dispatch(deleteTask(taskId));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DELETED);
     if (tasks.length === numOfCardVisible) {
       dispatch(decreaseNumOfVisibleTasks());
     }
   }
 
-  function handleDoneClick() {
-    dispatch(markAsDone(taskId));
+  async function handleDoneClick() {
+    dispatch(setisLoading(true));
+    await dispatch(markAsDone(taskId));
+    dispatch(setisLoading(false));
     showSuccessToast(SUCCESS_MESSAGE_TASK_DONE);
   }
 
@@ -59,7 +61,6 @@ function TaskCard({
   const numOfCardVisible = useSelector(
     (state) => state.filter.visibleCardCount
   );
-
   const taskHeaderClasses = classnames(
     styles.header,
     "fw-700",

@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.height-full {
+  height: 100%;
+}
+
 .min-height-screen {
   min-height: 100vh;
 }
@@ -22,6 +26,10 @@
 
 .border-none {
   border: none;
+}
+
+.relative {
+  position: relative;
 }
 
 .d-block {

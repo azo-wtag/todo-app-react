@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import propTypes from "prop-types";
-
 import Button from "components/base/button";
 import styles from "components/load-more-btn-container/index.module.scss";
 import {

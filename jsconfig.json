@@ -6,7 +6,8 @@
       "components/*": ["./components/*"],
       "styles/*": ["./styles/*"],
       "store/*": ["./store/*"],
-      "utils/*": ["./utils/*"]
+      "utils/*": ["./utils/*"],
+      "config/*": ["./config/*"]
     }
   },
   "include": ["src"]

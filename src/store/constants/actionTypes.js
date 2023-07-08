@@ -2,6 +2,7 @@ export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 export const MARK_TASK_DONE = "MARK_TASK_DONE";
 export const EDIT_TASK = "EDIT_TASK";
+export const LOAD_TASK_FROM_DB = "LOAD_TASK_FROM_DB";
 
 export const LOAD_MORE_TASK = "LOAD_MORE_TASK";
 export const RESET_VISIBLE_TASK_COUNT = "RESET_VISIBLE_TASK_COUNT";
@@ -10,3 +11,4 @@ export const FILTER_TASK = "FILTER_TASK";
 export const DECREASE_NUM_OF_VISIBLE_TASK = "DECREASE_NUM_OF_VISIBLE_TASK";
 export const SET_SEARCH_KEY = "SET_SEARCH_KEY";
 export const SET_IS_FILTERING = "SET_IS_FILTERING";
+export const SET_IS_LOADING = "SET_IS_LOADING";

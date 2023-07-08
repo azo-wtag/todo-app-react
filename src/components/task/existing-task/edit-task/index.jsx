@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import propTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,6 +7,7 @@ import DOMPurify from "dompurify";
 import TextArea from "components/base/text-area";
 import Button from "components/base/button";
 import Image from "components/base/image";
+import Loader from "components/base/loader";
 import {
   TYPE_BUTTON,
   TITLE_FIELD_NAME_ATTRIBUTE,
@@ -21,13 +22,14 @@ import {
   FORM_VALIDATION_MODE_ONCHANGE,
 } from "utils/const";
 import { taskSchema } from "utils/schema";
+import { showErrorToast, showSuccessToast } from "utils/toast";
 import { editTask, markAsDone } from "store/actions/todo";
 import styles from "components/task/existing-task/edit-task/index.module.scss";
-import { showErrorToast, showSuccessToast } from "utils/toast";
 
 function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
   const dispatch = useDispatch();
 
+  const [isTaskUpdating, setIsTaskUpdating] = useState(false);
   function titleSanitizer(title) {
     const sanitizedTitle = DOMPurify.sanitize(title);
     if (sanitizedTitle === "") {
@@ -41,23 +43,27 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     return sanitizedTitle;
   }
 
-  function updateTask(task) {
+  async function updateTask(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispatch(editTask({ taskId, title: title }));
+    setIsTaskUpdating(true);
+    await dispatch(editTask({ taskId, title: title }));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_TASK_UPDATED);
     onTaskEdit();
+    setIsTaskUpdating(false);
   }
 
-  function saveAsDone(task) {
+  async function saveAsDone(task) {
     const title = titleSanitizer(task.title);
     if (title === "") return;
-    dispatch(editTask({ taskId, title: title }));
-    dispatch(markAsDone(taskId));
+    setIsTaskUpdating(true);
+    await dispatch(editTask({ taskId, title: title }));
+    await dispatch(markAsDone(taskId));
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, null);
     showSuccessToast(SUCCESS_MESSAGE_EDITED_TASK_DONE);
     onTaskEdit();
+    setIsTaskUpdating(false);
   }
 
   function onValidationError(errors) {
@@ -88,6 +94,17 @@ function EditTaskForm({ taskId, existingTitle, onDelete, onTaskEdit }) {
     setFocus(TITLE_FIELD_NAME_ATTRIBUTE);
     setValue(TITLE_FIELD_NAME_ATTRIBUTE, existingTitle);
   }, []);
+
+  if (isTaskUpdating) {
+    return (
+      <div className="relative width-full height-full">
+        <Loader
+          imageClassName={styles.loaderImage}
+          isLoading={isTaskUpdating}
+        />
+      </div>
+    );
+  }
 
   return (
     <form>
